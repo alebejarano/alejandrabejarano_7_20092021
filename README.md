@@ -1,4 +1,4 @@
-# Front-end Projet 7 Le Réseau Social pour Grupomania
+# Front-end Project 7 Le Réseau Social pour Grupomania
 
 ## Project setup
 ```
