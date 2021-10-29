@@ -12,7 +12,8 @@ export default {
 <style lang="scss">
 @import "@/scss/_variables.scss";
 body {
-  margin: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 #app {
   font-family: 'Rubik', Arial, sans-serif;

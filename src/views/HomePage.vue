@@ -1,6 +1,6 @@
 <template>
-<app-layout>
-</app-layout>
+  <app-layout>
+  </app-layout>
 </template>
 
 <script>
