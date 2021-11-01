@@ -1,6 +1,6 @@
 <template>
   <div class="guest">
-    <div class="guest_logo">
+    <div class="guest_form">
       <svg data-v-1084b650="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="200px" height="200px"><!----> <!----> 
         <rect data-v-1084b650="" fill="#FFFFFF" x="0" y="0" width="300px" height="300px" class="logo-background-square"></rect> <!----> 
         <g data-v-1084b650="" id="7e319840-739a-a0f1-f316-ea813584ba79" fill="#FD2D01" transform="matrix(2.8,0,0,2.8,30.62199562788011,167.12059412002563)">
@@ -23,34 +23,85 @@
           </path></g></switch></svg>
         </g>
       </svg>
-      <input type="text">
+      <section class="guest_form_container">
+        <slot></slot>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
+export default {
+  
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/scss/_variables.scss";
 .guest {
   width: 50%;
   margin: auto;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   background-color: $secondary-color;
-  &_logo {
+  padding: 2rem 0;
+  &_form {
     margin: auto;
     background-color: $light-background;
-    padding: 4rem;
     border-radius: 3rem;
     :nth-child(1) {
       display: block;
       margin: auto;
     }
+    &_container {
+      margin-left: 1rem;
+      padding: 2rem;
+    }
+  }
+  .form {
+    padding-top: 2rem;
+    &_group {
+      padding-bottom: 2rem;
+      position: relative;
+      :nth-child(2) {
+        padding: 0.6rem 2.5rem 0.6rem 0.6rem;
+        width: 20em;
+      }
+    }
+    .show-password {
+      position: absolute;
+      top: 30px;
+      right: 16px;
+      width: 1.3rem;
+      background: none;
+      color: inherit;
+      border: none;
+      outline: inherit;
+      cursor: pointer;
+      padding : 0;
+      &:focus {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: $text-color;
+        padding: 1px;
+      }
+    }
+  }
+  .log-sign-btn {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: $terciary-color;
+    letter-spacing: 0.1rem;
+    &:hover, &:focus {
+      box-shadow: 2px 1px 5px 1px scale-color($text-color, $saturation: 30%);
+    }
+    
   }
 }
 </style>

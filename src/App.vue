@@ -10,15 +10,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/_variables.scss";
-body {
-    margin: 0;
-    box-sizing: border-box;
-}
-#app {
-  font-family: 'Rubik', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: $text-color;
-}
+@import "@/scss/app.scss";
 </style>
