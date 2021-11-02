@@ -46,7 +46,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: $secondary-color;
-  @media (max-width: $small-breakpoint) {
+  @media (max-width: $xsmall-breakpoint) {
     background-color: $light-background;
   }
   &_block {
@@ -75,7 +75,7 @@ export default {
           font-size: map-get($font-sizes, heading2 )
         }
       }
-      @media (max-width: $small-breakpoint) {
+      @media (max-width: $xsmall-breakpoint) {
         margin: 1rem;
       }
 

@@ -1,6 +1,7 @@
 <template>
   <!-- ->Header and footer template<--->
-  <div class="container">
+  <div v-if="showMenu"  class="overlay" @click="toggleMenu"></div>
+  <div class="container" @keyup.esc="showMenu = false">
     <header>
       <div class="header-block">
         <a href="#"
@@ -8,9 +9,9 @@
           <img alt="Grupomania Home"
             src="../assets/Asset-1.svg"
             class="icon-header"
-            role="img"
-            tabindex="0">
+            role="img">
         </a>
+        <button class="menu-btn focus-visible-only" @click="toggleMenu">Menu</button>
         <div class="menu">
           <a href="#"
             class="menu_link">Créer un Post</a>
@@ -18,6 +19,15 @@
             class="menu_link">Vos Posts</a>
           <a href="#"
             class="menu_link">Mon Compte</a>
+        </div>
+        <div v-if="showMenu"  class="responsive-menu">
+          <button class="close-btn" @click="toggleMenu">X</button>
+          <a href="#"
+            class="responsive-menu_link">Créer un Post</a>
+          <a href="#"
+            class="responsive-menu_link">Vos Posts</a>
+          <a href="#"
+            class="responsive-menu_link">Mon Compte</a>
         </div>
       </div>
     </header>
@@ -105,11 +115,37 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      showMenu: false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.showMenu = !this.showMenu
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
+.overlay {
+  position: fixed;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  @media (max-width: $small-breakpoint) {
+    display: block;
+  }
+}
+.focus-visible-only:focus-visible {
+    outline: 2px solid blue;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -126,30 +162,74 @@ header {
     width: 12em;
     padding: 1rem;
   }
+  .menu-btn {
+    display: none;
+    @media (max-width: $small-breakpoint) {
+      display: block;
+      @include reset-btn;
+      font-weight: map-get($font-weights, bold);
+      margin-right: 1rem;
+      &:active {
+        outline: 2px solid violet;
+      }
+    }
+  }
+  .responsive-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    background-color: $secondary-color;
+    z-index: 20;
+    height: 100vh;
+    padding: 2rem;
+    &_link {
+      @include menu-link;
+      margin: 1rem;
+      &:after {
+        @include menu-link-after;
+        bottom: -1px;
+      }
+      &:hover {
+        color: black;
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+    @media (max-width: $small-breakpoint) {
+      display: flex;
+    }
+    .close-btn {
+      @include reset-btn;
+        margin-bottom: 1rem;
+        width: 1em;
+        float: right;
+        margin-left: 116px;
+        font-size: map-get($font-sizes, medium);
+       &:focus-visible {
+         outline: 2px solid blue;
+       }
+       &:active {
+         outline: 2px solid violet;
+       }
+    }
+  }
   .menu {
     display: flex;
     justify-content: space-evenly;
     width: 40rem;
     padding-top: 1rem;
     transform: translateY(11%);
+    @media (max-width: $small-breakpoint) {
+      display: none;
+    }
     &_link {
-      color: $text-color;
-      font-weight: bold;
-      text-decoration: none;
-      z-index: 3;
-      position: relative;
-      padding-bottom: 2px;
+      @include menu-link;
       &:after {
-        z-index: -1;
-        content: '';
-        position: absolute;
+        @include menu-link-after;
         bottom: 30px;
-        left: 0;
-        height: 26px;
-        background-color: #C5E6FB;
-        width: 0%;
-        display: block;
-        transition: width .3s ease-in-out;
       }
       &:hover {
         color: black;
