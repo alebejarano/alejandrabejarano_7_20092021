@@ -1,7 +1,8 @@
 <template>
   <div class="guest">
-    <div class="guest_form">
-      <svg data-v-1084b650="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="200px" height="200px"><!----> <!----> 
+    <div class="guest_block">
+      <slot name="accountLink"></slot>
+      <svg data-v-1084b650="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="200px" height="200px" class="icon-svg"><!----> <!----> 
         <rect data-v-1084b650="" fill="#FFFFFF" x="0" y="0" width="300px" height="300px" class="logo-background-square"></rect> <!----> 
         <g data-v-1084b650="" id="7e319840-739a-a0f1-f316-ea813584ba79" fill="#FD2D01" transform="matrix(2.8,0,0,2.8,30.62199562788011,167.12059412002563)">
           <path d="M5.41 12.67L5.41 12.67Q3.23 12.67 1.76 11.20L1.76 11.20L1.76 11.20Q0.29 9.73 0.29 7.53L0.29 7.53L0.29 7.53Q0.29 5.37 1.76 3.89L1.76 3.89L1.76 
@@ -23,7 +24,7 @@
           </path></g></switch></svg>
         </g>
       </svg>
-      <section class="guest_form_container">
+      <section class="guest_block_container">
         <slot></slot>
       </section>
     </div>
@@ -32,48 +33,70 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 
 <style lang="scss">
-@import "@/scss/_variables.scss";
+@import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
 .guest {
-  width: 50%;
-  margin: auto;
   display: flex;
-  width: 100vw;
   min-height: 100vh;
   justify-content: center;
   align-items: center;
   background-color: $secondary-color;
-  padding: 2rem 0;
-  &_form {
-    margin: auto;
+  @media (max-width: $small-breakpoint) {
+    background-color: $light-background;
+  }
+  &_block {
     background-color: $light-background;
     border-radius: 3rem;
-    :nth-child(1) {
+    padding: 1.5rem;
+    width: 55%;
+    max-width: 60%;
+    min-width: 250px;
+    .icon-svg {
       display: block;
       margin: auto;
+      @media (max-width: $medium-breakpoint) {
+        width: 170px;
+      }
     }
     &_container {
-      margin-left: 1rem;
-      padding: 2rem;
+      .line-break {
+        width: 90%;
+        text-align: left;
+        margin-left: 0;
+      }
+      &_heading {
+        margin-bottom: 0.2rem;
+        @media (max-width: $medium-breakpoint) {
+          font-size: map-get($font-sizes, heading2 )
+        }
+      }
+      @media (max-width: $small-breakpoint) {
+        margin: 1rem;
+      }
+
     }
   }
   .form {
     padding-top: 2rem;
     &_group {
       padding-bottom: 2rem;
-      position: relative;
-      :nth-child(2) {
-        padding: 0.6rem 2.5rem 0.6rem 0.6rem;
-        width: 20em;
+      &_input-div {
+        width: 100%;
+        position: relative;
+        input {
+        @include input-form;
+        box-sizing: border-box;
+       }
       }
     }
     .show-password {
       position: absolute;
-      top: 30px;
+      top: 12px;
       right: 16px;
       width: 1.3rem;
       background: none;
@@ -90,16 +113,10 @@ export default {
       }
     }
   }
-  .log-sign-btn {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    background: $terciary-color;
-    letter-spacing: 0.1rem;
+  .btn {
+    @include btn;
     &:hover, &:focus {
-      box-shadow: 2px 1px 5px 1px scale-color($text-color, $saturation: 30%);
+      box-shadow: $primary-btn-shadow;
     }
     
   }

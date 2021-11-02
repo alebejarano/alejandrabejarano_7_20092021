@@ -109,6 +109,7 @@
 
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
 .container {
   display: flex;
   flex-direction: column;
@@ -179,10 +180,9 @@ main {
     &_item {
       margin: 1rem;
       :nth-child(1) {
-        text-decoration: none;
-        color: $text-color;
+        @include link-style(normal);
         &:hover {
-          text-decoration: underline;
+          text-decoration: $hover-classic-link;
         }
       }
     }

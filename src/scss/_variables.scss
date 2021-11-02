@@ -4,3 +4,12 @@ $terciary-color: rgb(189, 213, 234);
 $text-color: rgb(62, 81, 111);
 $second-text-color: rgb(51, 61, 72);
 $light-background: white;
+$primary-btn-shadow: 2px 1px 5px 1px scale-color($text-color, $saturation: 30%);
+$hover-classic-link: underline;
+$small-breakpoint: 400px;
+$medium-breakpoint: 768px;
+
+$font-sizes: (
+    heading2: 1.6em,
+    normal: 1em
+)
