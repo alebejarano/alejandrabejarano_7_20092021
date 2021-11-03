@@ -40,7 +40,7 @@
         <div class="footer_menu-links">
           <img src="../assets/icon-1.svg"
             alt="Grupomanaia"
-            class="footer_icon"
+            class="footer_logo"
             role="img">
           <ul class="footer_list">
             <li class="footer_list_item">
@@ -92,7 +92,7 @@
           <a href="#"
             class="footer_icons_links"
             title="Youtube">
-            <svg aria-hidden="true"
+            <svg aria-hidden="true" 
               focusable="false"
               width="35"
               height="35"
@@ -161,6 +161,12 @@ header {
   .icon-header {
     width: 12em;
     padding: 1rem;
+    @media (max-width: $small-breakpoint) {
+      width: 11rem;
+    }
+    @media (max-width: $xsmall-breakpoint) {
+      width: 8em;
+    }
   }
   .menu-btn {
     display: none;
@@ -172,6 +178,9 @@ header {
       &:active {
         outline: 2px solid violet;
       }
+    }
+    @media (max-width: $xsmall-breakpoint) {
+      font-size: 0.9em;
     }
   }
   .responsive-menu {
@@ -185,12 +194,8 @@ header {
     height: 100vh;
     padding: 2rem;
     &_link {
-      @include menu-link;
+      @include menu-link(-1px);
       margin: 1rem;
-      &:after {
-        @include menu-link-after;
-        bottom: -1px;
-      }
       &:hover {
         color: black;
         &:after {
@@ -226,11 +231,7 @@ header {
       display: none;
     }
     &_link {
-      @include menu-link;
-      &:after {
-        @include menu-link-after;
-        bottom: 30px;
-      }
+      @include menu-link(30px);
       &:hover {
         color: black;
         &:after {
@@ -248,21 +249,40 @@ main {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  @media (max-width: $xsmall-breakpoint) {
+    padding: 0 0 0 0.8rem;
+  }
   &_menu-links {
     display: flex;
+    @media (max-width: $xsmall-breakpoint) {
+      position: relative;
+    }
   }
-  &_icon {
+  &_logo {
     width: 3em;
     margin-left: 2rem;
+    @media (max-width: $small-breakpoint) {
+      margin-left: 0;
+    }
+    @media (max-width: $xsmall-breakpoint) {
+      position: absolute;
+      top: 29px;
+    }
   }
   &_list {
     list-style-type: none;
+    @media (max-width: $xsmall-breakpoint) {
+      margin-left: 1rem;
+    }
     &_item {
       margin: 1rem;
-      :nth-child(1) {
+      a {
         @include link-style(normal);
         &:hover {
           text-decoration: $hover-classic-link;
+        }
+        @media (max-width: $xsmall-breakpoint) {
+          font-size: 0.9em;
         }
       }
     }
@@ -271,6 +291,18 @@ main {
     padding: 1.5rem;
     &_links {
       margin: 0.5rem;
+      @media (max-width: $xsmall-breakpoint) {
+        display: grid;
+        margin: 0;
+      }
+      svg {
+        @media (max-width: $small-breakpoint) {
+          margin: 0.3rem;
+        }
+        @media (max-width: $xsmall-breakpoint) {
+          width: 30px;
+        }
+      }
     }
     .visually-hidden {
       border: 0;

@@ -17,25 +17,27 @@
 
 }
 
-@mixin menu-link {
-  color: $text-color;
+@mixin menu-link($px) {
+    color: $text-color;
     font-weight: map-get($font-weights, bold);
     text-decoration: none;
     z-index: 3;
     position: relative;
     padding-bottom: 2px;
+    &::after {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 26px;
+      background-color: #C5E6FB;
+      width: 0%;
+      display: block;
+      transition: width .3s ease-in-out;
+      bottom: $px;
+    }
 }
-@mixin menu-link-after {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  left: 0;
-  height: 26px;
-  background-color: #C5E6FB;
-  width: 0%;
-  display: block;
-  transition: width .3s ease-in-out;
-}
+//@mixin menu-link-after {}
 
 @mixin input-form {
   padding: 0.6rem 2.5rem 0.6rem 0.6rem;
