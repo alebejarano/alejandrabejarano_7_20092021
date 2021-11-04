@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <h2>Créer un post</h2>
-  </div>
+  <app-layout>
+  </app-layout>  
 </template>
 
 <script>
-export default {}
+import AppLayout from '../components/AppLayout.vue'
+export default {
+  components: { AppLayout },}
 </script>
 
 <style lang="scss" scoped>

@@ -15,6 +15,7 @@
         <label for="name">Nom complet</label>
         <div class="form_group_input-div">
           <input type="text"
+            placeholder="Ecrivez vos prenom et nom"
             id="fullName"
             name="fullName"
             aria-describedby="fullName-error"
@@ -26,6 +27,7 @@
         <label for="email">Email</label>
         <div class="form_group_input-div">
           <input type="email"
+          placeholder="email"
           id="email"
           name="email"
           aria-describedby="email-error"
