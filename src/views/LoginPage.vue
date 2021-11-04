@@ -2,7 +2,7 @@
   <guest-layout>
     <template #accountLink>
       <p class="go-to-signup">Vous n'avez pas de compte? 
-        <a href="#">Signup</a>
+        <router-link to="/signup">Signup</router-link>
       </p>
     </template>
     <template #default>

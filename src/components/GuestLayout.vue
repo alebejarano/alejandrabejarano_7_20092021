@@ -52,7 +52,7 @@ export default {
   &_block {
     background-color: $light-background;
     border-radius: 3rem;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     width: 55%;
     max-width: 60%;
     min-width: 250px;
@@ -60,7 +60,7 @@ export default {
       display: block;
       margin: auto;
       @media (max-width: $medium-breakpoint) {
-        width: 170px;
+        width: 70%;
       }
     }
     &_container {

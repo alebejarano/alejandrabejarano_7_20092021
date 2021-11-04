@@ -4,30 +4,36 @@
   <div class="container" @keyup.esc="showMenu = false">
     <header>
       <div class="header-block">
-        <a href="#"
+        <router-link to="/"
           title="Go to Homepage ">
           <img alt="Grupomania Home"
             src="../assets/Asset-1.svg"
             class="icon-header"
             role="img">
-        </a>
+        </router-link>
         <button class="menu-btn focus-visible-only" @click="toggleMenu">Menu</button>
         <div class="menu">
-          <a href="#"
-            class="menu_link">Créer un Post</a>
-          <a href="#"
-            class="menu_link">Vos Posts</a>
-          <a href="#"
-            class="menu_link">Mon Compte</a>
+          <router-link to="/"
+            class="menu_link">Home
+          </router-link>
+          <router-link to="/createpost"
+            class="menu_link">Créer un Post
+          </router-link>
+          <router-link to="/moncompte"
+            class="menu_link">Mon Compte
+          </router-link>
         </div>
         <div v-if="showMenu"  class="responsive-menu">
           <button class="close-btn" @click="toggleMenu">X</button>
-          <a href="#"
-            class="responsive-menu_link">Créer un Post</a>
-          <a href="#"
-            class="responsive-menu_link">Vos Posts</a>
-          <a href="#"
-            class="responsive-menu_link">Mon Compte</a>
+          <router-link to="/"
+            class="responsive-menu_link">Home
+          </router-link>
+          <router-link to="/createpost"
+            class="responsive-menu_link">Créer un Post
+          </router-link>
+          <router-link to="/moncompte"
+            class="responsive-menu_link">Mon Compte
+          </router-link>
         </div>
       </div>
     </header>

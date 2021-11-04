@@ -2,7 +2,7 @@
   <guest-layout>
     <template #accountLink>
       <p class="go-to-login">Déjà un compte? 
-        <a href="#">Login</a>
+        <router-link to="/login">Login</router-link>
       </p>
     </template>
     <h1 class="guest_block_container_heading">Signup</h1>
