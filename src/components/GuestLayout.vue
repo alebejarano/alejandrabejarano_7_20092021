@@ -81,44 +81,5 @@ export default {
 
     }
   }
-  .form {
-    padding-top: 2rem;
-    &_group {
-      padding-bottom: 2rem;
-      &_input-div {
-        width: 100%;
-        position: relative;
-        input {
-        @include input-form;
-        box-sizing: border-box;
-       }
-      }
-    }
-    .show-password {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      width: 1.3rem;
-      background: none;
-      color: inherit;
-      border: none;
-      outline: inherit;
-      cursor: pointer;
-      padding : 0;
-      &:focus {
-        outline-width: 2px;
-        outline-style: solid;
-        outline-color: $text-color;
-        padding: 1px;
-      }
-    }
-  }
-  .btn {
-    @include btn;
-    &:hover, &:focus {
-      box-shadow: $primary-btn-shadow;
-    }
-    
-  }
 }
 </style>

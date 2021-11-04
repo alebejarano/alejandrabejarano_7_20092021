@@ -1,11 +1,11 @@
 <template>
   <app-layout>
     <div class="account">
-      <div class="account-menu">
-      <ul class="account-menu_list">
-        <li class="account-menu_list_item">
+      <div class="account_menu">
+      <ul class="account_menu_list">
+        <li class="account_menu_list_item">
           <a href="#"
-            class="account-menu_list_item_link"
+            class="account_menu_list_item_link"
             title="Informations personelles">
             <svg aria-hidden="true"
               focusable="false"
@@ -22,9 +22,9 @@
             <span class="link-text">Informations personelles</span>
           </a>
         </li>
-        <li class="account-menu_list_item">
+        <li class="account_menu_list_item">
           <a href="#"
-            class="account-menu_list_item_link"
+            class="account_menu_list_item_link"
             title="Modifier mot de passe">
             <svg aria-hidden="true"
               focusable="false"
@@ -47,9 +47,9 @@
             <span class="link-text">Modifier mot de passe</span>
           </a>
         </li>
-        <li class="account-menu_list_item">
+        <li class="account_menu_list_item">
           <a href="#"
-            class="account-menu_list_item_link"
+            class="account_menu_list_item_link"
             title="Vos contenus">
             <svg aria-hidden="true"
               focusable="false"
@@ -80,6 +80,7 @@
             <label for="name">Nom complet</label>
             <div class="form_group_input-div">
               <input type="text"
+                placeholder="Ecrivez vos prenom et nom"
                 id="fullName"
                 name="fullName"
                 aria-describedby="fullName-error"
@@ -91,6 +92,7 @@
           <label for="email">Email</label>
           <div class="form_group_input-div">
             <input type="email"
+            placeholder="email"
             id="email"
             name="email"
             aria-describedby="email-error"
@@ -98,6 +100,7 @@
           </div>
           <small id="email-error">* Email wrong</small>
         </div>
+        <button class="btn account_info_button">Sauvegarder</button>
         </form>
       </div>
     </div>
@@ -114,33 +117,42 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.account-menu {
+.account {
+  display: flex;
+  justify-content: space-between;
+  &_menu {
   width: 10rem;
-  &_list {
-    margin: 3rem;
-    &_item {
-      list-style-type: none;
-      padding: 0.5rem;
-      display: flex;
-      &_link {
-        @include link-style(normal);
+    &_list {
+      margin: 3rem;
+      &_item {
+        list-style-type: none;
+        padding: 0.5rem;
         display: flex;
-        align-items: center;
-        gap: 1rem;
-        &:hover {
-          text-decoration: $hover-classic-link;
-        }
-        .link-text {
-          width: max-content;
+        &_link {
+          @include link-style(normal);
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          &:hover {
+            text-decoration: $hover-classic-link;
+          }
+          .link-text {
+            width: max-content;
+          }
         }
       }
     }
   }
 }
+
 .account_info {
-  margin: 6rem;
+  margin: 1rem 6rem;
+  width: 25rem;
   &_form-item {
     padding: 1rem;
+  }
+  &_button {
+    margin: 1rem;
   }
 }
 </style>
