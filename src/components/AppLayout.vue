@@ -247,6 +247,12 @@ header {
     }
   }
 }
+header {
+  .router-link-active, .router-link-exact-active {
+    color: $primary-color;
+  }
+}
+
 main {
   flex-grow: 1;
 }

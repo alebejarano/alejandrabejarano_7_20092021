@@ -22,7 +22,7 @@
             </router-link>
           </li>
           <li class="account_menu_list_item">
-            <router-link to="/changepassword"
+            <router-link to="/account/changepassword"
               class="account_menu_list_item_link"
               title="Modifier mot de passe">
               <svg aria-hidden="true"
@@ -47,7 +47,7 @@
             </router-link>
           </li>
           <li class="account_menu_list_item">
-            <router-link to="/usercontent"
+            <router-link to="/account/usercontent"
               class="account_menu_list_item_link"
               title="Vos contenus">
               <svg aria-hidden="true"
@@ -141,5 +141,9 @@ export default {
   &_button {
     margin: 1rem 0;
   }
+}
+.router-link-exact-active {
+  color: $second-text-color;
+  font-weight: map-get($font-weights , bold);
 }
 </style>

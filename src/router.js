@@ -33,17 +33,17 @@ const routes = [
   {
     path: '/account',
     name: 'account',
-    component: AccountInfoPage
-  },
-  {
-    path: '/changepassword',
-    name: 'changepassword',
-    component: ChangePasswordPage
-  },
-  {
-    path: '/usercontent',
-    name: 'usercontent',
-    component: UserContentPage
+    component: AccountInfoPage,
+    children: [
+      {
+        path: 'changepassword',
+        component: ChangePasswordPage
+      },
+      {
+        path: 'usercontent',
+        component: UserContentPage
+      }
+    ]
   },
 ]
   
