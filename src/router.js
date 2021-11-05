@@ -2,7 +2,7 @@ import HomePage from '@/views/HomePage'
 import LoginPage from '@/views/LoginPage'
 import SignupPage from '@/views/SignupPage'
 import CreatePost from '@/views/CreatePost'
-import MonCompte from '@/views/MonCompte'
+import MonComptePage from '@/views/MonComptePage'
 import * as VueRouter from 'vue-router'
 
 //Define some routes
@@ -31,7 +31,7 @@ const routes = [
   {
     path: '/moncompte',
     name: 'moncompte',
-    component: MonCompte
+    component: MonComptePage
   }
 ]
   
