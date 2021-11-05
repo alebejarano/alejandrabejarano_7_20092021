@@ -4,6 +4,7 @@ import SignupPage from '@/views/SignupPage'
 import CreatePost from '@/views/CreatePost'
 import AccountInfoPage from '@/views/AccountInfoPage'
 import ChangePasswordPage from '@/views/ChangePasswordPage'
+import UserContentPage from '@/views/UserContentPage'
 import * as VueRouter from 'vue-router'
 
 //Define some routes
@@ -38,6 +39,11 @@ const routes = [
     path: '/changepassword',
     name: 'changepassword',
     component: ChangePasswordPage
+  },
+  {
+    path: '/usercontent',
+    name: 'usercontent',
+    component: UserContentPage
   },
 ]
   

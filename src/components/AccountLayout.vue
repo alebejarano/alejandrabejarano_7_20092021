@@ -47,7 +47,7 @@
             </router-link>
           </li>
           <li class="account_menu_list_item">
-            <a href="#"
+            <router-link to="/usercontent"
               class="account_menu_list_item_link"
               title="Vos contenus">
               <svg aria-hidden="true"
@@ -66,7 +66,7 @@
                 </g>
               </svg>
               <span class="link-text">Vos contenus</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -139,7 +139,7 @@ export default {
     padding: 1rem 0;
   }
   &_button {
-    margin: 1rem;
+    margin: 1rem 0;
   }
 }
 </style>
