@@ -2,7 +2,7 @@ import HomePage from '@/views/HomePage'
 import LoginPage from '@/views/LoginPage'
 import SignupPage from '@/views/SignupPage'
 import CreatePost from '@/views/CreatePost'
-import MonComptePage from '@/views/MonComptePage'
+import AccountInfoPage from '@/views/AccountInfoPage'
 import * as VueRouter from 'vue-router'
 
 //Define some routes
@@ -29,9 +29,9 @@ const routes = [
     component: CreatePost
   },
   {
-    path: '/moncompte',
-    name: 'moncompte',
-    component: MonComptePage
+    path: '/account',
+    name: 'account',
+    component: AccountInfoPage
   }
 ]
   

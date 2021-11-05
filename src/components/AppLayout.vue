@@ -19,7 +19,7 @@
           <router-link to="/createpost"
             class="menu_link">Postez un contenu
           </router-link>
-          <router-link to="/moncompte"
+          <router-link to="/account"
             class="menu_link">Mon Compte
           </router-link>
         </div>
@@ -31,7 +31,7 @@
           <router-link to="/createpost"
             class="responsive-menu_link">Postez un contenu
           </router-link>
-          <router-link to="/moncompte"
+          <router-link to="/account"
             class="responsive-menu_link">Mon Compte
           </router-link>
         </div>
