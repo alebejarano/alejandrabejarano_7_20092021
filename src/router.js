@@ -3,6 +3,7 @@ import LoginPage from '@/views/LoginPage'
 import SignupPage from '@/views/SignupPage'
 import CreatePost from '@/views/CreatePost'
 import AccountInfoPage from '@/views/AccountInfoPage'
+import ChangePasswordPage from '@/views/ChangePasswordPage'
 import * as VueRouter from 'vue-router'
 
 //Define some routes
@@ -32,7 +33,12 @@ const routes = [
     path: '/account',
     name: 'account',
     component: AccountInfoPage
-  }
+  },
+  {
+    path: '/changepassword',
+    name: 'changepassword',
+    component: ChangePasswordPage
+  },
 ]
   
   //Create the router instance and pass the `routes` option

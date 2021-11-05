@@ -24,23 +24,24 @@ body {
      }
     }
   }
-  .show-password {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    width: 1.3rem;
-    background: none;
-    color: inherit;
-    border: none;
-    outline: inherit;
-    cursor: pointer;
-    padding : 0;
-    &:focus {
-      outline-width: 2px;
-      outline-style: solid;
-      outline-color: $text-color;
-      padding: 1px;
-    }
+}
+//in the password form
+.show-password {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 1.3rem;
+  background: none;
+  color: inherit;
+  border: none;
+  outline: inherit;
+  cursor: pointer;
+  padding : 0;
+  &:focus {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: $text-color;
+    padding: 1px;
   }
 }
 .btn {

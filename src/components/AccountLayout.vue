@@ -3,7 +3,7 @@
       <div class="account_menu">
         <ul class="account_menu_list">
           <li class="account_menu_list_item">
-            <a href="#"
+            <router-link to="/account"
               class="account_menu_list_item_link"
               title="Informations personelles">
               <svg aria-hidden="true"
@@ -19,10 +19,10 @@
                   fill="#293644"></path>
               </svg>
               <span class="link-text">Informations personelles</span>
-            </a>
+            </router-link>
           </li>
           <li class="account_menu_list_item">
-            <a href="#"
+            <router-link to="/changepassword"
               class="account_menu_list_item_link"
               title="Modifier mot de passe">
               <svg aria-hidden="true"
@@ -44,7 +44,7 @@
               h-6.667V50H40V63.334z M53.333,63.334h-6.666V50h6.666V63.334z M66.667,63.334H60V50h6.667V63.334z"></path>
               </svg>
               <span class="link-text">Modifier mot de passe</span>
-            </a>
+            </router-link>
           </li>
           <li class="account_menu_list_item">
             <a href="#"
