@@ -38,7 +38,7 @@
       </div>
     </header>
     <main>
-      <router-view />
+      <slot></slot>
     </main>
     <footer>
       <div class="footer">
@@ -248,6 +248,9 @@ header {
   }
 }
 header {
+  .router-link-active {
+    color: $primary-color;
+  }
   .router-link-exact-active {
     color: $primary-color;
   }

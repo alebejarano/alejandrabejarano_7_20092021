@@ -1,4 +1,5 @@
 <template>
+<app-layout>
   <div class="account">
     <div class="account_menu">
       <ul class="account_menu_list">
@@ -22,7 +23,7 @@
           </router-link>
         </li>
         <li class="account_menu_list_item">
-          <router-link to="/account/changepassword"
+          <router-link :to="{ name: 'changepassword'}"
             class="account_menu_list_item_link"
             title="Modifier mot de passe">
             <svg aria-hidden="true"
@@ -47,7 +48,7 @@
           </router-link>
         </li>
         <li class="account_menu_list_item">
-          <router-link to="/account/usercontent"
+          <router-link :to="{ name: 'usercontent' }"
             class="account_menu_list_item_link"
             title="Vos contenus">
             <svg aria-hidden="true"
@@ -98,20 +99,21 @@
       </ul>
     </div>
     <div class="account_info">
-      <slot></slot>
+      <router-view />
     </div>
   </div>
+</app-layout> 
 </template>
 <script>
-export default {}
+import AppLayout from './AppLayout.vue'
+export default {
+  components: {AppLayout}
+}
 </script>
 
 <style lang="scss">
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.router-link-active {
-  color: $primary-color;
-}
 .account {
   display: flex;
   justify-content: space-around;

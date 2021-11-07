@@ -1,5 +1,4 @@
 <template>
-  <account-layout>
     <h1 class="account_info_heading">Modifier vos mot de passe</h1>
     <div class="form_group">
       <label for="current-password">Nouveau Mot de passe</label>
@@ -41,13 +40,11 @@
       <small id="password-error">* Password error</small>
     </div>
     <button class="btn account_info_button">Sauvegarder</button>
-  </account-layout>
 </template>
 
 <script>
-import AccountLayout from '../components/AccountLayout.vue'
 export default {
-  components: { AccountLayout }
+  components: { }
 }
 </script>
 

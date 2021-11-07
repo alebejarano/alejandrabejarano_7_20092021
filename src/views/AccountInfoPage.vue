@@ -1,5 +1,4 @@
 <template>
-  <account-layout>
         <h1 class="account_info_heading">Informations personelles</h1>
         <form action="PATCH"
           class="form"
@@ -30,14 +29,12 @@
             <small id="email-error">* Email wrong</small>
           </div>
           <button class="btn account_info_button">Sauvegarder</button>
-        </form>
-  </account-layout>      
+        </form>  
 </template>
 
 <script>
-import AccountLayout from '../components/AccountLayout.vue'
 export default {
-  components: { AccountLayout },
+  
 }
 </script>
 
