@@ -1,20 +1,15 @@
 <template>
-  <app-layout>
     <div class="create-post-div">
       <h1 class="create-post-div_heading">Créer une publication</h1>
       <div class="create-post-div_content">
         <textarea name="post" id="createpost" cols="40" rows="10"
           placeholder="De quoi voulez vous parler ?"></textarea>
       </div>
-    </div>
-    
-  </app-layout>  
+    </div> 
 </template>
 
 <script>
-import AppLayout from '../components/AppLayout.vue'
-export default {
-  components: { AppLayout },}
+export default {}
 </script>
 
 <style lang="scss" scoped>

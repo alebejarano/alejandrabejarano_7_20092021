@@ -5,44 +5,61 @@ import CreatePost from '@/views/CreatePost'
 import AccountInfoPage from '@/views/AccountInfoPage'
 import ChangePasswordPage from '@/views/ChangePasswordPage'
 import UserContentPage from '@/views/UserContentPage'
+import AppLayout from '@/components/AppLayout'
+import GuestLayout from '@/components/GuestLayout'
 import * as VueRouter from 'vue-router'
 
 //Define some routes
 // Each route should map to a component.
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomePage
-  }, 
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginPage
-  }, 
-  { 
-    path: '/signup',
-    name: 'signup',
-    component: SignupPage
-  }, 
-  {
-    path: '/createpost',
-    name: 'createpost',
-    component: CreatePost
-  },
-  {
-    path: '/account',
-    name: 'account',
-    component: AccountInfoPage,
+    path: '/guest',
+    name: 'guest',
+    component: GuestLayout,
     children: [
       {
-        path: 'changepassword',
-        component: ChangePasswordPage
+        path: 'login',
+        name: 'login',
+        component: LoginPage
+      }, 
+      { 
+        path: 'signup',
+        name: 'signup',
+        component: SignupPage
+      },
+    ]
+  },
+  {
+    path: '/',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        name: 'home',
+        component: HomePage
+      }, 
+      {
+        path: 'createpost',
+        name: 'createpost',
+        component: CreatePost
       },
       {
-        path: 'usercontent',
-        component: UserContentPage
-      }
+        path: 'account',
+        name: 'account',
+        component: AccountInfoPage,
+        children: [
+          {
+            path: 'changepassword',
+            name: 'changepassword',
+            component: ChangePasswordPage
+          },
+          {
+            path: 'usercontent',
+            name: 'usercontent',
+            component: UserContentPage
+          }
+        ]
+      },
     ]
   },
 ]

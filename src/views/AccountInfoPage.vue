@@ -1,6 +1,5 @@
 <template>
-  <app-layout>
-    <account-layout>
+  <account-layout>
         <h1 class="account_info_heading">Informations personelles</h1>
         <form action="PATCH"
           class="form"
@@ -32,15 +31,13 @@
           </div>
           <button class="btn account_info_button">Sauvegarder</button>
         </form>
-    </account-layout>
-  </app-layout>
+  </account-layout>      
 </template>
 
 <script>
 import AccountLayout from '../components/AccountLayout.vue'
-import AppLayout from '../components/AppLayout.vue'
 export default {
-  components: { AppLayout, AccountLayout }
+  components: { AccountLayout },
 }
 </script>
 
