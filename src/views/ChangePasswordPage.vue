@@ -1,6 +1,6 @@
 <template>
-    <h1 class="account_info_heading">Modifier vos mot de passe</h1>
-    <div class="form_group">
+    <h1 class="account_info_heading password-heading">Modifier vos mot de passe</h1>
+    <div class="changepassword-div">
       <label for="current-password">Nouveau Mot de passe</label>
       <div class="form_group_input-div">
         <input type="password"
@@ -39,7 +39,9 @@
       </div>
       <small id="password-error">* Password error</small>
     </div>
-    <button class="btn account_info_button">Sauvegarder</button>
+    <div class="account-btn-div">
+      <button class="btn account_info_button">Sauvegarder</button>
+    </div>
 </template>
 
 <script>
@@ -48,5 +50,28 @@ export default {
 }
 </script>
 
-<style lang="sss" scoped>
+<style lang="scss">
+@import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
+.password-heading {
+  @media (max-width: $small-breakpoint) {
+  letter-spacing: 0.1em;
+  }
+}
+.changepassword-div {
+  width: 100%;
+  @media (max-width: $large-breakpoint) {
+    margin: auto;
+    width: 50%;
+  }
+  @media (max-width: $small-breakpoint) {
+    width: 65%;
+  }
+  @media (max-width: $xsmall-breakpoint) {
+    width: 90%;
+  }
+}
+.account-btn-div {
+  text-align: center;
+}
 </style>

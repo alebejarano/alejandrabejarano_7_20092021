@@ -170,7 +170,7 @@ header {
     @media (max-width: $small-breakpoint) {
       width: 11rem;
     }
-    @media (max-width: $xsmall-breakpoint) {
+    @media (max-width: $xxs-breakpoint) {
       width: 8em;
     }
   }

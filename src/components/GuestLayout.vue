@@ -21,16 +21,19 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: $secondary-color;
-  @media (max-width: $xsmall-breakpoint) {
+  @media (max-width: $small-breakpoint) {
     background-color: $light-background;
   }
   &_block {
     background-color: $light-background;
     border-radius: 3rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     width: 55%;
-    max-width: 60%;
+    max-width: 600px;
     min-width: 250px;
+    @media (max-width: $small-breakpoint) {
+      width: 100%;
+    }
     .icon-svg {
       display: block;
       margin: auto;
@@ -39,8 +42,10 @@ export default {
       }
     }
     &_container {
+      width: 85%;
+      margin: auto;
       .line-break {
-        width: 90%;
+        width: 100%;
         text-align: left;
         margin-left: 0;
       }

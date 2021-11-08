@@ -2,7 +2,7 @@
 <app-layout>
   <div class="account">
     <div class="account_menu">
-      <ul class="account_menu_list">
+      <ul class="account_menu_list" id="content_menu">
         <li class="account_menu_list_item">
           <router-link to="/account"
             class="account_menu_list_item_link"
@@ -117,17 +117,17 @@ export default {
 .account {
   display: flex;
   justify-content: space-around;
-  @media (max-width: $medium-breakpoint) {
-    flex-direction: column;
-  }
   @media (max-width: $large-breakpoint) {
-    justify-content: space-between;
+    display: block;
   }
   &_menu {
     &_list {
       margin: 3rem;
-      @media (max-width: $small-breakpoint) {
-        margin: 0;
+      @media (max-width: $large-breakpoint) {
+        display: flex;
+        margin: 1rem;
+        overflow-y: scroll;
+        padding: 0;
       }
       @media (max-width: $xxs-breakpoint) {
         padding: 0.3rem;
@@ -156,16 +156,18 @@ export default {
 .account_info {
   margin: 1rem 5rem;
   width: 40%;
+  @media (max-width: $large-breakpoint) {
+    margin: 3rem 0;
+    width: 100%;
+  }
   &_heading {
     font-size: map-get($font-sizes, heading2);
+    text-align: center;
   }
-  @media (max-width: $medium-breakpoint) {
-    width: 50%;
-  }
-  @media (max-width: $small-breakpoint) {
+  /*@media (max-width: $small-breakpoint) {
     width: 80%;
     margin: 1rem;
-  }
+  }*/
   &_form-item {
     padding: 1rem 0;
   }

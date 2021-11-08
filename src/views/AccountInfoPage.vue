@@ -1,7 +1,7 @@
 <template>
         <h1 class="account_info_heading">Informations personelles</h1>
         <form action="PATCH"
-          class="form"
+          class="personal-info-form"
           name="form"
           id="form">
           <div class="form_group account_info_form-item">
@@ -28,7 +28,9 @@
             </div>
             <small id="email-error">* Email wrong</small>
           </div>
-          <button class="btn account_info_button">Sauvegarder</button>
+          <div class="account-btn-div">
+            <button class="btn account_info_button">Sauvegarder</button>
+          </div>
         </form>  
 </template>
 
@@ -39,4 +41,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
+.personal-info-form {
+  width: 100%;
+  @media (max-width: $large-breakpoint) {
+  width: 50%;
+  margin: auto; 
+  }
+  @media (max-width: $small-breakpoint) {
+    width: 65%;
+  }
+  @media (max-width: $xsmall-breakpoint) {
+    width: 90%;
+  }
+}
 </style>

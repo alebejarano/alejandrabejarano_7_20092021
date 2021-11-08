@@ -1,6 +1,6 @@
 import * as VueRouter from 'vue-router'
 
-//Define some routes
+//Define routes
 // Each route should map to a component.
 const routes = [
   {
@@ -57,7 +57,7 @@ const routes = [
   const router = VueRouter.createRouter({
     // Provide the history implementation to use.
     history: VueRouter.createWebHashHistory(),
-    routes, // short for `routes: routes`
+    routes,
   })
 
 export default router  
