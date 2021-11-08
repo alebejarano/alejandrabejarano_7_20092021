@@ -86,7 +86,7 @@ export default {
   width: 50%;
   background: $medium-light-background;
   padding: 3rem;
-  border-radius: 4em;
+  border-radius: 1em;
   @media (max-width: $medium-breakpoint) {
     width: 70%;
   }
