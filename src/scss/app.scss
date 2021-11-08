@@ -49,5 +49,7 @@ body {
   &:hover, &:focus {
     box-shadow: $primary-btn-shadow;
   }
-  
+}
+.btn-div {
+  text-align: center;
 }

@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/createpost',
     name: 'createpost',
-    component: () => import(/* webpackChunkName: "createpost" */'@/views/CreatePost')
+    component: () => import(/* webpackChunkName: "createpost" */'@/views/CreatePostPage')
   },
   {
     path: '/account',

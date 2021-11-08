@@ -39,7 +39,7 @@
       </div>
       <small id="password-error">* Password error</small>
     </div>
-    <div class="account-btn-div">
+    <div class="btn-div">
       <button class="btn account_info_button">Sauvegarder</button>
     </div>
 </template>
@@ -70,8 +70,5 @@ export default {
   @media (max-width: $xsmall-breakpoint) {
     width: 90%;
   }
-}
-.account-btn-div {
-  text-align: center;
 }
 </style>
