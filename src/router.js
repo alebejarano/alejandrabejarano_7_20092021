@@ -6,49 +6,49 @@ const routes = [
   {
     path: '/guest',
     name: 'guest',
-    component: () => import('@/components/GuestLayout'),
+    component: () => import(/* webpackChunkName: "guestlayout" */'@/components/GuestLayout'),
     children: [
       {
         path: 'login',
         name: 'login',
-        component: () => import('@/views/LoginPage')
+        component: () => import(/* webpackChunkName: "login" */'@/views/LoginPage')
       }, 
       { 
         path: 'signup',
         name: 'signup',
-        component: () => import('@/views/SignupPage')
+        component: () => import(/* webpackChunkName: "signup" */'@/views/SignupPage')
       },
     ]
   },
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomePage'),
+    component: () => import(/* webpackChunkName: "homepage" */'@/views/HomePage'),
   }, 
   {
     path: '/createpost',
     name: 'createpost',
-    component: () => import('@/views/CreatePost')
+    component: () => import(/* webpackChunkName: "createpost" */'@/views/CreatePost')
   },
   {
     path: '/account',
     name: 'account',
-    component: () => import('@/components/AccountLayout'),
+    component: () => import(/* webpackChunkName: "accountlayout" */'@/components/AccountLayout'),
     children: [
       {
         path: '',
         name: 'account',
-        component: () => import('@/views/AccountInfoPage')
+        component: () => import(/* webpackChunkName: "accountinfo" */'@/views/AccountInfoPage')
       },
       {
         path: 'changepassword',
         name: 'changepassword',
-        component: () => import('@/views/ChangePasswordPage')
+        component: () => import(/* webpackChunkName: "changepassword" */'@/views/ChangePasswordPage')
       },
       {
         path: 'usercontent',
         name: 'usercontent',
-        component: () => import('@/views/UserContentPage')
+        component: () => import(/* webpackChunkName: "usercontent" */'@/views/UserContentPage')
       }
     ]
   }
