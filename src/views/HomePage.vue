@@ -1,18 +1,18 @@
 <template>
-<app-layout>
+<main-layout>
   <h1>Derniers contenus</h1>
-</app-layout>  
+</main-layout>  
 </template>
 
 <script>
-import AppLayout from '../components/AppLayout.vue'
+import MainLayout from '../components/MainLayout.vue'
 export default {
   data() {
     return {
 
     }
   },
-  components: {AppLayout},
+  components: {MainLayout},
 }
 </script>
 

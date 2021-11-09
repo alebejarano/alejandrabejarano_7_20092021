@@ -1,5 +1,5 @@
 <template>
-<app-layout>
+<main-layout>
   <div class="account">
     <div class="account_menu">
       <ul class="account_menu_list" id="content_menu">
@@ -102,12 +102,12 @@
       <router-view />
     </div>
   </div>
-</app-layout> 
+</main-layout> 
 </template>
 <script>
-import AppLayout from './AppLayout.vue'
+import MainLayout from './MainLayout.vue'
 export default {
-  components: {AppLayout}
+  components: {MainLayout}
 }
 </script>
 

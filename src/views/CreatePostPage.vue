@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <main-layout>
     <section class="create-post">
       <h1 class="create-post_heading">Créer une publication</h1>
       <div class="create-post_container">
@@ -68,13 +68,13 @@
           class="btn createpost-btn">Créer</button>
       </div>
     </section>
-  </app-layout>
+  </main-layout>
 </template>
 
 <script>
-import AppLayout from '../components/AppLayout.vue'
+import MainLayout from '../components/MainLayout.vue'
 export default {
-  components: { AppLayout }
+  components: { MainLayout }
 }
 </script>
 
