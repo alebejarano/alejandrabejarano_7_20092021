@@ -1,14 +1,19 @@
 import "normalize.css"
-import {
-  createApp
-} from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/routes'
+import store from './store'
+import Axios from 'axios'
+
+
+// set auth header
+Axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.token}`;
 
 //Create and mount the root instance.
 const app = createApp(App)
 // Make sure to _use_ the router instance to make the
 // whole app router-aware.
 app.use(router)
+app.use(store)
 
 app.mount('#app')

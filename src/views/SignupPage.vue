@@ -125,13 +125,37 @@
         </div>
         <small id="password-error">* Password error</small>
       </div>
-      <button class="log-sign btn">Signup</button>
+      <button class="log-sign btn" @click="signUp" value="Sign Up">Signup</button>
+      <p v-if="msg">{{ msg }}</p>
     </form>
   </section>
 </template>
 
 <script>
-export default {}
+import AuthService from '@/services/AuthService.js'
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      msg: ''
+    };
+  },
+  methods: {
+    async signUp() {
+      try {
+        const credentials = {
+          username: this.username,
+          password: this.password,
+        };
+        const response = await AuthService.signUp(credentials);
+        this.msg = response.msg;
+      } catch (error) {
+        this.msg = error.response.data.msg;
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

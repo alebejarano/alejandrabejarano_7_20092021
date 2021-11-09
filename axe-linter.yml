@@ -1,0 +1,3 @@
+rules:
+ click-events-have-key-events: false # turn off rule
+  
