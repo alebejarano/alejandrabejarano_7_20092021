@@ -13,7 +13,9 @@
         </div>
         <div class="create-post_img-links">
           <button class="add-img-link-btn">
-            <svg width="21px"
+            <svg aria-hidden="true"
+              focusable="false"
+              width="21px"
               height="21px"
               viewBox="0 0 21 21"
               version="1.1"
@@ -46,7 +48,9 @@
             Images
           </button>
           <button class="add-img-link-btn">
-            <svg width="21px"
+            <svg aria-hidden="true"
+              focusable="false"
+              width="21px"
               height="21px"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
