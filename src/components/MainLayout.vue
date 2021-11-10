@@ -12,7 +12,7 @@
             role="img">
         </router-link>
         <button class="menu-btn focus-visible-only" @click="toggleMenu">Menu</button>
-        <div class="menu">
+        <nav class="menu" aria-label="Main Navigation">
           <router-link to="/"
             class="menu_link">Home
           </router-link>
@@ -22,8 +22,8 @@
           <router-link to="/account"
             class="menu_link">Mon Compte
           </router-link>
-        </div>
-        <div v-if="showMenu"  class="responsive-menu">
+        </nav>
+        <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
           <button class="close-btn" @click="toggleMenu">X</button>
           <router-link to="/"
             class="responsive-menu_link">Home
@@ -34,7 +34,7 @@
           <router-link to="/account"
             class="responsive-menu_link">Mon Compte
           </router-link>
-        </div>
+        </nav>
       </div>
     </header>
     <main>

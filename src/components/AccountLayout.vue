@@ -1,7 +1,7 @@
 <template>
 <main-layout>
-  <div class="account">
-    <div class="account_menu">
+  <section class="account">
+    <nav class="account_menu" aria-label="Manage you account Menu">
       <ul class="account_menu_list" id="content_menu">
         <li class="account_menu_list_item">
           <router-link to="/account"
@@ -97,11 +97,11 @@
           </a>
         </li>
       </ul>
-    </div>
-    <div class="account_info">
+    </nav>
+    <article class="account_info">
       <router-view />
-    </div>
-  </div>
+    </article>
+  </section>
 </main-layout> 
 </template>
 <script>

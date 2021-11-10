@@ -1,6 +1,6 @@
 <template>
   <main-layout>
-    <section class="create-post">
+    <article class="create-post">
       <h1 class="create-post_heading">Créer une publication</h1>
       <div class="create-post_container">
         <div class="create-post_content">
@@ -71,7 +71,7 @@
         <button type="button"
           class="btn createpost-btn">Créer</button>
       </div>
-    </section>
+    </article>
   </main-layout>
 </template>
 

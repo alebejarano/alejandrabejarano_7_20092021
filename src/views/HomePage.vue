@@ -1,6 +1,8 @@
 <template>
 <main-layout>
   <h1>Derniers contenus</h1>
+  <article>
+  </article>
 </main-layout>  
 </template>
 
