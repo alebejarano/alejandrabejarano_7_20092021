@@ -1,39 +1,45 @@
 import { createStore } from 'vuex'
-import Axios from 'axios'
+import axios from 'axios'
 import VuexPersistence from 'vuex-persist'
-
+import router from '../router/routes';
 
 const getDefaultState = () => {
   return {
-    token: '',
-    user: {}
+    token: null,
+    user: null
   };
 };
 
 export default createStore({
-  strict: true,
+  strict: true, //Do not enable strict mode when deploying for production!
   plugins: [new VuexPersistence().plugin],
   state: getDefaultState(),
   getters: {
-    isLoggedIn: state => {
+    getToken: state => {
       return state.token;
     },
-    getUser: state => {
-      return state.user;
+    isAuthenticated: state => {
+      return !!state.token
     }
+    /*getUser: state => {
+      return state.user;
+    }*/
   },
+  //mutations = setting and updating just one piece of the state
   mutations: {
-    SET_TOKEN: (state, token) => {
+    setToken: (state, token) => {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       state.token = token;
     },
-    SET_USER: (state, user) => {
+    setUser: (state, user) => {
       state.user = user;
     },
-    RESET: state => {
+    logout: state => {
       Object.assign(state, getDefaultState());
+      router.push('/guest/login');
     }
   },
-  actions: {
+  /*actions: {
     login: ({
       commit,
       //dispatch
@@ -44,17 +50,16 @@ export default createStore({
       commit('SET_TOKEN', token);
       commit('SET_USER', user);
       // set auth header
-      Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     },
     logout: ({
       commit
     }) => {
       commit('RESET', '');
     }
-  }
+  }*/
 });
 
 //state = data 
 //getters = computed properties
-//actions = make the call
-//mutations = setting and updating the state
+//actions = make the call - axios call: ej: FetchProducts. Never update the state.

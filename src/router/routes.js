@@ -1,4 +1,5 @@
 import * as VueRouter from 'vue-router'
+import store from '../store'
 
 //Define routes
 // Each route should map to a component.
@@ -6,6 +7,7 @@ const routes = [
   {
     path: '/guest',
     name: 'guest',
+    meta: { guest: true },
     component: () => import(/* webpackChunkName: "guestlayout" */'@/components/GuestLayout'),
     children: [
       {
@@ -23,6 +25,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    meta: { auth: true },
     component: () => import(/* webpackChunkName: "homepage" */'@/views/HomePage'),
   }, 
   {
@@ -58,6 +61,29 @@ const routes = [
     // Provide the history implementation to use.
     history: VueRouter.createWebHashHistory(),
     routes,
+  })
+  router.beforeEach(async(to, from, next) => {
+    if (to.matched.some(record => record.meta.guest)) {
+      // Guests only
+      if (store.getters['isAuthenticated']) {
+        // Authenticated, redirect to homepage
+        next('/')
+      } else {
+        // Guest, continue
+        next()
+      }
+    } else if (to.matched.some(record => record.meta.auth)) {
+      // Authentication required
+      if (store.getters['isAuthenticated']) {
+        // Authenticated and verified, continue
+        next()
+      } else {
+        // Guest, redirect to login page
+        next('/guest/login')
+      }
+    } else {
+      next()
+    }
   })
 
 export default router  

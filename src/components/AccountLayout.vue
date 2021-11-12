@@ -70,8 +70,8 @@
           </router-link>
         </li>
         <li class="account_menu_list_item">
-          <a href="#"
-            class="account_menu_list_item_link"
+          <a @click="logout"
+            class="account_menu_list_item_link logout"
             title="se déconnecter">
             <svg aria-hidden="true"
               focusable="false"
@@ -105,9 +105,13 @@
 </main-layout> 
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import MainLayout from './MainLayout.vue'
 export default {
-  components: {MainLayout}
+  components: {MainLayout},
+  methods: {
+    ...mapMutations(['logout'])
+  }
 }
 </script>
 
@@ -178,5 +182,8 @@ export default {
 .router-link-exact-active {
   color: $second-text-color;
   font-weight: map-get($font-weights, bold);
+}
+.logout {
+  cursor: pointer;
 }
 </style>

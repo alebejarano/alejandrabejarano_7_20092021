@@ -27,14 +27,14 @@
       <section class="guest_block_container">
     <h1 class="guest_block_container_heading">Login</h1>
     <hr class="line-break">
-    <form method="post"
+    <form @submit.prevent="login"
       name="form"
       id="form"
       class="form">
       <div class="form_group">
         <label for="email">Email</label>
         <div class="form_group_input-div">
-          <input type="email"
+          <input type="email" v-model="email"
           id="email"
           name="email"
           aria-describedby="email-error"
@@ -45,7 +45,7 @@
       <div class="form_group">
         <label for="current-password">Password</label>
         <div class="form_group_input-div">
-          <input type="password"
+          <input type="password" v-model="password"
           id="current-password"
           name="password"
           aria-describedby="password-error"
@@ -87,7 +87,27 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapMutations } from 'vuex'
 export default {
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    ...mapMutations(['setToken', 'setUser']),
+    login() {
+      //first param is the url and second param is the data
+      axios.post('http://localhost:3000/auth/login', {
+        email: this.email,
+        password: this.password
+      }).then(response => {
+        this.setToken(response.data.access_token)
+      })
+    }
+  }
 }
 </script>
 

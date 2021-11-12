@@ -3,11 +3,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/routes'
 import store from './store'
-import Axios from 'axios'
+import axios from 'axios'
 
 
 // set auth header
-Axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.token}`;
+if (store.getters['getToken']) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${store.getters['getToken']}`;
+}
+
 
 //Create and mount the root instance.
 const app = createApp(App)
