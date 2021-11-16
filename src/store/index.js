@@ -28,6 +28,7 @@ export default createStore({
   //mutations = setting and updating just one piece of the state
   mutations: {
     setToken: (state, token) => {
+      //set the token in the http headers
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       state.token = token;
     },

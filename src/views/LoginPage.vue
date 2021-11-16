@@ -105,6 +105,8 @@ export default {
         password: this.password
       }).then(response => {
         this.setToken(response.data.access_token)
+        //redirect to homepage once is loged in
+        this.$router.push('/')
       })
     }
   }
