@@ -13,7 +13,9 @@ const getDefaultState = () => {
 export default createStore({
   strict: true, //Do not enable strict mode when deploying for production!
   plugins: [new VuexPersistence().plugin],
+  //state = data 
   state: getDefaultState(),
+  //getters = computed properties
   getters: {
     getToken: state => {
       return state.token;
@@ -40,27 +42,5 @@ export default createStore({
       router.push('/guest/login');
     }
   },
-  /*actions: {
-    login: ({
-      commit,
-      //dispatch
-    }, {
-      token,
-      user
-    }) => {
-      commit('SET_TOKEN', token);
-      commit('SET_USER', user);
-      // set auth header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    },
-    logout: ({
-      commit
-    }) => {
-      commit('RESET', '');
-    }
-  }*/
 });
-
-//state = data 
-//getters = computed properties
 //actions = make the call - axios call: ej: FetchProducts. Never update the state.

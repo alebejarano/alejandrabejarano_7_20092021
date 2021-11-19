@@ -58,14 +58,14 @@
   <section class="guest_block_container">
     <h1 class="guest_block_container_heading">Signup</h1>
     <hr>
-    <form method="post"
+    <form @submit.prevent="signup"
       class="form"
       name="form"
       id="form">
       <div class="form_group">
         <label for="name">Nom complet</label>
         <div class="form_group_input-div">
-          <input type="text"
+          <input type="text" v-model="name"
             placeholder="Ecrivez vos prenom et nom"
             id="fullName"
             name="fullName"
@@ -77,7 +77,7 @@
       <div class="form_group">
         <label for="email">Email</label>
         <div class="form_group_input-div">
-          <input type="email"
+          <input type="email" v-model="email"
             placeholder="email"
             id="email"
             name="email"
@@ -89,7 +89,7 @@
       <div class="form_group">
         <label for="current-password">Password</label>
         <div class="form_group_input-div">
-          <input type="password"
+          <input type="password" v-model="password"
             id="current-password"
             name="password"
             aria-describedby="password-error"
@@ -125,34 +125,36 @@
         </div>
         <small id="password-error">* Password error</small>
       </div>
-      <button class="log-sign btn" @click="signUp" value="Sign Up">Signup</button>
+      <button class="log-sign btn">Signup</button>
       <p v-if="msg">{{ msg }}</p>
     </form>
   </section>
 </template>
 
 <script>
-import AuthService from '@/services/AuthService.js'
+import axios from 'axios'
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      username: '',
+      name: '',
+      email: '',
       password: '',
       msg: ''
     };
   },
   methods: {
-    async signUp() {
-      try {
-        const credentials = {
-          username: this.username,
-          password: this.password,
-        };
-        const response = await AuthService.signUp(credentials);
-        this.msg = response.msg;
-      } catch (error) {
-        this.msg = error.response.data.msg;
-      }
+    ...mapMutations(['setToken', 'setUser']),
+    signup() {
+      axios.post('http://localhost:3000/users', {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }).then(response => {
+        this.setToken(response.data.access_token)
+        //redirect to homepage once is loged in
+        this.$router.push('/')
+      }).catch(error => this.msg = error.response.data.msg);
     }
   }
 }

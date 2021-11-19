@@ -82,6 +82,7 @@
         <small id="password-error">* Password error</small>
       </div>
       <button class="log-sign btn">Login</button>
+      <p v-if="msg">{{ msg }}</p>
     </form>
     </section>
 </template>
@@ -93,7 +94,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      msg: ''
     }
   },
   methods: {
@@ -107,7 +109,7 @@ export default {
         this.setToken(response.data.access_token)
         //redirect to homepage once is loged in
         this.$router.push('/')
-      })
+      }).catch(error => this.msg = error.response.data.msg);
     }
   }
 }
