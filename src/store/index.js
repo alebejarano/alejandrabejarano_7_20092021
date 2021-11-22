@@ -21,6 +21,8 @@ export default createStore({
       return state.token;
     },
     isAuthenticated: state => {
+      //returns a boolean
+      //is not falsey
       return !!state.token
     }
     /*getUser: state => {

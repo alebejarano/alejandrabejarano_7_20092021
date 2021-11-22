@@ -25,7 +25,17 @@ body {
     }
   }
 }
-//in the password form
+//for the validation form input
+ .error-msg {
+  color: $error-form;
+}
+input.error {
+  border: solid 2px $error-form;
+}
+input.valid {
+  border: solid 2px $valid-form;
+}
+//in the password input
 .show-password {
   position: absolute;
   top: 12px;

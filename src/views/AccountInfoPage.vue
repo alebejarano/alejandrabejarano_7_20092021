@@ -1,6 +1,6 @@
 <template>
   <h1 class="account_info_heading">Informations personelles</h1>
-  <form action="PATCH"
+  <form @submit.prevent="updateInfo"
     class="personal-info-form"
     name="form"
     id="form">
@@ -23,25 +23,38 @@
       <label for="name">Nom complet</label>
       <div class="form_group_input-div">
         <input type="text"
-          placeholder="Ecrivez vos prenom et nom"
-          id="fullName"
-          name="fullName"
-          aria-describedby="fullName-error"
-          required>
+            v-model="form.name"
+            @blur="v$.form.name.$touch"
+            :class="{error: v$.form.name.$error, valid: !v$.form.name.$invalid}"
+            placeholder="Ecrivez vos prenom et nom"
+            id="fullName"
+            name="fullName"
+            aria-describedby="fullName-error"
+            required>
       </div>
-      <small id="fullName-error">* Ecrivez vos prenom et nom</small>
+      <small v-if="v$.form.name.$error"
+        class="error-msg"
+        id="fullName-error">Ecrivez vos prenom et nom
+      </small><!-- $error === $invalid && $dirty -->
     </div>
     <div class="form_group account_info_form-item">
       <label for="email">Email</label>
       <div class="form_group_input-div">
         <input type="email"
-          placeholder="email"
-          id="email"
-          name="email"
-          aria-describedby="email-error"
-          required>
+            v-model="form.email"
+            @blur="v$.form.email.$touch"
+            :class="{error: v$.form.email.$error, valid: !v$.form.email.$invalid}"
+            placeholder="email"
+            id="email"
+            name="email"
+            aria-describedby="email-error"
+            autocomplete="username"
+            required>
       </div>
-      <small id="email-error">* Email wrong</small>
+      <small v-if="v$.form.email.$error"
+        class="error-msg"
+        id="email-error">L'adresse email n'est pas valide. Ex:juan@example.com
+      </small>
     </div>
     <div class="account-btn-div">
       <button class="btn account_info_button">Sauvegarder</button>
@@ -50,7 +63,32 @@
 </template>
 
 <script>
-export default {}
+//import axios from 'axios'
+//import { mapMutations } from 'vuex'
+import useVuelidate from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
+export default {
+  setup() {
+    return { v$: useVuelidate() }
+  },
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+      }
+    }
+  },
+  validations() {
+    return {
+      form: {
+        name: { required }, //Matches this.name
+        email: { required, email }, //Matches this.email
+      }
+    }
+  },
+  methods: {}
+}
 </script>
 
 <style lang="scss" scoped>

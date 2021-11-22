@@ -2,12 +2,12 @@
   <p class="go-to-login">Déjà un compte?
     <router-link to="/guest/login">Login</router-link>
   </p>
-  <svg data-v-1084b650=""
+  <svg class="icon-svg"
+    data-v-1084b650=""
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 300 300"
     width="200px"
-    height="200px"
-    class="icon-svg">
+    height="200px">
     <!---->
     <!---->
     <rect data-v-1084b650=""
@@ -65,35 +65,50 @@
       <div class="form_group">
         <label for="name">Nom complet</label>
         <div class="form_group_input-div">
-          <input type="text" v-model="name"
+          <input type="text"
+            v-model="form.name"
+            @blur="v$.form.name.$touch"
+            :class="{error: v$.form.name.$error, valid: !v$.form.name.$invalid}"
             placeholder="Ecrivez vos prenom et nom"
             id="fullName"
             name="fullName"
             aria-describedby="fullName-error"
             required>
         </div>
-        <small id="fullName-error">* Ecrivez vos prenom et nom</small>
+        <small v-if="v$.form.name.$error"
+          class="error-msg"
+          id="fullName-error">Ecrivez vos prenom et nom
+        </small><!-- $error === $invalid && $dirty -->
       </div>
       <div class="form_group">
         <label for="email">Email</label>
         <div class="form_group_input-div">
-          <input type="email" v-model="email"
+          <input type="email"
+            v-model="form.email"
+            @blur="v$.form.email.$touch"
+            :class="{error: v$.form.email.$error, valid: !v$.form.email.$invalid}"
             placeholder="email"
             id="email"
             name="email"
             aria-describedby="email-error"
+            autocomplete="username"
             required>
         </div>
-        <small id="email-error">* Email wrong</small>
+        <small v-if="v$.form.email.$error"
+          class="error-msg"
+          id="email-error">L'adresse email n'est pas valide. Ex:juan@example.com</small>
       </div>
       <div class="form_group">
-        <label for="current-password">Password</label>
+        <label for="new-password">Password</label>
         <div class="form_group_input-div">
-          <input type="password" v-model="password"
-            id="current-password"
+          <input type="password"
+            v-model="form.password"
+            @blur="v$.form.password.$touch"
+            :class="{error: v$.form.password.$error, valid: !v$.form.password.$invalid}"
+            id="new-password"
             name="password"
             aria-describedby="password-error"
-            autocomplete="current-password"
+            autocomplete="new-password"
             required>
           <!--show-hide password icon-->
           <button type="button"
@@ -123,7 +138,11 @@
             </svg>
           </button>
         </div>
-        <small id="password-error">* Password error</small>
+        <small v-if="v$.form.password.$error"
+          class="error-msg"
+          id="password-error">Minimum 8 caractères,
+          au moins une majuscule et au moins un numéro
+        </small>
       </div>
       <button class="log-sign btn">Signup</button>
       <p v-if="msg">{{ msg }}</p>
@@ -134,27 +153,59 @@
 <script>
 import axios from 'axios'
 import { mapMutations } from 'vuex'
+import useVuelidate from '@vuelidate/core'
+import { required, email, minLength, helpers } from '@vuelidate/validators'
+
+//regex: min 8 character, min 1 uppercase letter and 1 number
+const alpha = helpers.regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
+
 export default {
+  setup() {
+    return { v$: useVuelidate() }
+  },
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
+      form: {
+        name: '',
+        email: '',
+        password: ''
+      },
       msg: ''
-    };
+    }
+  },
+  validations() {
+    return {
+      form: {
+        name: { required }, //Matches this.name
+        email: { required, email }, //Matches this.email
+        password: { 
+          required, 
+          alpha, 
+          minLength: minLength(8)
+        }, //Matches this.password
+      }
+    }
   },
   methods: {
     ...mapMutations(['setToken', 'setUser']),
     signup() {
-      axios.post('http://localhost:3000/users', {
-        name: this.name,
-        email: this.email,
-        password: this.password
-      }).then(response => {
-        this.setToken(response.data.access_token)
-        //redirect to homepage once is loged in
-        this.$router.push('/')
-      }).catch(error => this.msg = error.response.data.msg);
+      //this.v$.form.$touch()
+      if (!this.v$.form.$invalid) {
+        axios
+          .post('http://localhost:3000/users', {
+            name: this.form.name,
+            email: this.form.email,
+            password: this.form.password
+          })
+          .then(response => {
+            this.setToken(response.data.access_token)
+            //redirect to homepage once is loged in
+            this.$router.push('/')
+          })
+          .catch(error => (this.msg = error.response.data.msg))
+      } else {
+        console.log('Form is invalid')
+      }
     }
   }
 }

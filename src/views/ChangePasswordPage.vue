@@ -1,14 +1,17 @@
 <template>
     <h1 class="account_info_heading password-heading">Modifier vos mot de passe</h1>
     <div class="changepassword-div">
-      <label for="current-password">Nouveau Mot de passe</label>
+      <label for="new-password">Nouveau Mot de passe</label>
       <div class="form_group_input-div">
         <input type="password"
-          id="current-password"
-          name="password"
-          aria-describedby="password-error"
-          autocomplete="current-password"
-          required>
+            v-model="form.password"
+            @blur="v$.form.password.$touch"
+            :class="{error: v$.form.password.$error, valid: !v$.form.password.$invalid}"
+            id="new-password"
+            name="password"
+            aria-describedby="password-error"
+            autocomplete="new-password"
+            required>
         <!--show-hide password icon-->
         <button type="button"
           aria-pressed="false"
@@ -37,7 +40,11 @@
           </svg>
         </button>
       </div>
-      <small id="password-error">* Password error</small>
+      <small v-if="v$.form.password.$error"
+        class="error-msg"
+        id="password-error">Minimum 8 caractères,
+        au moins une majuscule et au moins un numéro
+      </small>
     </div>
     <div class="btn-div">
       <button class="btn account_info_button">Sauvegarder</button>
@@ -45,8 +52,37 @@
 </template>
 
 <script>
+//import axios from 'axios'
+//import { mapMutations } from 'vuex'
+import useVuelidate from '@vuelidate/core'
+import { required, minLength, helpers } from '@vuelidate/validators'
+
+//regex: min 8 character, min 1 uppercase letter and 1 number
+const alpha = helpers.regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
+
 export default {
-  components: { }
+  setup() {
+    return { v$: useVuelidate() }
+  },
+  data() {
+    return {
+      form: {
+        password: ''
+      }
+    }
+  },
+  validations() {
+    return {
+      form: {
+        password: { 
+          required, 
+          alpha, 
+          minLength: minLength(8) 
+        } //Matches this.password
+      }
+    }
+  },
+  methods: {}
 }
 </script>
 
