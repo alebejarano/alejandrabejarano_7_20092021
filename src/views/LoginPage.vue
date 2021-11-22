@@ -1,6 +1,6 @@
 <template>
   <p class="go-to-signup">Vous n'avez pas de compte?
-    <router-link to="/guest/signup">Signup</router-link>
+    <router-link to="/guest/signup">Céer votre compte</router-link>
   </p>
   <svg data-v-1084b650=""
     xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@
     </g>
   </svg>
   <section class="guest_block_container">
-    <h1 class="guest_block_container_heading">Login</h1>
+    <h1 class="guest_block_container_heading">Se connecter</h1>
     <hr class="line-break">
     <form @submit.prevent="login"
       name="form"
@@ -125,7 +125,7 @@
           au moins une majuscule et au moins un numéro
         </small>
       </div>
-      <button class="log-sign btn">Login</button>
+      <button class="log-sign btn">se connecter</button>
       <p v-if="msg">{{ msg }}</p>
     </form>
   </section>
