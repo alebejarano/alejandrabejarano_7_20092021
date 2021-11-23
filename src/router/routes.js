@@ -31,11 +31,13 @@ const routes = [
   {
     path: '/createpost',
     name: 'createpost',
+    meta: { auth: true },
     component: () => import(/* webpackChunkName: "createpost" */'@/views/CreatePostPage')
   },
   {
     path: '/account',
     name: 'account',
+    meta: { auth: true },
     component: () => import(/* webpackChunkName: "accountlayout" */'@/components/AccountLayout'),
     children: [
       {
@@ -52,6 +54,11 @@ const routes = [
         path: 'usercontent',
         name: 'usercontent',
         component: () => import(/* webpackChunkName: "usercontent" */'@/views/UserContentPage')
+      },
+      {
+        path: 'deleteaccount',
+        name: 'deleteaccount',
+        component: () => import(/* webpackChunkName: "deleteaccount" */'@/views/DeleteAccount')
       }
     ]
   }

@@ -2,6 +2,7 @@
   <p class="go-to-login">Déjà un compte?
     <router-link to="/guest/login">Se connecter</router-link>
   </p>
+
   <svg class="icon-svg"
     data-v-1084b650=""
     xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +56,7 @@
       </svg>
     </g>
   </svg>
+
   <section class="guest_block_container">
     <h1 class="guest_block_container_heading">Créer un compte</h1>
     <hr>
@@ -191,6 +193,7 @@ export default {
     signup() {
       //this.v$.form.$touch()
       if (!this.v$.form.$invalid) {
+        //first param is the url and second param is the data
         axios
           .post('http://localhost:3000/users', {
             name: this.form.name,
@@ -199,6 +202,12 @@ export default {
           })
           .then(response => {
             this.setToken(response.data.access_token)
+            this.setUser({
+              //access the properties of the object returned in createUser(backend)
+              id: response.data.id,
+              name: response.data.name,
+              email: response.data.email
+            })
             //redirect to homepage once is loged in
             this.$router.push('/')
           })

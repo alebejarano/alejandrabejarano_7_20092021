@@ -55,6 +55,7 @@
       </svg>
     </g>
   </svg>
+
   <section class="guest_block_container">
     <h1 class="guest_block_container_heading">Se connecter</h1>
     <hr class="line-break">
@@ -177,6 +178,7 @@ export default {
           })
           .then(response => {
             this.setToken(response.data.access_token)
+            this.setUser(response.data.user)
             //redirect to homepage once is loged in
             this.$router.push('/')
           })

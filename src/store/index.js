@@ -24,10 +24,10 @@ export default createStore({
       //returns a boolean
       //is not falsey
       return !!state.token
-    }
-    /*getUser: state => {
+    },
+    getUser: state => {
       return state.user;
-    }*/
+    }
   },
   //mutations = setting and updating just one piece of the state
   mutations: {
@@ -39,7 +39,8 @@ export default createStore({
     setUser: (state, user) => {
       state.user = user;
     },
-    logout: state => {
+    //to logout and to delete the account
+    logout: (state) => {
       Object.assign(state, getDefaultState());
       router.push('/guest/login');
     }
