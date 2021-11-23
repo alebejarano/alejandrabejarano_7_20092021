@@ -11,11 +11,13 @@
           class="profile-pic_img">
         <div class="inputfile-container">
           <input type="file"
-          id="profile-file"
-          name="profile-file"
-          class="inputfile">
-          <label for="profile-file">Modifiez vos photo de profil</label>
-          <button type="button" class="delete-pic">Supprimer vos photo</button>
+            @change="handleFileUpload($event)"
+            id="profile-file"
+            class="inputfile">
+          <label for="profile-file">Modifiez votre photo de profil</label>
+          <button type="button"
+            @click="submitFile()"
+            class="delete-pic">Supprimer vos photo</button>
         </div>
       </div>
     </div>
@@ -23,14 +25,14 @@
       <label for="name">Nom complet</label>
       <div class="form_group_input-div">
         <input type="text"
-            v-model="form.name"
-            @blur="v$.form.name.$touch"
-            :class="{error: v$.form.name.$error, valid: !v$.form.name.$invalid}"
-            placeholder="Ecrivez vos prenom et nom"
-            id="fullName"
-            name="fullName"
-            aria-describedby="fullName-error"
-            required>
+          v-model="form.name"
+          @blur="v$.form.name.$touch"
+          :class="{error: v$.form.name.$error, valid: !v$.form.name.$invalid}"
+          placeholder="Ecrivez vos prenom et nom"
+          id="fullName"
+          name="fullName"
+          aria-describedby="fullName-error"
+          required>
       </div>
       <small v-if="v$.form.name.$error"
         class="error-msg"
@@ -41,15 +43,15 @@
       <label for="email">Email</label>
       <div class="form_group_input-div">
         <input type="email"
-            v-model="form.email"
-            @blur="v$.form.email.$touch"
-            :class="{error: v$.form.email.$error, valid: !v$.form.email.$invalid}"
-            placeholder="email"
-            id="email"
-            name="email"
-            aria-describedby="email-error"
-            autocomplete="username"
-            required>
+          v-model="form.email"
+          @blur="v$.form.email.$touch"
+          :class="{error: v$.form.email.$error, valid: !v$.form.email.$invalid}"
+          placeholder="email"
+          id="email"
+          name="email"
+          aria-describedby="email-error"
+          autocomplete="username"
+          required>
       </div>
       <small v-if="v$.form.email.$error"
         class="error-msg"
@@ -63,7 +65,7 @@
 </template>
 
 <script>
-//import axios from 'axios'
+import axios from 'axios'
 //import { mapMutations } from 'vuex'
 import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
@@ -75,19 +77,50 @@ export default {
     return {
       form: {
         name: '',
-        email: '',
-      }
+        email: ''
+      },
+      file: ''
     }
   },
   validations() {
     return {
       form: {
         name: { required }, //Matches this.name
-        email: { required, email }, //Matches this.email
+        email: { required, email } //Matches this.email
       }
     }
   },
-  methods: {}
+  methods: {
+    //Handles a change on the file upload
+    handleFileUpload(event) {
+      this.file = event.target.files[0]
+    },
+    //Submits the file to the server
+    submitFile() {
+      //to have our file
+      //Initialize the form data
+      let formData = new FormData()
+      //append the file variable that we have our data stored in
+      //Add the form data we need to submit
+      formData.append('file', this.file)
+      //Make the request 
+      axios
+      //first parameter is the URL,
+      //second parameter is a key-value store of the data we are passing.
+      //third parameter is adding the multipart/form-data header we need to send the file to the server.
+        .post('http://localhost:3000/users/pic', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(() => {
+          console.log('Funcionooo')
+        })
+        .catch(() => {
+          console.log('NOOOOOO')
+        })
+    }
+  }
 }
 </script>
 
@@ -106,7 +139,7 @@ export default {
   @media (max-width: $xsmall-breakpoint) {
     width: 90%;
   }
-  .profile-pic{
+  .profile-pic {
     text-align: center;
     &_container {
       margin-top: 1rem;
@@ -133,16 +166,16 @@ export default {
       z-index: -1;
     }
     .inputfile + label {
-    font-size: 1em;
-    letter-spacing: 0.6px;
-    font-weight: map-get($font-weights, bold);
-    color: $second-text-color;
-    display: inline-block;
-    cursor: pointer;
-    padding: 0.3rem;
-   }
-   .inputfile:focus + label,
-   .inputfile + label:hover {
+      font-size: 1em;
+      letter-spacing: 0.6px;
+      font-weight: map-get($font-weights, bold);
+      color: $second-text-color;
+      display: inline-block;
+      cursor: pointer;
+      padding: 0.3rem;
+    }
+    .inputfile:focus + label,
+    .inputfile + label:hover {
       background-color: $terciary-color;
     }
     .inputfile:focus + label {
@@ -153,10 +186,10 @@ export default {
       @include reset-btn;
       margin-left: 1rem;
       margin-top: 1rem;
-      color: #9D1B01;
+      color: #9d1b01;
       font-weight: map-get($font-weights, bold);
       &:hover {
-        background: rgba(248, 156, 137, 0.2);  
+        background: rgba(248, 156, 137, 0.2);
         padding: 0.3rem;
       }
       &:focus {
