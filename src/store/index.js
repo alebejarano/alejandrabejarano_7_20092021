@@ -39,6 +39,9 @@ export default createStore({
     setUser: (state, user) => {
       state.user = user;
     },
+    setUserProfilePic: (state, profilePic) => {
+      state.user.profilePic = profilePic; 
+    },
     //to logout and to delete the account
     logout: (state) => {
       Object.assign(state, getDefaultState());

@@ -8,8 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@uppy/core": "^2.1.2",
-    "@uppy/vue": "^0.4.3",
     "@vuelidate/core": "^2.0.0-alpha.32",
     "@vuelidate/validators": "^2.0.0-alpha.25",
     "autoprefixer": "^9.8.8",

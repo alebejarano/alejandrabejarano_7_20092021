@@ -206,7 +206,8 @@ export default {
               //access the properties of the object returned in createUser(backend)
               id: response.data.id,
               name: response.data.name,
-              email: response.data.email
+              email: response.data.email,
+              profilePic: null
             })
             //redirect to homepage once is loged in
             this.$router.push('/')

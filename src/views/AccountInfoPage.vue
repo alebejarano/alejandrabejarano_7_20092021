@@ -1,10 +1,4 @@
 <template>
-  <div aria-live="polite" v-if="succesufullyUpdated" class="success">
-    <p class="success-p">Profile mis à jour</p>
-  </div>
-  <div aria-live="polite" v-if="succesufullyDeletedPic" class="deleted-pic">
-    <p class="delete-p">Photo supprimé</p>
-  </div>
   <h1 class="account_info_heading">Informations personelles</h1>
   <form @submit.prevent="updateInfo"
     class="personal-info-form"
@@ -12,7 +6,7 @@
     id="form">
     <div class="form_group account_info_form-item profile-pic">
       <div class="form_group_input-div profile-pic_container">
-        <img :src="previewImage || '/user-placeholder.svg'"
+        <img :src="profilePicUrl"
           alt="photo de profil"
           class="profile-pic_img">
         <div class="inputfile-container">
@@ -67,11 +61,17 @@
       <button @click="UpdateInfo()" class="btn account_info_button">Sauvegarder</button>
     </div>
   </form>
+  <div aria-live="polite" v-if="succesufullyUpdated" class="success">
+    <p class="success-p">Profile mis à jour</p>
+  </div>
+  <div aria-live="polite" v-if="succesufullyDeletedPic" class="deleted-pic">
+    <p class="delete-p">Photo supprimé</p>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
-//import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 export default {
@@ -98,7 +98,23 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters(['getUser']),
+    user () {
+      return this.getUser
+    },
+    profilePicUrl () {
+      if (this.previewImage) {
+        return this.previewImage
+      } else if (this.user.profilePic) {
+        return 'http://localhost:3000/file/' + this.user.profilePic
+      } else {
+        return '/user-placeholder.svg'
+      }
+    }
+  },
   methods: {
+    ...mapMutations(['setUserProfilePic']),
     //Handles a change on the file upload
     uploadImage(event) {
       this.file = event.target.files[0]
@@ -127,9 +143,10 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         })
-        .then(() => {
+        .then((response) => {
           this.succesufullyUpdated = true
           setTimeout(() => this.succesufullyUpdated = false, 2000);
+          this.setUserProfilePic(response.data)
         })
         .catch(() => {
           console.log('NOOOOOO')
@@ -143,7 +160,7 @@ export default {
           this.previewImage = null
           this.succesufullyDeletedPic = true
           setTimeout(() => this.succesufullyDeletedPic = false, 2000);
-          console.log('Deleted')
+          this.setUserProfilePic(null)
         })
         .catch((error) => {
           console.log(error)
