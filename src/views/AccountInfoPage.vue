@@ -6,18 +6,19 @@
     id="form">
     <div class="form_group account_info_form-item profile-pic">
       <div class="form_group_input-div profile-pic_container">
-        <img src="../assets/blank-profile.svg"
+        <img :src="previewImage || '/user-placeholder.svg'"
           alt="photo de profil"
           class="profile-pic_img">
         <div class="inputfile-container">
           <input type="file"
-            @change="handleFileUpload($event)"
+            accept="image/*"
+            @change="uploadImage($event)"
             id="profile-file"
             class="inputfile">
           <label for="profile-file">Modifiez votre photo de profil</label>
           <button type="button"
-            @click="submitFile()"
-            class="delete-pic">Supprimer vos photo</button>
+            @click="deletePicture()"
+            class="delete-pic">Supprimer votre photo</button>
         </div>
       </div>
     </div>
@@ -31,8 +32,7 @@
           placeholder="Ecrivez vos prenom et nom"
           id="fullName"
           name="fullName"
-          aria-describedby="fullName-error"
-          required>
+          aria-describedby="fullName-error">
       </div>
       <small v-if="v$.form.name.$error"
         class="error-msg"
@@ -50,8 +50,7 @@
           id="email"
           name="email"
           aria-describedby="email-error"
-          autocomplete="username"
-          required>
+          autocomplete="username">
       </div>
       <small v-if="v$.form.email.$error"
         class="error-msg"
@@ -59,7 +58,7 @@
       </small>
     </div>
     <div class="account-btn-div">
-      <button class="btn account_info_button">Sauvegarder</button>
+      <button @click="UpdateInfo()" class="btn account_info_button">Sauvegarder</button>
     </div>
   </form>
 </template>
@@ -79,7 +78,8 @@ export default {
         name: '',
         email: ''
       },
-      file: ''
+      file: '',
+      previewImage:  null
     }
   },
   validations() {
@@ -92,11 +92,17 @@ export default {
   },
   methods: {
     //Handles a change on the file upload
-    handleFileUpload(event) {
+    uploadImage(event) {
       this.file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        this.previewImage = event.target.result
+      }
+      reader.readAsDataURL(this.file);
     },
-    //Submits the file to the server
-    submitFile() {
+    UpdateInfo() {
+      if (this.file) {
+      //Submits the file to the server
       //to have our file
       //Initialize the form data
       let formData = new FormData()
@@ -119,6 +125,10 @@ export default {
         .catch(() => {
           console.log('NOOOOOO')
         })
+      }
+    },
+    deleteFile () {
+
     }
   }
 }
