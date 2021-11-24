@@ -1,6 +1,9 @@
 <template>
-  <div v-if="succesufullyUpdated" class="succes-update">
-    <p>Profile mis à jour</p>
+  <div aria-live="polite" v-if="succesufullyUpdated" class="success">
+    <p class="success-p">Profile mis à jour</p>
+  </div>
+  <div aria-live="polite" v-if="succesufullyDeletedPic" class="deleted-pic">
+    <p class="delete-p">Photo supprimé</p>
   </div>
   <h1 class="account_info_heading">Informations personelles</h1>
   <form @submit.prevent="updateInfo"
@@ -78,6 +81,7 @@ export default {
   data() {
     return {
       succesufullyUpdated: false,
+      succesufullyDeletedPic: false,
       form: {
         name: '',
         email: ''
@@ -125,14 +129,25 @@ export default {
         })
         .then(() => {
           this.succesufullyUpdated = true
+          setTimeout(() => this.succesufullyUpdated = false, 2000);
         })
         .catch(() => {
           console.log('NOOOOOO')
         })
       }
     },
-    deleteFile () {
-
+    deletePicture () {
+      axios
+        .delete('http://localhost:3000/users/pic')
+        .then(() => {
+          this.previewImage = null
+          this.succesufullyDeletedPic = true
+          setTimeout(() => this.succesufullyDeletedPic = false, 2000);
+          console.log('Deleted')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
@@ -141,17 +156,21 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.succes-update {
-  margin: auto;
-  width: fit-content;
-  border: 1px solid $valid;
-  padding: 0.5rem;
+.success {
+  @include profile-modified($valid);
   background-color: lighten($valid, 55%);
-  p {
-    margin: 0;
-    color: black;
+  .success-p {
+   @include success-msg;
   }
 }
+.deleted-pic {
+  @include profile-modified($error);
+  background-color: lighten($error, 65%);
+  .delete-p {
+    @include success-msg;
+  }
+}
+
 .personal-info-form {
   width: 100%;
   @media (max-width: $large-breakpoint) {

@@ -37,7 +37,6 @@
       bottom: $px;
     }
 }
-//@mixin menu-link-after {}
 
 @mixin input-form {
   padding: 0.6rem 2.5rem 0.6rem 0.6rem;
@@ -69,4 +68,16 @@
   clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
   clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
   white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+}
+
+//for the succes update in AccountPage
+@mixin profile-modified($color) {
+  margin: auto;
+  width: fit-content;
+  border: 1px solid $color;
+  padding: 0.5rem;
+}
+@mixin success-msg {
+  margin: 0;
+  color: black;
 }
