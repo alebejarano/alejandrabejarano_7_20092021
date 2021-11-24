@@ -27,13 +27,13 @@ body {
 }
 //for the validation form input
  .error-msg {
-  color: $error-form;
+  color: $error;
 }
 input.error {
-  border: solid 2px $error-form;
+  border: solid 2px $error;
 }
 input.valid {
-  border: solid 2px $valid-form;
+  border: solid 2px $valid;
 }
 //in the password input
 .show-password {

@@ -1,4 +1,7 @@
 <template>
+  <div v-if="succesufullyUpdated" class="succes-update">
+    <p>Profile mis à jour</p>
+  </div>
   <h1 class="account_info_heading">Informations personelles</h1>
   <form @submit.prevent="updateInfo"
     class="personal-info-form"
@@ -74,12 +77,13 @@ export default {
   },
   data() {
     return {
+      succesufullyUpdated: false,
       form: {
         name: '',
         email: ''
       },
       file: '',
-      previewImage:  null
+      previewImage:  null,
     }
   },
   validations() {
@@ -120,7 +124,7 @@ export default {
           }
         })
         .then(() => {
-          console.log('Funcionooo')
+          this.succesufullyUpdated = true
         })
         .catch(() => {
           console.log('NOOOOOO')
@@ -137,6 +141,17 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
+.succes-update {
+  margin: auto;
+  width: fit-content;
+  border: 1px solid $valid;
+  padding: 0.5rem;
+  background-color: lighten($valid, 55%);
+  p {
+    margin: 0;
+    color: black;
+  }
+}
 .personal-info-form {
   width: 100%;
   @media (max-width: $large-breakpoint) {
