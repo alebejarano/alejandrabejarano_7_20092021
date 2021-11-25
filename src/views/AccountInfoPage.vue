@@ -14,7 +14,8 @@
           placeholder="Ecrivez vos prenom et nom"
           id="fullName"
           name="fullName"
-          aria-describedby="fullName-error">
+          aria-describedby="fullName-error"
+          required>
       </div>
       <small v-if="v$.form.name.$error"
         class="error-msg"
@@ -32,7 +33,8 @@
           id="email"
           name="email"
           aria-describedby="email-error"
-          autocomplete="email">
+          autocomplete="email"
+          required>
       </div>
       <small v-if="v$.form.email.$error"
         class="error-msg"
@@ -111,14 +113,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.success {
-  @include profile-modified($valid);
-  background-color: lighten($valid, 55%);
-  .success-p {
-   @include success-msg;
-  }
-}
-
 .personal-info-form {
   width: 100%;
   @media (max-width: $large-breakpoint) {

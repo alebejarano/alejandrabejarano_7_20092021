@@ -25,6 +25,14 @@ body {
     }
   }
 }
+//form update info successufully chnaged
+.success {
+  @include profile-modified($valid);
+  background-color: lighten($valid, 55%);
+  .success-p {
+   @include success-msg;
+  }
+}
 //for the validation form input
  .error-msg {
   color: $error;
