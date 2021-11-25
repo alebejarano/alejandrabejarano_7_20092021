@@ -4,24 +4,6 @@
     class="personal-info-form"
     name="form"
     id="form">
-    <div class="form_group account_info_form-item profile-pic">
-      <div class="form_group_input-div profile-pic_container">
-        <img :src="profilePicUrl"
-          alt="photo de profil"
-          class="profile-pic_img">
-        <div class="inputfile-container">
-          <input type="file"
-            accept="image/*"
-            @change="uploadImage($event)"
-            id="profile-file"
-            class="inputfile">
-          <label for="profile-file">Modifiez votre photo de profil</label>
-          <button type="button"
-            @click="deletePicture()"
-            class="delete-pic">Supprimer votre photo</button>
-        </div>
-      </div>
-    </div>
     <div class="form_group account_info_form-item">
       <label for="name">Nom complet</label>
       <div class="form_group_input-div">
@@ -50,7 +32,7 @@
           id="email"
           name="email"
           aria-describedby="email-error"
-          autocomplete="username">
+          autocomplete="email">
       </div>
       <small v-if="v$.form.email.$error"
         class="error-msg"
@@ -58,14 +40,11 @@
       </small>
     </div>
     <div class="account-btn-div">
-      <button @click="UpdateInfo()" class="btn account_info_button">Sauvegarder</button>
+      <button @click="updateInfo()" class="btn account_info_button">Sauvegarder</button>
     </div>
   </form>
   <div aria-live="polite" v-if="succesufullyUpdated" class="success">
     <p class="success-p">Profile mis à jour</p>
-  </div>
-  <div aria-live="polite" v-if="succesufullyDeletedPic" class="deleted-pic">
-    <p class="delete-p">Photo supprimé</p>
   </div>
 </template>
 
@@ -81,13 +60,10 @@ export default {
   data() {
     return {
       succesufullyUpdated: false,
-      succesufullyDeletedPic: false,
       form: {
         name: '',
-        email: ''
-      },
-      file: '',
-      previewImage:  null,
+        email: '',
+      }
     }
   },
   validations() {
@@ -102,69 +78,31 @@ export default {
     ...mapGetters(['getUser']),
     user () {
       return this.getUser
-    },
-    profilePicUrl () {
-      if (this.previewImage) {
-        return this.previewImage
-      } else if (this.user.profilePic) {
-        return 'http://localhost:3000/file/' + this.user.profilePic
-      } else {
-        return '/user-placeholder.svg'
-      }
     }
   },
+  //once created it has acces to the store
+  created () {
+    this.form.name = this.user.name
+    this.form.email = this.user.email
+  },
   methods: {
-    ...mapMutations(['setUserProfilePic']),
-    //Handles a change on the file upload
-    uploadImage(event) {
-      this.file = event.target.files[0]
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        this.previewImage = event.target.result
+    ...mapMutations(['setUser']),
+    updateInfo() {
+      if (!this.v$.form.$invalid) {
+        axios
+          .patch(`http://localhost:3000/users/${this.user.id}`,{
+            name: this.form.name,
+            email: this.form.email,
+          })
+          .then(response => {
+            this.succesufullyUpdated = true
+          setTimeout(() => (this.succesufullyUpdated = false), 2000)
+            this.setUser(response.data)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
-      reader.readAsDataURL(this.file);
-    },
-    UpdateInfo() {
-      if (this.file) {
-      //Submits the file to the server
-      //to have our file
-      //Initialize the form data
-      let formData = new FormData()
-      //append the file variable that we have our data stored in
-      //Add the form data we need to submit
-      formData.append('file', this.file)
-      //Make the request 
-      axios
-      //first parameter is the URL,
-      //second parameter is a key-value store of the data we are passing.
-      //third parameter is adding the multipart/form-data header we need to send the file to the server.
-        .post('http://localhost:3000/users/pic', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then((response) => {
-          this.succesufullyUpdated = true
-          setTimeout(() => this.succesufullyUpdated = false, 2000);
-          this.setUserProfilePic(response.data)
-        })
-        .catch(() => {
-          console.log('NOOOOOO')
-        })
-      }
-    },
-    deletePicture () {
-      axios
-        .delete('http://localhost:3000/users/pic')
-        .then(() => {
-          this.previewImage = null
-          this.succesufullyDeletedPic = true
-          setTimeout(() => this.succesufullyDeletedPic = false, 2000);
-          this.setUserProfilePic(null)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     }
   }
 }
@@ -178,13 +116,6 @@ export default {
   background-color: lighten($valid, 55%);
   .success-p {
    @include success-msg;
-  }
-}
-.deleted-pic {
-  @include profile-modified($error);
-  background-color: lighten($error, 65%);
-  .delete-p {
-    @include success-msg;
   }
 }
 

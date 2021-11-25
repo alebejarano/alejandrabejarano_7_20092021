@@ -46,6 +46,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "accountinfo" */'@/views/AccountInfoPage')
       },
       {
+        path: 'profilepicture',
+        name: 'profilepicture',
+        component: () => import(/* webpackChunkName: "profilepicture" */'@/views/ProfilePicturePage')
+      },
+      {
         path: 'changepassword',
         name: 'changepassword',
         component: () => import(/* webpackChunkName: "changepassword" */'@/views/ChangePasswordPage')
