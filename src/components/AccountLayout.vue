@@ -39,7 +39,7 @@
                   <path d="M44,35A11,11,0,1,1,33,24,11,11,0,0,1,44,35ZM62,18V52a6,6,0,0,1-6,6H8a6,6,0,0,1-6-6V18a6,6,0,0,1,6-6H56A6,6,0,0,1,62,18ZM16,22a4,4,0,1,0-4,4A4,4,0,0,0,16,22ZM48,35A15,15,0,1,0,33,50,15,15,0,0,0,48,35ZM43,8a2,2,0,0,0-2-2H23a2,2,0,0,0,0,4H41A2,2,0,0,0,43,8Z" />
                 </g>
               </svg>
-              <span class="link-text">Photo de Profile</span>
+              <span class="link-text">Photo de Profil</span>
             </router-link>
           </li>
           <li class="account_menu_list_item">

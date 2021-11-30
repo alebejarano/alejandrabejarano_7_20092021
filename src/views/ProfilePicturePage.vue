@@ -29,7 +29,7 @@
     <div aria-live="polite"
       v-if="succesufullyUpdated"
       class="success">
-      <p class="success-p">Profile mis à jour</p>
+      <p class="success-p">Profil mis à jour</p>
     </div>
     <div aria-live="polite"
       v-if="succesufullyDeletedPic"
