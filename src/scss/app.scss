@@ -33,6 +33,14 @@ body {
    @include success-msg;
   }
 }
+//successfully deleted
+.success-deleted {
+  @include profile-modified($error);
+  background-color: lighten($error, 65%);
+  .delete-p {
+    @include success-msg;
+  }
+}
 //for the validation form input
  .error-msg {
   color: $error;

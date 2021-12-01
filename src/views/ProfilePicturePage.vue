@@ -33,7 +33,7 @@
     </div>
     <div aria-live="polite"
       v-if="succesufullyDeletedPic"
-      class="deleted-pic">
+      class="success-deleted">
       <p class="delete-p">Photo supprimé</p>
     </div>
 </template>
@@ -127,20 +127,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.success {
-  @include profile-modified($valid);
-  background-color: lighten($valid, 55%);
-  .success-p {
-    @include success-msg;
-  }
-}
-.deleted-pic {
-  @include profile-modified($error);
-  background-color: lighten($error, 65%);
-  .delete-p {
-    @include success-msg;
-  }
-}
 .profile-pic {
   text-align: center;
   &_container {

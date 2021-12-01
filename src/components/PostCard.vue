@@ -7,7 +7,7 @@
           class="card_post_profile_pic">
         <p>{{ post.user.name }}</p>
       </div>
-      <button class="delete-post" aria-label="supprimer post">X</button>
+      <button @click="deletePost" class="delete-post" aria-label="supprimer post">X</button>
       <!--my posts are return as strings, so we tell to interpret it as html-->
       <div v-html="post.content"
         class="card_post_content">
@@ -36,8 +36,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapGetters } from 'vuex'
 export default {
+  emits: ['deleted'],
   props: ['post'],
   computed: {
     ...mapGetters(['getUser']),
@@ -50,6 +52,18 @@ export default {
       } else {
         return '/user-placeholder.svg'
       }
+    }
+  },
+  methods: {
+    deletePost () {
+      axios
+        .delete(`http://localhost:3000/posts/${this.post.id}`)
+        .then(() => {
+          this.$emit('deleted')
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 }

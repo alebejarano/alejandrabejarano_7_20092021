@@ -1,7 +1,12 @@
 <template>
   <main-layout>
     <h1 class="account_info_heading content_heading">Mes contenus</h1>
-    <post-card v-for="post in posts" :key="post.id" :post="post" />
+    <div aria-live="polite"
+      v-if="successfullyDeleted"
+      class="success-deleted post-deleted">
+      <p class="delete-p">Post supprimé</p>
+    </div>
+    <post-card v-for="post in posts" :key="post.id" :post="post" @deleted="postDeleted"/>
   </main-layout>
 </template>
 
@@ -12,16 +17,27 @@ import PostCard from '../components/PostCard.vue'
 export default {
   data () {
     return {
-      posts: []
+      posts: [],
+      successfullyDeleted: false
     }
   },
   components: { MainLayout, PostCard },
   created() {
-    axios
+    this.getPostsByUser()
+  },
+  methods: {
+    getPostsByUser() {
+      axios
       .get('http://localhost:3000/posts/user')
       .then(response => {
         this.posts = response.data
       })
+    },
+    postDeleted() {
+      this.successfullyDeleted = true
+      setTimeout(() => (this.successfullyDeleted = false), 2000)
+      this.getPostsByUser();
+    }
   }
 }
 </script>
@@ -29,5 +45,10 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-
+.post-deleted {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10
+}
 </style>
