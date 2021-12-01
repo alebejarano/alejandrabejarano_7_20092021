@@ -7,7 +7,7 @@
           class="card_post_profile_pic">
         <p>{{ post.user.name }}</p>
       </div>
-      <button @click="deletePost" class="delete-post" aria-label="supprimer post">X</button>
+      <button v-if="authorizedToDelete" @click="deletePost" class="delete-post" aria-label="supprimer post">X</button>
       <!--my posts are return as strings, so we tell to interpret it as html-->
       <div v-html="post.content"
         class="card_post_content">
@@ -47,11 +47,14 @@ export default {
       return this.getUser
     },
     profilePicUrl() {
-      if (this.user.profilePic) {
-        return `http://localhost:3000/file/${this.user.profilePic}`
+      if (this.post.user.profilePic) {
+        return `http://localhost:3000/file/${this.post.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }
+    },
+    authorizedToDelete() {
+      return this.user.id === this.post.user.id || this.user.isAdmin
     }
   },
   methods: {
