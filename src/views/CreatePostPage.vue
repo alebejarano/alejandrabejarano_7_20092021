@@ -1,5 +1,4 @@
 <template>
-  <main-layout>
     <article class="create-post">
       <h1 class="create-post_heading">Créer une publication</h1>
       <form @submit.prevent="createPost">
@@ -19,11 +18,9 @@
         <p class="success-p">Votre contenu a été créé</p>
       </div>
     </article>
-  </main-layout>
 </template>
 
 <script>
-import MainLayout from '../components/MainLayout.vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import ImageUploader from 'quill-image-uploader'
@@ -61,7 +58,7 @@ export default {
       succesufullyUpdated: false,
     }
   },
-  components: { MainLayout, QuillEditor },
+  components: { QuillEditor },
   methods: {
     createPost() {
       axios
@@ -71,6 +68,8 @@ export default {
         .then(response => {
           this.succesufullyUpdated = true
           setTimeout(() => (this.succesufullyUpdated = false), 2000)
+          //redirect to my post page
+          this.$router.push('/usercontent')
           console.log(response, 'YESSSSS');
         })
     }
@@ -83,16 +82,13 @@ export default {
 @import '@/scss/_mixins.scss';
 .create-post {
   margin: 3rem auto;
-  width: 50%;
-  padding: 3rem;
+  width: 95%;
   @media (max-width: $medium-breakpoint) {
-    width: 70%;
+    width: 90%;
   }
   @media (max-width: $small-breakpoint) {
     padding: 2rem;
-    width: 88%;
     margin: 0;
-    border-radius: revert;
   }
   @media (max-width: $xsmall-breakpoint) {
     width: auto;

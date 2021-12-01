@@ -29,10 +29,10 @@ const routes = [
     component: () => import(/* webpackChunkName: "homepage" */'@/views/HomePage'),
   }, 
   {
-    path: '/createpost',
-    name: 'createpost',
+    path: '/usercontent',
+    name: 'usercontent',
     meta: { auth: true },
-    component: () => import(/* webpackChunkName: "createpost" */'@/views/CreatePostPage')
+    component: () => import(/* webpackChunkName: "usercontent" */'@/views/UserContentPage')
   },
   {
     path: '/account',
@@ -56,9 +56,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "changepassword" */'@/views/ChangePasswordPage')
       },
       {
-        path: 'usercontent',
-        name: 'usercontent',
-        component: () => import(/* webpackChunkName: "usercontent" */'@/views/UserContentPage')
+        path: 'createpost',
+        name: 'createpost',
+        component: () => import(/* webpackChunkName: "createpost" */'@/views/CreatePostPage')
       },
       {
         path: 'deleteaccount',

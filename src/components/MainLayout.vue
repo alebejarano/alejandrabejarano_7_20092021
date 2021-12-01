@@ -12,24 +12,26 @@
             role="img">
         </router-link>
         <button class="menu-btn focus-visible-only" @click="toggleMenu">Menu</button>
+        <!--Navigation for big devices-->
         <nav class="menu" aria-label="Main Navigation">
           <router-link to="/"
             class="menu_link">Home
           </router-link>
-          <router-link to="/createpost"
-            class="menu_link">Postez un contenu
+          <router-link to="/usercontent"
+            class="menu_link">Mes contenus
           </router-link>
           <router-link to="/account"
             class="menu_link">Mon Compte
           </router-link>
         </nav>
+        <!---Navigation Menu for small devices-->
         <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
           <button class="close-btn" @click="toggleMenu">X</button>
           <router-link to="/"
             class="responsive-menu_link">Home
           </router-link>
-          <router-link to="/createpost"
-            class="responsive-menu_link">Postez un contenu
+          <router-link to="/usercontent"
+            class="responsive-menu_link">Mes contenus
           </router-link>
           <router-link to="/account"
             class="responsive-menu_link">Mon Compte

@@ -1,6 +1,6 @@
 <template>
 <main-layout>
-  <h1>Derniers contenus</h1>
+  <h1 class="content_heading">Derniers contenus</h1>
   <article>
   </article>
 </main-layout>  
