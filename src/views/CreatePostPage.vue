@@ -82,8 +82,8 @@ export default {
 @import '@/scss/_mixins.scss';
 .create-post {
   margin: 3rem auto;
-  width: 95%;
-  @media (max-width: $medium-breakpoint) {
+  width: 100%;
+  @media (max-width: $large-breakpoint) {
     width: 90%;
   }
   @media (max-width: $small-breakpoint) {

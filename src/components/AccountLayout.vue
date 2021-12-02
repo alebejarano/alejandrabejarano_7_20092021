@@ -166,7 +166,7 @@ export default {
 @import '@/scss/_mixins.scss';
 .account {
   display: flex;
-  justify-content: space-around;
+  grid-gap: 7rem;
   @media (max-width: $large-breakpoint) {
     display: block;
   }
@@ -204,8 +204,8 @@ export default {
 }
 
 .account_info {
-  margin: 1rem 5rem;
-  width: 40%;
+  margin: 1rem 1rem;
+  width: 45%;
   @media (max-width: $large-breakpoint) {
     margin: 3rem 0;
     width: 100%;
@@ -213,11 +213,8 @@ export default {
   &_heading {
     font-size: map-get($font-sizes, heading2);
     text-align: center;
+    margin-top: 2rem;
   }
-  /*@media (max-width: $small-breakpoint) {
-    width: 80%;
-    margin: 1rem;
-  }*/
   &_form-item {
     padding: 1rem 0;
   }

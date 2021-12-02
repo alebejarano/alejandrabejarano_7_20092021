@@ -133,13 +133,18 @@ export default {
     margin-top: 1rem;
   }
   &_img {
-    width: 40%;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    @media (max-width: $small-breakpoint) {
+      height: 150px;
+      width: 150px;
+    }
   }
   .inputfile-container {
     margin-top: 1rem;

@@ -1,7 +1,12 @@
 <template>
 <main-layout>
   <h1 class="content_heading">Derniers contenus</h1>
-  <post-card v-for="post in posts" :key="post.id" :post="post" />
+  <div aria-live="polite"
+      v-if="successfullyDeleted"
+      class="success-deleted post-deleted">
+      <p class="delete-p">Post supprimé</p>
+    </div>
+  <post-card v-for="post in posts" :key="post.id" :post="post" @deleted="postDeleted" />
 </main-layout>  
 </template>
 
@@ -13,6 +18,7 @@ export default {
   data() {
     return {
       posts: [],
+      successfullyDeleted: false
     }
   },
   components: {MainLayout, PostCard},
@@ -28,11 +34,21 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    postDeleted() {
+      this.successfullyDeleted = true
+      setTimeout(() => (this.successfullyDeleted = false), 2000)
+      this.getAllPosts();
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.post-deleted {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10
+}
 </style>
