@@ -26,7 +26,7 @@
         </nav>
         <!---Navigation Menu for small devices-->
         <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
-          <button class="close-btn" @click="toggleMenu">X</button>
+          <button class="close-btn" aria-label="close menu" @click="toggleMenu">X</button>
           <router-link to="/"
             class="responsive-menu_link">Home
           </router-link>
@@ -39,9 +39,11 @@
         </nav>
       </div>
     </header>
+
     <main>
       <slot></slot>
     </main>
+
     <footer>
       <div class="footer">
         <!--logo and footer menu-->

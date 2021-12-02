@@ -3,6 +3,7 @@
       <h1 class="create-post_heading">Créer une publication</h1>
       <form @submit.prevent="createPost">
         <QuillEditor :modules="modules"
+        @textChange="updateFiles"
         ref="quill"
         theme="snow"
         :toolbar="['bold', 'italic', 'underline', 'link', 'image']"
@@ -54,7 +55,7 @@ export default {
   },
   data() {
     return {
-      file: '',
+      files: [],
       succesufullyUpdated: false,
     }
   },
@@ -63,7 +64,8 @@ export default {
     createPost() {
       axios
         .post('http://localhost:3000/posts', {
-          content: this.$refs.quill.getHTML()
+          content: this.$refs.quill.getHTML(),
+          files: this.files
         })
         .then(response => {
           this.succesufullyUpdated = true
@@ -72,6 +74,25 @@ export default {
           this.$router.push('/usercontent')
           console.log(response, 'YESSSSS');
         })
+    },
+    updateFiles(event) {
+      console.log(event);
+      const inserted = this.getImgUrls(event.delta);
+      const deleted = this.getImgUrls(this.$refs.quill.getContents().diff(event.oldContents));
+      if (inserted.length && inserted[0].match(/^http/)) {
+        console.log('inserted', inserted[0]);
+        this.files.push(inserted[0])
+      }
+      if (deleted.length && deleted[0].match(/^http/)) {
+        console.log('deleted', deleted[0]);
+        const index = this.files.indexOf(deleted[0])
+        if (index != -1) {
+          this.files.splice(index, 1)
+        }
+      }
+    },
+    getImgUrls(delta) {
+      return delta.ops.filter(i => i.insert && i.insert.image).map(i => i.insert.image);
     }
   }
 }

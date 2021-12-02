@@ -1,4 +1,7 @@
 <template>
+  <!--<div v-if="toModifyOrDelete"
+    class="overlay"
+    @click="toggleModifyDeleteMenu"></div>-->
   <article class="card">
     <div class="card_post">
       <div class="card_post_profile">
@@ -7,7 +10,74 @@
           class="card_post_profile_pic">
         <p>{{ post.user.name }}</p>
       </div>
-      <button v-if="authorizedToDelete" @click="deletePost" class="delete-post" aria-label="supprimer post">X</button>
+
+      <button @click="toggleOptionsMenu"
+        class="open-btn">
+        <svg aria-hidden="true"
+          focusable="false"
+          width="18"
+          height="18"
+          version="1.1"
+          id="Icons"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 32 32"
+          style="enable-background:new 0 0 32 32;"
+          xml:space="preserve">
+          <circle class="st0"
+            cx="23"
+            cy="7"
+            r="3" />
+          <line class="st0"
+            x1="3"
+            y1="7"
+            x2="20"
+            y2="7" />
+          <line class="st0"
+            x1="29"
+            y1="7"
+            x2="26"
+            y2="7" />
+          <circle class="st0"
+            cx="12"
+            cy="16"
+            r="3" />
+          <line class="st0"
+            x1="3"
+            y1="16"
+            x2="9"
+            y2="16" />
+          <line class="st0"
+            x1="29"
+            y1="16"
+            x2="15"
+            y2="16" />
+          <circle class="st0"
+            cx="23"
+            cy="25"
+            r="3" />
+          <line class="st0"
+            x1="3"
+            y1="25"
+            x2="20"
+            y2="25" />
+          <line class="st0"
+            x1="29"
+            y1="25"
+            x2="26"
+            y2="25" />
+        </svg>
+      </button>
+      <div v-if="postOptionsMenu"
+        class="options-menu">
+        <button class="modifier-post">Modifier le post</button>
+        <button v-if="authorizedToDelete"
+          @click="deletePost"
+          class="delete-post"
+          aria-label="supprimer post">Supprimer le post</button>
+      </div>
       <!--my posts are return as strings, so we tell to interpret it as html-->
       <div v-html="post.content"
         class="card_post_content">
@@ -39,6 +109,11 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 export default {
+  data() {
+    return {
+      postOptionsMenu: true
+    }
+  },
   emits: ['deleted'],
   props: ['post'],
   computed: {
@@ -58,14 +133,17 @@ export default {
     }
   },
   methods: {
-    deletePost () {
+    toggleOptionsMenu() {
+      this.toModifyOrDelete = !this.toModifyOrDelete
+    },
+    deletePost() {
       axios
         .delete(`http://localhost:3000/posts/${this.post.id}`)
         .then(() => {
           this.$emit('deleted')
         })
         .catch(error => {
-          console.log(error);
+          console.log(error)
         })
     }
   }
@@ -75,6 +153,44 @@ export default {
 <style lang="scss">
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
+.open-btn {
+  transform: translateY(-45px);
+  position: absolute;
+  right: 40px;
+  margin: 0;
+  color: $text-color;
+  @include reset-btn;
+  &:hover {
+    font-weight: map-get($font-weights, bold);
+  }
+  svg {
+    stroke: black;
+  }
+}
+.overlay {
+  position: fixed;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  @media (max-width: $small-breakpoint) {
+    display: block;
+  }
+}
+.options-menu {
+  /*position: fixed;
+  top: 0;
+  right: 0;
+  display: none;*/
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  /*background-color: $secondary-color;
+  z-index: 20;
+  height: 100vh;
+  padding: 2rem;*/
+}
 .card {
   box-shadow: 0px 1px 12px 1px grey;
   width: 60%;
@@ -101,9 +217,18 @@ export default {
         font-weight: map-get($font-weights, bold);
       }
     }
+    .modifier-post {
+      //transform: translateY(-45px);
+      right: 40px;
+      margin: 0;
+      color: $text-color;
+      @include reset-btn;
+      &:hover {
+        font-weight: map-get($font-weights, bold);
+      }
+    }
     .delete-post {
-      transform: translateY(-45px);
-      position: absolute;
+      //transform: translateY(-45px);
       right: 15px;
       margin: 0;
       color: $primary-color;
