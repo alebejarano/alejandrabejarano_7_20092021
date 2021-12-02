@@ -25,6 +25,11 @@ body {
     }
   }
 }
+//heading in create and modify post
+.create-post_heading {
+  font-size: map-get($font-sizes, heading2);
+  text-align: center;
+}
 //form update info successufully chnaged
 .success {
   @include profile-modified($valid);
@@ -83,4 +88,32 @@ input.valid {
 .content_heading {
   text-align: center;
   margin-top: 3rem;
+}
+//for the Quill editor
+.create-post {
+  margin: 3rem auto;
+  width: 100%;
+  @media (max-width: $large-breakpoint) {
+    width: 90%;
+  }
+  @media (max-width: $small-breakpoint) {
+    padding: 2rem;
+    margin: 0;
+  }
+  @media (max-width: $xsmall-breakpoint) {
+    width: auto;
+    padding: 2rem 0;
+  }
+  .createpost-btn-div {
+    margin: 2rem 0 0;
+    @media (max-width: $xsmall-breakpoint) {
+      margin: 2rem 0 1rem;
+    }
+  }
+  .createpost-btn {
+    width: 40%;
+  }
+}
+.post-created {
+  margin-top: 1rem;
 }

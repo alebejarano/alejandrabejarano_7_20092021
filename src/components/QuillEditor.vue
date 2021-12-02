@@ -1,5 +1,4 @@
 <template>
-  <h1 class="create-post_heading">Créer une publication</h1>
   <article class="create-post">
     <form @submit.prevent="createPost">
       <QuillEditor :modules="modules"
@@ -102,4 +101,69 @@ export default {
 }
 </script>
 
-<!--STYLE IS IN APP.SCSS-->
+<style lang="scss" scoped>
+@import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
+.create-post {
+  margin: 3rem auto;
+  width: 100%;
+  @media (max-width: $large-breakpoint) {
+    width: 90%;
+  }
+  @media (max-width: $small-breakpoint) {
+    padding: 2rem;
+    margin: 0;
+  }
+  @media (max-width: $xsmall-breakpoint) {
+    width: auto;
+    padding: 2rem 0;
+  }
+  &_container {
+    background-color: $light-background;
+    width: 100%;
+  }
+  &_content {
+    width: 100%;
+    margin: auto;
+    textarea {
+      resize: vertical;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      outline-color: $text-color;
+      width: 99%;
+    }
+  }
+  &_img-links {
+    display: flex;
+  }
+  .add-img-link-btn {
+    @include reset-btn;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    padding: 1rem;
+    width: 40%;
+    color: $second-text-color;
+    flex: 1;
+    &:hover {
+      background-color: $secondary-color;
+      font-weight: map-get($font-weights, bold);
+    }
+    &:active {
+      content: ' ';
+      border-bottom: 3px solid $second-text-color;
+    }
+  }
+  .createpost-btn-div {
+    margin: 2rem 0 0;
+    @media (max-width: $xsmall-breakpoint) {
+      margin: 2rem 0 1rem;
+    }
+  }
+  .createpost-btn {
+    width: 40%;
+  }
+}
+.post-created {
+  margin-top: 1rem;
+}
+</style>

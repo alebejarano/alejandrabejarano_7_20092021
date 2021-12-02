@@ -35,6 +35,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "usercontent" */'@/views/UserContentPage')
   },
   {
+    path: '/modifypost/:postId',
+    name: 'modifypost',
+    meta: {auth: true },
+    component: () => import(/* webpackChunkName: "modifypost" */'@/views/ModifyPost')
+  },
+  {
     path: '/account',
     name: 'account',
     meta: { auth: true },

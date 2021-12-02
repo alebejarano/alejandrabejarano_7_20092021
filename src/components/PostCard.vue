@@ -75,7 +75,7 @@
         id="post-options"
         role="menu">
         <button role="menuitem"
-          class="modifier-post">Modifier le post</button>
+          class="modifier-post" @click="modifyPost">Modifier le post</button>
         <button role="menuitem"
           v-if="authorizedToDelete"
           @click="deletePost"
@@ -140,6 +140,9 @@ export default {
     toggleOptionsMenu() {
       this.isOpen = !this.isOpen
       this.isExpanded = !this.isExpanded
+    },
+    modifyPost() {
+      this.$router.push({ name: 'modifypost', params:  {postId: this.post.id }})
     },
     deletePost() {
       axios

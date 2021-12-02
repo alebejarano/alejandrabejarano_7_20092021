@@ -1,8 +1,11 @@
 <template>
-  <h1 class="create-post_heading">Créer une publication</h1>
-  <article class="create-post">
-    <form @submit.prevent="createPost">
-      <QuillEditor :modules="modules"
+  <main-layout>
+    <h1 class="create-post_heading">Modifier une publication</h1>
+    <form class="create-post" @submit.prevent="modifyPost">
+      <QuillEditor v-if="post"
+        v-model:content="postContent"
+        contentType="html"
+        :modules="modules"
         @textChange="updateFiles"
         ref="quill"
         theme="snow"
@@ -10,23 +13,23 @@
         placeholder="De quoi voulez vous parler ?" />
       <div class="btn-div createpost-btn-div">
         <button type="submit"
-          class="btn createpost-btn">Créer</button>
+          class="btn createpost-btn">Modifier</button>
       </div>
     </form>
     <div aria-live="polite"
       v-if="succesufullyUpdated"
       class="success post-created">
-      <p class="success-p">Votre contenu a été créé</p>
+      <p class="success-p">Votre contenu a été modifié</p>
     </div>
-  </article>
+  </main-layout>
 </template>
 
 <script>
+import axios from 'axios'
+import MainLayout from '../components/MainLayout.vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import ImageUploader from 'quill-image-uploader'
-import axios from 'axios'
-
 export default {
   setup() {
     const modules = {
@@ -55,31 +58,57 @@ export default {
   },
   data() {
     return {
+      post: null,
       files: [],
       succesufullyUpdated: false
     }
   },
-  components: { QuillEditor },
+  components: { MainLayout, QuillEditor },
+  computed: {
+    postContent: {
+      get() {
+        return this.post ? this.post.content : ''
+      },
+      set(newValue) {
+        return this.post.content = newValue
+      }
+    }
+  },
+  created() {
+    this.getPostById()
+  },
   methods: {
-    createPost() {
+    getPostById() {
       axios
-        .post('http://localhost:3000/posts', {
+        .get(`http://localhost:3000/posts/${this.$route.params.postId}`)
+        .then(response => {
+          this.post = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    modifyPost() {
+      console.log(this.post.content);
+      axios
+        .patch(`http://localhost:3000/posts/${this.$route.params.postId}`, {
           content: this.$refs.quill.getHTML(),
           files: this.files
         })
-        .then(response => {
+        .then(() => {
           this.succesufullyUpdated = true
           setTimeout(() => (this.succesufullyUpdated = false), 2000)
-          //redirect to my post page
           this.$router.push('/usercontent')
-          console.log(response, 'YESSSSS')
+        })
+        .catch(error => {
+          console.log(error)
         })
     },
     updateFiles(event) {
       console.log(event)
       const inserted = this.getImgUrls(event.delta)
       const deleted = this.getImgUrls(
-        this.$refs.quill.getContents().diff(event.oldContents)
+      this.$refs.quill?.getContents().diff(event.oldContents)
       )
       if (inserted.length && inserted[0].match(/^http/)) {
         console.log('inserted', inserted[0])
@@ -102,4 +131,3 @@ export default {
 }
 </script>
 
-<!--STYLE IS IN APP.SCSS-->
