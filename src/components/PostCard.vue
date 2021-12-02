@@ -1,7 +1,4 @@
 <template>
-  <!--<div v-if="toModifyOrDelete"
-    class="overlay"
-    @click="toggleModifyDeleteMenu"></div>-->
   <article class="card">
     <div class="card_post">
       <div class="card_post_profile">
@@ -12,7 +9,10 @@
       </div>
 
       <button @click="toggleOptionsMenu"
-        class="open-btn">
+        class="open-btn"
+        aria-haspopup="true"
+        :aria-expanded="isExpanded.toString()"
+        aria-controls="post-options">
         <svg aria-hidden="true"
           focusable="false"
           width="18"
@@ -70,13 +70,16 @@
             y2="25" />
         </svg>
       </button>
-      <div v-if="postOptionsMenu"
-        class="options-menu">
-        <button class="modifier-post">Modifier le post</button>
-        <button v-if="authorizedToDelete"
+      <div v-if="isOpen"
+        class="options-menu"
+        id="post-options"
+        role="menu">
+        <button role="menuitem"
+          class="modifier-post">Modifier le post</button>
+        <button role="menuitem"
+          v-if="authorizedToDelete"
           @click="deletePost"
-          class="delete-post"
-          aria-label="supprimer post">Supprimer le post</button>
+          class="delete-post">Supprimer le post</button>
       </div>
       <!--my posts are return as strings, so we tell to interpret it as html-->
       <div v-html="post.content"
@@ -111,7 +114,8 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      postOptionsMenu: true
+      isOpen: false,
+      isExpanded: false
     }
   },
   emits: ['deleted'],
@@ -134,7 +138,8 @@ export default {
   },
   methods: {
     toggleOptionsMenu() {
-      this.toModifyOrDelete = !this.toModifyOrDelete
+      this.isOpen = !this.isOpen
+      this.isExpanded = !this.isExpanded
     },
     deletePost() {
       axios
@@ -163,6 +168,9 @@ export default {
   &:hover {
     font-weight: map-get($font-weights, bold);
   }
+  &:active {
+    background-color: gray;
+  }
   svg {
     stroke: black;
   }
@@ -179,17 +187,15 @@ export default {
   }
 }
 .options-menu {
-  /*position: fixed;
-  top: 0;
-  right: 0;
-  display: none;*/
   display: flex;
   flex-direction: column;
-  width: 50%;
-  /*background-color: $secondary-color;
-  z-index: 20;
-  height: 100vh;
-  padding: 2rem;*/
+  width: 200px;
+  position: absolute;
+  right: 40px;
+  background: $secondary-color;
+  top: 46px;
+  border: 1px solid $medium-light-background;
+  box-shadow: 1px 2px 10px 2px gray;
 }
 .card {
   box-shadow: 0px 1px 12px 1px grey;
@@ -220,19 +226,29 @@ export default {
     .modifier-post {
       //transform: translateY(-45px);
       right: 40px;
-      margin: 0;
+      padding: 0.5rem;
       color: $text-color;
-      @include reset-btn;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
       &:hover {
         font-weight: map-get($font-weights, bold);
+        background-color: $medium-light-background;
       }
     }
     .delete-post {
       //transform: translateY(-45px);
       right: 15px;
       margin: 0;
+      padding: 0.5rem;
       color: $primary-color;
-      @include reset-btn;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      &:hover {
+        font-weight: map-get($font-weights, bold);
+        background-color: $medium-light-background;
+      }
     }
   }
 }
