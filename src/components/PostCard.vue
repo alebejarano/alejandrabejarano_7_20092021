@@ -7,9 +7,10 @@
           class="card_post_profile_pic">
         <p>{{ post.user.name }}</p>
       </div>
-
+      <!--Icon button to display the post options-->
       <button @click="toggleOptionsMenu"
         class="open-btn"
+        :class="{ 'hidden': !displayEditButton }"
         aria-haspopup="true"
         :aria-expanded="isExpanded.toString()"
         aria-controls="post-options">
@@ -70,14 +71,15 @@
             y2="25" />
         </svg>
       </button>
+      <!--Post option menu-->
       <div v-if="isOpen"
         class="options-menu"
         id="post-options"
         role="menu">
         <button role="menuitem"
-          class="modifier-post" @click="modifyPost">Modifier le post</button>
+          class="modifier-post"
+          @click="modifyPost">Modifier le post</button>
         <button role="menuitem"
-          v-if="authorizedToDelete"
           @click="deletePost"
           class="delete-post">Supprimer le post</button>
       </div>
@@ -86,6 +88,7 @@
         class="card_post_content">
       </div>
     </div>
+    <!--Like post button-->
     <button class="like-btn">
       <svg aria-hidden="true"
         focusable="false"
@@ -132,7 +135,7 @@ export default {
         return '/user-placeholder.svg'
       }
     },
-    authorizedToDelete() {
+    displayEditButton() {
       return this.user.id === this.post.user.id || this.user.isAdmin
     }
   },
@@ -142,7 +145,10 @@ export default {
       this.isExpanded = !this.isExpanded
     },
     modifyPost() {
-      this.$router.push({ name: 'modifypost', params:  {postId: this.post.id }})
+      this.$router.push({
+        name: 'modifypost',
+        params: { postId: this.post.id }
+      })
     },
     deletePost() {
       axios
@@ -161,6 +167,9 @@ export default {
 <style lang="scss">
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
+.hidden {
+  visibility: hidden;
+}
 .open-btn {
   transform: translateY(-45px);
   position: absolute;
@@ -260,6 +269,8 @@ export default {
 }
 .card_post_content img {
   width: 100%;
+  max-height: 30rem;
+  object-fit: contain;
 }
 .like-btn {
   width: 100%;

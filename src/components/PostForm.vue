@@ -1,24 +1,19 @@
 <template>
-  <h1 class="create-post_heading">Créer une publication</h1>
-  <article class="create-post">
-    <form @submit.prevent="createPost">
-      <QuillEditor :modules="modules"
-        @textChange="updateFiles"
+  <form class="create-post"
+      @submit.prevent="modifyPost">
+      <QuillEditor
+        v-model:content="content"
+        contentType="html"
+        :modules="modules"
         ref="quill"
         theme="snow"
         :toolbar="['bold', 'italic', 'underline', 'link', 'image']"
         placeholder="De quoi voulez vous parler ?" />
       <div class="btn-div createpost-btn-div">
         <button type="submit"
-          class="btn createpost-btn">Créer</button>
+          class="btn createpost-btn">Modifier</button>
       </div>
     </form>
-    <div aria-live="polite"
-      v-if="succesufullyUpdated"
-      class="success post-created">
-      <p class="success-p">Votre contenu a été créé</p>
-    </div>
-  </article>
 </template>
 
 <script>
@@ -26,7 +21,6 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import ImageUploader from 'quill-image-uploader'
 import axios from 'axios'
-
 export default {
   setup() {
     const modules = {
@@ -53,53 +47,59 @@ export default {
     }
     return { modules }
   },
-  data() {
+  components: { QuillEditor },
+
+  props: ['post'],
+
+  data () {
     return {
+      content: this.post.content,
       files: [],
-      succesufullyUpdated: false
     }
   },
-  components: { QuillEditor },
   methods: {
-    createPost() {
+    modifyPost() {
+      console.log(this.post.content)
       axios
-        .post('http://localhost:3000/posts', {
+        .patch(`http://localhost:3000/posts/${this.$route.params.postId}`, {
           content: this.$refs.quill.getHTML(),
           files: this.files
         })
         .then(() => {
           this.succesufullyUpdated = true
           setTimeout(() => (this.succesufullyUpdated = false), 2000)
-          //redirect to my post page
           this.$router.push('/usercontent')
         })
+        .catch(error => {
+          console.log(error)
+        })
     },
-    updateFiles(event) {
-      //console.log(this.$refs.quill)
-      //console.log(event)
+    /*updateFiles(event) {
+      console.log(this.$refs.quill)
+      console.log(event)
       const inserted = this.getImgUrls(event.delta)
-      const deleted = this.getImgUrls(
-        this.$refs.quill.getContents().diff(event.oldContents)
-      )
-      if (inserted.length && inserted[0].match(/^http/)) {
-        console.log('inserted', inserted[0])
-        this.files.push(inserted[0])
-      }
-      if (deleted.length && deleted[0].match(/^http/)) {
-        console.log('deleted', deleted[0])
-        const index = this.files.indexOf(deleted[0])
-        if (index != -1) {
-          this.files.splice(index, 1)
-        }
-      }
-    },
-    getImgUrls(delta) {
+      console.log(inserted)
+      console.log(event.oldContents)
+      // const deleted = this.getImgUrls(
+      //   event.target.getContents().diff(event.oldContents)
+      // )
+      // if (inserted.length && inserted[0].match(/^http/)) {
+      //   console.log('inserted', inserted[0])
+      //   this.files.push(inserted[0])
+      // }
+      // if (deleted.length && deleted[0].match(/^http/)) {
+      //   console.log('deleted', deleted[0])
+      //   const index = this.files.indexOf(deleted[0])
+      //   if (index != -1) {
+      //     this.files.splice(index, 1)
+      //   }
+      // }
+    },*/
+    /*getImgUrls(delta) {
       return delta.ops
         .filter(i => i.insert && i.insert.image)
         .map(i => i.insert.image)
-    }
+    }*/
   }
 }
 </script>
-
-<!--STYLE IS IN APP.SCSS-->

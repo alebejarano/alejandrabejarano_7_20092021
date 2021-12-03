@@ -1,24 +1,11 @@
 <template>
-  <h1 class="create-post_heading">Créer une publication</h1>
-  <article class="create-post">
-    <form @submit.prevent="createPost">
-      <QuillEditor :modules="modules"
+  <QuillEditor
+        :modules="modules"
         @textChange="updateFiles"
         ref="quill"
         theme="snow"
         :toolbar="['bold', 'italic', 'underline', 'link', 'image']"
         placeholder="De quoi voulez vous parler ?" />
-      <div class="btn-div createpost-btn-div">
-        <button type="submit"
-          class="btn createpost-btn">Créer</button>
-      </div>
-    </form>
-    <div aria-live="polite"
-      v-if="succesufullyUpdated"
-      class="success post-created">
-      <p class="success-p">Votre contenu a été créé</p>
-    </div>
-  </article>
 </template>
 
 <script>
@@ -56,27 +43,14 @@ export default {
   data() {
     return {
       files: [],
-      succesufullyUpdated: false
+      inserted: [],
+      deleted: [],
     }
   },
   components: { QuillEditor },
   methods: {
-    createPost() {
-      axios
-        .post('http://localhost:3000/posts', {
-          content: this.$refs.quill.getHTML(),
-          files: this.files
-        })
-        .then(() => {
-          this.succesufullyUpdated = true
-          setTimeout(() => (this.succesufullyUpdated = false), 2000)
-          //redirect to my post page
-          this.$router.push('/usercontent')
-        })
-    },
     updateFiles(event) {
-      //console.log(this.$refs.quill)
-      //console.log(event)
+      console.log(event)
       const inserted = this.getImgUrls(event.delta)
       const deleted = this.getImgUrls(
         this.$refs.quill.getContents().diff(event.oldContents)
@@ -101,5 +75,3 @@ export default {
   }
 }
 </script>
-
-<!--STYLE IS IN APP.SCSS-->
