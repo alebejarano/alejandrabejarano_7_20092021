@@ -89,24 +89,27 @@
       </div>
     </div>
     <!--Like post button-->
-    <button class="like-btn" @click="likePost" :class="{ liked: likes }">
-      <svg aria-hidden="true"
+    <button class="like-btn"
+      @click="likePost" :class="{ 'hasliked': hasLiked }">
+      <span class="like-number">{{ nbLikes }}</span>
+      <svg  
+        aria-hidden="true"
         focusable="false"
-        width="18"
-        height="18"
+        width="25"
+        height="25"
+        version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24">
-        <title>J'aime</title>
-        <path class="a"
-          d="M20,15.659h0a1.5,1.5,0,1,1,0,3H19a1.5,1.5,0,0,1,1.5,1.5c0,.829-.672,1-1.5,1H12.5c-2.851,0-3.5-.5-7-1v-8.5c2.45,0,6.5-4.5,6.5-8.5,0-1.581,2.189-2.17,3,.719.5,1.781-1,5.281-1,5.281h8a1.5,1.5,0,0,1,1.5,1.5c0,.829-.672,2-1.5,2H21a1.5,1.5,0,0,1,0,3H20" />
-        <rect class="a"
-          x="0.5"
-          y="10.159"
-          width="5"
-          height="12" />
-        <path d="M3.25,19.159a.75.75,0,1,0,.75.75.75.75,0,0,0-.75-.75Z" />
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 32 32"
+        style="enable-background:new 0 0 32 32;"
+        xml:space="preserve">
+        <path class="st0"
+          d="M11,24V14H5v12h6v-2.4l0,0c1.5,1.6,4.1,2.4,6.2,2.4h6.5c1.1,0,2.1-0.8,2.3-2l1.5-8.6c0.3-1.5-0.9-2.4-2.3-2.4
+          H20V6.4C20,5.1,18.7,4,17.4,4h0C16.1,4,15,5.1,15,6.4v0c0,1.6-0.5,3.1-1.4,4.4L11,13.8" />
       </svg>
-      <span>J'aime</span>
+      <span class="like-text">J'aime</span>
     </button>
   </article>
 </template>
@@ -138,6 +141,12 @@ export default {
     },
     displayEditButton() {
       return this.user.id === this.post.user.id || this.user.isAdmin
+    },
+    nbLikes() {
+      return this.likes.length
+    },
+    hasLiked() {
+      return !!this.likes.find(like => like == this.user.id)
     }
   },
   methods: {
@@ -178,9 +187,6 @@ export default {
 <style lang="scss">
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.liked {
-  background-color: blueviolet;
-}
 .hidden {
   visibility: hidden;
 }
@@ -288,19 +294,33 @@ export default {
 }
 .like-btn {
   width: 100%;
-  background: transparent;
+  background: $secondary-color;
   border: 1px solid $text-color;
   cursor: pointer;
   padding: 0.3rem;
   &:hover {
-    background: $secondary-color;
+    background: transparent;
+  }
+  .like-number {
+    margin-right: 0.5rem;
   }
   svg {
     fill: none;
     stroke: black;
+    transform: translateY(5px);
   }
-  span {
+  .like-text {
     margin-left: 0.5rem;
+  }
+}
+.hasliked {
+  svg {
+    stroke: darken($primary-color, 10%);
+    stroke-width: 2;
+  }
+  .like-text, .like-number {
+    color: darken($primary-color, 10%);
+    font-weight: map-get($font-weights, bold);
   }
 }
 </style>

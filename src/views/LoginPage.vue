@@ -154,7 +154,9 @@
         </small>
       </div>
       <button class="log-sign btn">se connecter</button>
-      <p v-if="msg">{{ msg }}</p>
+      <p class="notAuthorized" v-if="notAuthorized">Vous n'avez pas de compte 
+        <router-link to="/guest/signup">Inscrivez vous</router-link>
+      </p>
     </form>
   </section>
 </template>
@@ -179,7 +181,7 @@ export default {
         email: '',
         password: ''
       },
-      msg: ''
+      notAuthorized: false
     }
   },
   validations() {
@@ -210,9 +212,12 @@ export default {
             //redirect to homepage once is loged in
             this.$router.push('/')
           })
-          .catch(error => (this.msg = error.response.data.msg))
+          .catch(error => {
+            console.log(error)
+            this.notAuthorized = true
+          })
       } else {
-        console.log('Unauthorized')
+        console.log('Form not valid')
       }
     }
   }
@@ -226,6 +231,14 @@ export default {
   text-align: right;
   a {
     @include link-style(bold);
+    &:hover {
+      @include link-hover;
+    }
+  }
+}
+.notAuthorized {
+  a {
+    font-weight: map-get($font-weights, bold);
     &:hover {
       @include link-hover;
     }

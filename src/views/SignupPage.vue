@@ -174,7 +174,9 @@
         </small>
       </div>
       <button class="log-sign btn">Créer votre compte</button>
-      <p v-if="msg">{{ msg }}</p>
+      <p class="isregistered" v-if="isRegistered">Vous avez déjà une compte 
+        <router-link to="/guest/login">Connectez vous</router-link>
+      </p>
     </form>
   </section>
 </template>
@@ -202,7 +204,7 @@ export default {
         email: '',
         password: ''
       },
-      msg: ''
+      isRegistered: false
     }
   },
   validations() {
@@ -242,7 +244,10 @@ export default {
             //redirect to homepage once is loged in
             this.$router.push('/')
           })
-          .catch(error => (this.msg = error.response.data.msg))
+          .catch(error => {
+            console.log(error)
+            this.isRegistered = true
+          })
       } else {
         console.log('Form is invalid')
       }
@@ -261,6 +266,14 @@ export default {
     &:hover {
       text-decoration: $hover-classic-link;
       color: $primary-color;
+    }
+  }
+}
+.isregistered {
+  a {
+    font-weight: map-get($font-weights, bold);
+    &:hover {
+      @include link-hover;
     }
   }
 }
