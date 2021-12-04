@@ -89,7 +89,7 @@
       </div>
     </div>
     <!--Like post button-->
-    <button class="like-btn">
+    <button class="like-btn" @click="likePost" :class="{ liked: likes }">
       <svg aria-hidden="true"
         focusable="false"
         width="18"
@@ -118,7 +118,8 @@ export default {
   data() {
     return {
       isOpen: false,
-      isExpanded: false
+      isExpanded: false,
+      likes: this.post.likes
     }
   },
   emits: ['deleted'],
@@ -150,6 +151,16 @@ export default {
         params: { postId: this.post.id }
       })
     },
+    likePost() {
+      axios
+        .post(`http://localhost:3000/posts/${this.post.id}/like`)
+        .then(response => {
+          this.likes = response.data.likes
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     deletePost() {
       axios
         .delete(`http://localhost:3000/posts/${this.post.id}`)
@@ -167,6 +178,9 @@ export default {
 <style lang="scss">
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
+.liked {
+  background-color: blueviolet;
+}
 .hidden {
   visibility: hidden;
 }
