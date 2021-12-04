@@ -1,7 +1,8 @@
 <template>
-  <p class="go-to-signup">Vous n'avez pas de compte?
+  <p class="go-to-signup">Vous n'avez pas de compte ?
     <router-link to="/guest/signup">Céer votre compte</router-link>
   </p>
+  <!---Logo Grupomania-->
   <svg data-v-1084b650=""
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 300 300"
@@ -55,10 +56,13 @@
       </svg>
     </g>
   </svg>
-
+<!--Login section-->
   <section class="guest_block_container">
     <h1 class="guest_block_container_heading">Se connecter</h1>
     <hr class="line-break">
+    <p class="notAuthorized" v-if="notAuthorized">Identifiants incorrects<br>Vous n'avez pas de compte ?
+        <router-link to="/guest/signup">Inscrivez vous</router-link>
+    </p>
     <form @submit.prevent="login"
       name="form"
       id="form"
@@ -154,9 +158,6 @@
         </small>
       </div>
       <button class="log-sign btn">se connecter</button>
-      <p class="notAuthorized" v-if="notAuthorized">Vous n'avez pas de compte 
-        <router-link to="/guest/signup">Inscrivez vous</router-link>
-      </p>
     </form>
   </section>
 </template>
