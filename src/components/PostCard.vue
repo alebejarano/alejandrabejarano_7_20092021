@@ -1,6 +1,6 @@
 <template>
   <article class="card">
-    <div class="card_post">
+    <div class="card_post" @keyup.esc="isOpen = false" >
       <div class="card_post_profile">
         <img :src="profilePicUrl"
           alt="photo de profil"
@@ -75,7 +75,8 @@
       <div v-if="isOpen"
         class="options-menu"
         id="post-options"
-        role="menu">
+        role="menu"
+        v-click-away="hideDropdown">
         <button role="menuitem"
           class="modifier-post"
           @click="modifyPost">Modifier le post</button>
@@ -117,6 +118,7 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import { mixin as VueClickAway } from "vue3-click-away";
 export default {
   data() {
     return {
@@ -127,6 +129,7 @@ export default {
   },
   emits: ['deleted'],
   props: ['post'],
+  mixins: [VueClickAway],
   computed: {
     ...mapGetters(['getUser']),
     user() {
@@ -153,6 +156,10 @@ export default {
     toggleOptionsMenu() {
       this.isOpen = !this.isOpen
       this.isExpanded = !this.isExpanded
+    },
+    hideDropdown() {
+      this.isOpen = false
+      this.isExpanded = false 
     },
     modifyPost() {
       this.$router.push({

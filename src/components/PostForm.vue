@@ -1,5 +1,5 @@
 <template>
-  <form class="create-post"
+  <form class="modify-post"
       @submit.prevent="modifyPost">
       <QuillEditor
         v-model:content="content"
@@ -73,33 +73,37 @@ export default {
         .catch(error => {
           console.log(error)
         })
-    },
-    /*updateFiles(event) {
-      console.log(this.$refs.quill)
-      console.log(event)
-      const inserted = this.getImgUrls(event.delta)
-      console.log(inserted)
-      console.log(event.oldContents)
-      // const deleted = this.getImgUrls(
-      //   event.target.getContents().diff(event.oldContents)
-      // )
-      // if (inserted.length && inserted[0].match(/^http/)) {
-      //   console.log('inserted', inserted[0])
-      //   this.files.push(inserted[0])
-      // }
-      // if (deleted.length && deleted[0].match(/^http/)) {
-      //   console.log('deleted', deleted[0])
-      //   const index = this.files.indexOf(deleted[0])
-      //   if (index != -1) {
-      //     this.files.splice(index, 1)
-      //   }
-      // }
-    },*/
-    /*getImgUrls(delta) {
-      return delta.ops
-        .filter(i => i.insert && i.insert.image)
-        .map(i => i.insert.image)
-    }*/
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/scss/_variables.scss";
+@import '@/scss/_mixins.scss';
+.modify-post {
+  margin: 3rem auto;
+  width: 70%;
+  @media (max-width: $large-breakpoint) {
+    width: 90%;
+  }
+  @media (max-width: $small-breakpoint) {
+    padding: 2rem;
+    margin: 0;
+  }
+  @media (max-width: $xsmall-breakpoint) {
+    width: auto;
+    padding: 2rem 0;
+  }
+}
+.createpost-btn-div {
+  margin: 2rem 0 0;
+  @media (max-width: $xsmall-breakpoint) {
+    margin: 2rem 0 1rem;
+  }
+}
+.createpost-btn {
+  width: 40%;
+}
+
+</style>

@@ -25,18 +25,20 @@
           </router-link>
         </nav>
         <!---Navigation Menu for small devices-->
-        <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
-          <button class="close-btn" aria-label="close menu" @click="toggleMenu">X</button>
-          <router-link to="/"
-            class="responsive-menu_link">Home
-          </router-link>
-          <router-link to="/usercontent"
-            class="responsive-menu_link">Mes contenus
-          </router-link>
-          <router-link to="/account"
-            class="responsive-menu_link">Mon Compte
-          </router-link>
-        </nav>
+        <focus-trap v-model:active="isActive">
+          <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
+            <button class="close-btn" aria-label="close menu" @click="toggleMenu">X</button>
+            <router-link to="/"
+              class="responsive-menu_link">Home
+            </router-link>
+            <router-link to="/usercontent"
+              class="responsive-menu_link">Mes contenus
+            </router-link>
+            <router-link to="/account"
+              class="responsive-menu_link">Mon Compte
+            </router-link>
+          </nav>
+        </focus-trap>
       </div>
     </header>
 
@@ -128,7 +130,8 @@
 export default {
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      isActive: false,
     }
   },
   methods: {
@@ -181,8 +184,11 @@ header {
   .menu-btn {
     display: none;
     @media (max-width: $small-breakpoint) {
-      display: block;
       @include reset-btn;
+      height: fit-content;
+      padding: 0.5rem;
+      display: flex;
+      align-self: center;
       font-weight: map-get($font-weights, bold);
       margin-right: 1rem;
       &:active {
@@ -310,6 +316,9 @@ main {
     padding: 1.5rem;
     &_links {
       margin: 0.5rem;
+      &:focus-visible {
+        padding: 0;
+      }
       @media (max-width: $xsmall-breakpoint) {
         display: grid;
         margin: 0;

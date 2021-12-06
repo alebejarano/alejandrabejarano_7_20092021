@@ -6,7 +6,7 @@
         @textChange="updateFiles"
         ref="quill"
         theme="snow"
-        :toolbar="['bold', 'italic', 'underline', 'link', 'image']"
+        :toolbar="['bold', 'italic', 'link', 'image']"
         placeholder="De quoi voulez vous parler ?" />
       <div class="btn-div createpost-btn-div">
         <button type="submit"
