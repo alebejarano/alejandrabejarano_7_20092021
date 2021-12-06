@@ -1,14 +1,22 @@
 <template>
   <form class="modify-post"
       @submit.prevent="modifyPost">
-      <QuillEditor
+      <QuillEditor toolbar="#my-toolbar"
         v-model:content="content"
         contentType="html"
         :modules="modules"
         ref="quill"
         theme="snow"
-        :toolbar="['bold', 'italic', 'underline', 'link', 'image']"
-        placeholder="De quoi voulez vous parler ?" />
+        placeholder="De quoi voulez vous parler ?">
+        <template #toolbar>
+         <div id="my-toolbar">
+           <button class="ql-bold" aria-label="bold font"></button>
+           <button class="ql-italic" aria-label="italic font"></button>
+           <button class="ql-link" aria-label="add a link"></button>
+           <button class="ql-image" aria-label="upload an image"></button>
+         </div>
+        </template>
+      </QuillEditor>
       <div class="btn-div createpost-btn-div">
         <button type="submit"
           class="btn createpost-btn">Modifier</button>
@@ -48,7 +56,6 @@ export default {
     return { modules }
   },
   components: { QuillEditor },
-
   props: ['post'],
 
   data () {

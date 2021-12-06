@@ -1,4 +1,5 @@
 <template>
+  <!--for the login and signup pages-->
   <div class="guest">
     <div class="guest_block">
       <router-view />
@@ -7,9 +8,6 @@
 </template>
 
 <script>
-export default {
-
-}
 </script>
 
 <style lang="scss">

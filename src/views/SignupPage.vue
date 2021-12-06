@@ -223,7 +223,6 @@ export default {
   methods: {
     ...mapMutations(['setToken', 'setUser']),
     signup() {
-      //this.v$.form.$touch()
       if (!this.v$.form.$invalid) {
         //first param is the url and second param is the data
         axios

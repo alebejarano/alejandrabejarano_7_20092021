@@ -5,7 +5,7 @@
     name="form"
     id="form">
     <div class="form_group account_info_form-item">
-      <label for="name">Nom complet</label>
+      <label for="fullName">Nom complet</label>
       <div class="form_group_input-div">
         <input type="text"
           v-model="form.name"
@@ -14,12 +14,12 @@
           placeholder="Ecrivez vos prenom et nom"
           id="fullName"
           name="fullName"
-          aria-describedby="fullName-error"
+          aria-describedby="fullName"
           required>
       </div>
       <small v-if="v$.form.name.$error"
         class="error-msg"
-        id="fullName-error">Ecrivez vos prenom et nom
+        id="fullName">Ecrivez vos prenom et nom
       </small><!-- $error === $invalid && $dirty -->
     </div>
     <div class="form_group account_info_form-item">
@@ -32,13 +32,13 @@
           placeholder="email"
           id="email"
           name="email"
-          aria-describedby="email-error"
+          aria-describedby="email"
           autocomplete="email"
           required>
       </div>
       <small v-if="v$.form.email.$error"
         class="error-msg"
-        id="email-error">L'adresse email n'est pas valide. Ex:juan@example.com
+        id="email">L'adresse email n'est pas valide. Ex:juan@example.com
       </small>
     </div>
     <div class="account-btn-div">
@@ -46,7 +46,7 @@
     </div>
   </form>
   <div aria-live="polite" v-if="succesufullyUpdated" class="success">
-    <p class="success-p">Profile mis à jour</p>
+    <p class="success-p">Profil mis à jour</p>
   </div>
 </template>
 

@@ -1,9 +1,10 @@
 <template>
+ <!--Template to display the posts-->
   <article class="card">
     <div class="card_post" @keyup.esc="isOpen = false" >
       <div class="card_post_profile">
         <img :src="profilePicUrl"
-          alt="photo de profil"
+          :alt="altText"
           class="card_post_profile_pic">
         <p>{{ post.user.name }}</p>
       </div>
@@ -13,13 +14,13 @@
         :class="{ 'hidden': !displayEditButton }"
         aria-haspopup="true"
         :aria-expanded="isExpanded.toString()"
-        aria-controls="post-options">
+        aria-controls="post-options"
+        aria-label="post options menu">
         <svg aria-hidden="true"
           focusable="false"
           width="18"
           height="18"
           version="1.1"
-          id="Icons"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           x="0px"
@@ -79,9 +80,11 @@
         v-click-away="hideDropdown">
         <button role="menuitem"
           class="modifier-post"
+          v-if="canEdit"
           @click="modifyPost">Modifier le post</button>
         <button role="menuitem"
           @click="deletePost"
+          v-if="canDelete"
           class="delete-post">Supprimer le post</button>
       </div>
       <!--my posts are return as strings, so we tell to interpret it as html-->
@@ -122,6 +125,7 @@ import { mixin as VueClickAway } from "vue3-click-away";
 export default {
   data() {
     return {
+      altText: 'photo de profil',
       isOpen: false,
       isExpanded: false,
       likes: this.post.likes
@@ -143,6 +147,12 @@ export default {
       }
     },
     displayEditButton() {
+      return this.user.id === this.post.user.id || this.user.isAdmin
+    },
+    canEdit() {
+      return this.user.id === this.post.user.id
+    },
+    canDelete() {
       return this.user.id === this.post.user.id || this.user.isAdmin
     },
     nbLikes() {

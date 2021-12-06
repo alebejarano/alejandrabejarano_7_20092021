@@ -144,12 +144,14 @@
           </li>
         </ul>
       </nav>
+    
       <article class="account_info">
         <router-view />
       </article>
     </section>
   </main-layout>
 </template>
+
 <script>
 import { mapMutations } from 'vuex'
 import MainLayout from './MainLayout.vue'
