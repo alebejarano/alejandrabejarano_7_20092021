@@ -25,20 +25,18 @@
           </router-link>
         </nav>
         <!---Navigation Menu for small devices-->
-        <focus-trap v-model:active="isActive">
-          <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
-            <button class="close-btn" aria-label="close menu" @click="toggleMenu">X</button>
-            <router-link to="/"
-              class="responsive-menu_link">Home
-            </router-link>
-            <router-link to="/usercontent"
-              class="responsive-menu_link">Mes contenus
-            </router-link>
-            <router-link to="/account"
-              class="responsive-menu_link">Mon Compte
-            </router-link>
-          </nav>
-        </focus-trap>
+        <nav v-if="showMenu"  class="responsive-menu" aria-label="Main Navigation">
+          <button class="close-btn" aria-label="close menu" @click="toggleMenu">X</button>
+          <router-link to="/"
+            class="responsive-menu_link">Home
+          </router-link>
+          <router-link to="/usercontent"
+            class="responsive-menu_link">Mes contenus
+          </router-link>
+          <router-link to="/account"
+            class="responsive-menu_link">Mon Compte
+          </router-link>
+        </nav>
       </div>
     </header>
 
@@ -131,7 +129,6 @@ export default {
   data() {
     return {
       showMenu: false,
-      isActive: false,
     }
   },
   methods: {
