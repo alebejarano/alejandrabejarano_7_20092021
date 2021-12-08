@@ -16,6 +16,7 @@ export default createStore({
   //state = data 
   state: getDefaultState(),
   //getters = computed properties
+  //vue passes as 1st parameter the state. Aditionally it can pass all existing getters as the 2nd parameter
   getters: {
     getToken: state => {
       return state.token;
@@ -31,6 +32,7 @@ export default createStore({
   },
   //mutations = setting and updating just one piece of the state
   mutations: {
+    //1st parameter is the state, and the 2nd parameter is the payload
     setToken: (state, token) => {
       //set the token in the http headers
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
