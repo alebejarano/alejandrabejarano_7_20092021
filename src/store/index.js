@@ -51,4 +51,4 @@ export default createStore({
     }
   },
 });
-//actions = make the call - axios call: ej: FetchProducts. Never update the state.
+//actions = make the call ej: FetchProducts. Never update the state.
