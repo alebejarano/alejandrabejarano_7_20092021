@@ -56,7 +56,6 @@ export default {
       options: {
         upload: file => {
           return new Promise((resolve, reject) => {
-            console.log(file)
             const formData = new FormData()
             formData.append('file', file)
             axios

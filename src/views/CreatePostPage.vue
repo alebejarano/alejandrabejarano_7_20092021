@@ -102,8 +102,6 @@ export default {
         })
     },
     updateFiles(event) {
-      //console.log(this.$refs.quill)
-      //console.log(event)
       const inserted = this.getImgUrls(event.delta)
       const deleted = this.getImgUrls(
         this.$refs.quill.getContents().diff(event.oldContents)
