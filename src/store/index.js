@@ -12,6 +12,7 @@ const getDefaultState = () => {
 
 export default createStore({
   strict: true, //Do not enable strict mode when deploying for production!
+  //save the state
   plugins: [new VuexPersistence().plugin],
   //state = data 
   state: getDefaultState(),
