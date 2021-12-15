@@ -84,7 +84,6 @@ export default {
   },
   methods: {
     modifyPost() {
-      console.log(this.post.content)
       axios
         .patch(`http://localhost:3000/posts/${this.$route.params.postId}`, {
           content: this.$refs.quill.getHTML(),

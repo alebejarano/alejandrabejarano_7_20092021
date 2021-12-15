@@ -72,6 +72,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "deleteaccount" */'@/views/DeleteAccount')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notfound',
+    component: () => import(/* webpackChunkName: "notfound" */'@/views/NotFound')
   }
 ]
   //Create the router instance and pass the `routes` option
@@ -80,9 +85,10 @@ const routes = [
     history: VueRouter.createWebHashHistory(),
     routes,
   })
+  //middleware before our req
   router.beforeEach(async(to, from, next) => {
     if (to.matched.some(record => record.meta.guest)) {
-      // Guests only
+      // route Guests only
       if (store.getters['isAuthenticated']) {
         // Authenticated, redirect to homepage
         next('/')

@@ -81,7 +81,7 @@
         <button role="menuitem"
           class="modifier-post"
           v-if="canEdit"
-          @click="modifyPost">Modifier le post</button>
+          @click="modifyPostButton">Modifier le post</button>
         <button role="menuitem"
           @click="deletePost"
           v-if="canDelete"
@@ -171,7 +171,7 @@ export default {
       this.isOpen = false
       this.isExpanded = false 
     },
-    modifyPost() {
+    modifyPostButton() {
       this.$router.push({
         name: 'modifypost',
         params: { postId: this.post.id }
