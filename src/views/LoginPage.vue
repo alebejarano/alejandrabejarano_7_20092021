@@ -60,9 +60,10 @@
   <section class="guest_block_container">
     <h1 class="guest_block_container_heading">Se connecter</h1>
     <hr class="line-break">
-    <p class="notAuthorized" v-if="notAuthorized">Identifiants incorrects<br>Vous n'avez pas de compte ?
+    <p class="notAuthorized" v-if="errorCode && errorCode === 401">Identifiants incorrects<br>Vous n'avez pas de compte ?
         <router-link to="/guest/signup">Inscrivez vous</router-link>
     </p>
+    <p v-if="errorCode && errorCode === 429">Trop des tentatives veillez rééssayer plus tard</p>
     <form @submit.prevent="login"
       name="form"
       id="form"
@@ -182,7 +183,7 @@ export default {
         email: '',
         password: ''
       },
-      notAuthorized: false
+      errorCode: null
     }
   },
   validations() {
@@ -208,14 +209,16 @@ export default {
             password: this.form.password
           })
           .then(response => {
+            this.errorCode = null
             this.setToken(response.data.access_token)
             this.setUser(response.data.user)
             //redirect to homepage once is loged in
             this.$router.push('/')
           })
           .catch(error => {
-            console.log(error)
-            this.notAuthorized = true
+            if (error.response) {
+              this.errorCode = error.response.status
+            }
           })
       } else {
         console.log('Form not valid')
