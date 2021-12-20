@@ -63,7 +63,7 @@
     <p class="notAuthorized" v-if="errorCode && errorCode === 401">Identifiants incorrects<br>Vous n'avez pas de compte ?
         <router-link to="/guest/signup">Inscrivez vous</router-link>
     </p>
-    <p v-if="errorCode && errorCode === 429">Trop des tentatives veillez rééssayer plus tard</p>
+    <p v-if="errorCode && errorCode === 429">Trop des tentatives veillez réessayer plus tard</p>
     <form @submit.prevent="login"
       name="form"
       id="form"
