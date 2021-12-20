@@ -140,7 +140,8 @@
           v-model="newComment"
           type="text"
           name="comments"
-          placeholder="Ajouter votre commentaire..." />
+          placeholder="Ajouter votre commentaire..."
+          autocomplete="off" />
       </div>
     </div>
     <div class="wrapper">
