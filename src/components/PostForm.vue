@@ -59,7 +59,7 @@ export default {
             const formData = new FormData()
             formData.append('file', file)
             axios
-              .post('http://localhost:3000/posts/images', formData)
+              .post('/posts/images', formData)
               .then(response => {
                 resolve(response.data.url)
               })
@@ -85,7 +85,7 @@ export default {
   methods: {
     modifyPost() {
       axios
-        .patch(`http://localhost:3000/posts/${this.$route.params.postId}`, {
+        .patch(`/posts/${this.$route.params.postId}`, {
           content: this.$refs.quill.getHTML(),
           files: this.files
         })

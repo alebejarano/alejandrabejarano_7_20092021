@@ -28,7 +28,7 @@ export default {
   methods: {
     getPostsByUser() {
       axios
-      .get('http://localhost:3000/posts/user')
+      .get('/posts/user')
       .then(response => {
         this.posts = response.data
       })

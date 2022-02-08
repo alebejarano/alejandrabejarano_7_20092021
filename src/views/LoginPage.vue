@@ -204,7 +204,7 @@ export default {
       if (!this.v$.form.$invalid) {
         //first param is the url and second param is the data
         axios
-          .post('http://localhost:3000/auth/login', {
+          .post('/auth/login', {
             email: this.form.email,
             password: this.form.password
           })

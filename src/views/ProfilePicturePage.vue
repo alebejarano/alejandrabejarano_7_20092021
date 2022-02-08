@@ -59,7 +59,7 @@ export default {
       if (this.previewImage) {
         return this.previewImage
       } else if (this.user.profilePic) {
-        return `http://localhost:3000/file/${this.user.profilePic}`
+        return `/file/${this.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }
@@ -90,7 +90,7 @@ export default {
         //first parameter is the URL,
         //second parameter is a key-value store of the data we are passing.
         //third parameter is adding the multipart/form-data header we need to send the file to the server.
-        .post('http://localhost:3000/users/pic', formData, {
+        .post('/users/pic', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -109,7 +109,7 @@ export default {
     },
     deletePicture() {
       axios
-        .delete('http://localhost:3000/users/pic')
+        .delete('/users/pic')
         .then(() => {
           this.previewImage = null
           this.succesufullyDeletedPic = true

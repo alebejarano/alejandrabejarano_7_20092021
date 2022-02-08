@@ -5,6 +5,7 @@ import router from './router/routes'
 import store from './store'
 import axios from 'axios'
 
+axios.defaults.baseURL = process.env.API_URL;
 
 // set auth header
 if (store.getters['getToken']) {

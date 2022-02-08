@@ -28,7 +28,7 @@ export default {
   methods: {
     getAllPosts() {
     axios
-      .get('http://localhost:3000/posts')
+      .get('/posts')
       .then(response => {
         this.posts = response.data
       }).catch(error => {

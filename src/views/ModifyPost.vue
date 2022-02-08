@@ -27,7 +27,7 @@ export default {
   components: { MainLayout, PostForm },
   created() {
      axios
-      .get(`http://localhost:3000/posts/${this.$route.params.postId}`)
+      .get(`/posts/${this.$route.params.postId}`)
       .then(response => {
         this.post = response.data
       })

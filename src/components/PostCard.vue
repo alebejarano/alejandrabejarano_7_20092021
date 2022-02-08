@@ -217,7 +217,7 @@ export default {
     },
     profilePicUrl() {
       if (this.post.user.profilePic) {
-        return `http://localhost:3000/file/${this.post.user.profilePic}`
+        return `/file/${this.post.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }
@@ -258,7 +258,7 @@ export default {
     },
     likePost() {
       axios
-        .post(`http://localhost:3000/posts/${this.post.id}/like`)
+        .post(`/posts/${this.post.id}/like`)
         .then((response) => {
           this.likes = response.data.likes
         })
@@ -268,7 +268,7 @@ export default {
     },
     deletePost() {
       axios
-        .delete(`http://localhost:3000/posts/${this.post.id}`)
+        .delete(`/posts/${this.post.id}`)
         .then(() => {
           this.$emit('deleted')
         })
@@ -278,7 +278,7 @@ export default {
     },
     submitComment() {
       axios
-        .post(`http://localhost:3000/posts/${this.post.id}/comment`, {
+        .post(`/posts/${this.post.id}/comment`, {
           content: this.newComment
         })
         .then((response) => {
@@ -294,7 +294,7 @@ export default {
     },
     deleteComment(commentId) {
       axios
-        .delete(`http://localhost:3000/posts/comments/${commentId}`)
+        .delete(`/posts/comments/${commentId}`)
         .then(() => {
           this.comments = this.comments.filter((comment) => {
             return comment.id !== commentId
@@ -306,7 +306,7 @@ export default {
     },
     profilePicComment(comment) {
       if (comment.user.profilePic) {
-        return `http://localhost:3000/file/${comment.user.profilePic}`
+        return `/file/${comment.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }

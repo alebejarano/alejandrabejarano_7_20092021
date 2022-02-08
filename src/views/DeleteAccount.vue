@@ -21,7 +21,7 @@ export default {
     ...mapMutations(['logout']),
     deleteAccount () {
       axios
-        .delete(`http://localhost:3000/users/${this.user.id}`)
+        .delete(`/users/${this.user.id}`)
         .then(this.logout()).catch(error => (console.log(error)))
     }
   }

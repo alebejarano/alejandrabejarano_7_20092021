@@ -126,7 +126,7 @@ export default {
     updatePassword () {
       if (!this.v$.form.$invalid) {
         axios
-          .patch(`http://localhost:3000/users/${this.user.id}`, {
+          .patch(`/users/${this.user.id}`, {
             password: this.form.password
           })
           .then(response => {

@@ -92,7 +92,7 @@ export default {
     updateInfo() {
       if (!this.v$.form.$invalid) {
         axios
-          .patch(`http://localhost:3000/users/${this.user.id}`,{
+          .patch(`/users/${this.user.id}`,{
             name: this.form.name,
             email: this.form.email,
           })
