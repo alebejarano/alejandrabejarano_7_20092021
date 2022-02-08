@@ -5,7 +5,7 @@ import router from './router/routes'
 import store from './store'
 import axios from 'axios'
 
-axios.defaults.baseURL = process.env.API_URL;
+axios.defaults.baseURL = 'https://grupomania.alejandrabejarano.dev'
 
 // set auth header
 if (store.getters['getToken']) {
