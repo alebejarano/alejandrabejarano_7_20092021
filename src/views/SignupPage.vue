@@ -1,6 +1,6 @@
 <template>
-  <p class="go-to-login">Déjà un compte ?
-    <router-link to="/guest/login">Se connecter</router-link>
+  <p class="go-to-login">Already have an account?
+    <router-link to="/guest/login">Log In</router-link>
   </p>
  <!---Logo Grupomania-->
   <svg class="icon-svg"
@@ -58,17 +58,17 @@
   </svg>
 <!--Create an account section-->
   <section class="guest_block_container">
-    <h1 class="guest_block_container_heading">Créer un compte</h1>
+    <h1 class="guest_block_container_heading">Create an account</h1>
     <hr>
-    <p class="isregistered" v-if="isRegistered">Vous avez déjà une compte 
-        <router-link to="/guest/login">Connectez vous</router-link>
+    <p class="isregistered" v-if="isRegistered">Seems like you already have an account
+        <router-link to="/guest/login">Log In</router-link>
       </p>
     <form @submit.prevent="signup"
       class="form"
       name="form"
       id="form">
       <div class="form_group">
-        <label for="name">Nom complet</label>
+        <label for="name">Full name</label>
         <div class="form_group_input-div">
           <input type="text"
             v-model="form.name"
@@ -82,7 +82,7 @@
         </div>
         <small v-if="v$.form.name.$error"
           class="error-msg"
-          id="fullName-error">Ecrivez vos prenom et nom
+          id="fullName-error">Write your first and last name
         </small><!-- $error === $invalid && $dirty -->
       </div>
       <div class="form_group">
@@ -101,7 +101,7 @@
         </div>
         <small v-if="v$.form.email.$error"
           class="error-msg"
-          id="email-error">L'adresse email n'est pas valide. Ex:juan@example.com</small>
+          id="email-error">Invalid email address. Ex:juan@example.com</small>
       </div>
       <div class="form_group">
         <label for="new-password">Password</label>
@@ -172,11 +172,11 @@
         </div>
         <small v-if="v$.form.password.$error"
           class="error-msg"
-          id="password-error">Minimum 8 caractères,
-          au moins une majuscule et au moins un numéro
+          id="password-error">At least 8 characters, 
+          one uppercase letter and one number
         </small>
       </div>
-      <button class="log-sign btn">Créer votre compte</button>
+      <button class="log-sign btn">Create Account</button>
     </form>
   </section>
 </template>

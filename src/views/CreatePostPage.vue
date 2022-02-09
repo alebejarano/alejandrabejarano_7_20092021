@@ -1,5 +1,5 @@
 <template>
-  <h1 class="create-post_heading">Créer une publication</h1>
+  <h1 class="create-post_heading">Create Post</h1>
   <article class="create-post">
     <form @submit.prevent="createPost">
       <QuillEditor :modules="modules"
@@ -38,13 +38,13 @@
       </QuillEditor>
       <div class="btn-div createpost-btn-div">
         <button type="submit"
-          class="btn createpost-btn">Créer</button>
+          class="btn createpost-btn">Post</button>
       </div>
     </form>
     <div aria-live="polite"
       v-if="succesufullyUpdated"
       class="success post-created">
-      <p class="success-p">Votre contenu a été créé</p>
+      <p class="success-p">Your post has been created</p>
     </div>
   </article>
 </template>

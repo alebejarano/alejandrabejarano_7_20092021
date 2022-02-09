@@ -1,8 +1,8 @@
 <template>
   <div class="delete-account">
-    <h1>Supprimer votre compte</h1>
-    <p>Voulez vous vraiment supprimer votre compte ?</p>
-    <button @click="deleteAccount" class="btn">Confirmer la suppression</button>
+    <h1>Delete your account</h1>
+    <p>Are you sure you want to delete your account ?</p>
+    <button @click="deleteAccount" class="btn">Delete Account</button>
   </div>
   
 </template>

@@ -1,17 +1,17 @@
 <template>
-  <h1 class="account_info_heading">Informations personelles</h1>
+  <h1 class="account_info_heading">Profile</h1>
   <form @submit.prevent="updateInfo"
     class="personal-info-form"
     name="form"
     id="form">
     <div class="form_group account_info_form-item">
-      <label for="fullName">Nom complet</label>
+      <label for="fullName">Full Name</label>
       <div class="form_group_input-div">
         <input type="text"
           v-model="form.name"
           @blur="v$.form.name.$touch"
           :class="{error: v$.form.name.$error, valid: !v$.form.name.$invalid}"
-          placeholder="Ecrivez vos prenom et nom"
+          placeholder="First name and lastname"
           id="fullName"
           name="fullName"
           aria-describedby="fullName"
@@ -19,7 +19,7 @@
       </div>
       <small v-if="v$.form.name.$error"
         class="error-msg"
-        id="fullName">Ecrivez vos prenom et nom
+        id="fullName">Write your first and last name
       </small><!-- $error === $invalid && $dirty -->
     </div>
     <div class="form_group account_info_form-item">
@@ -38,7 +38,7 @@
       </div>
       <small v-if="v$.form.email.$error"
         class="error-msg"
-        id="email">L'adresse email n'est pas valide. Ex:juan@example.com
+        id="email">Invalid email address. Ex:juan@example.com
       </small>
     </div>
     <div class="account-btn-div">
@@ -46,7 +46,7 @@
     </div>
   </form>
   <div aria-live="polite" v-if="succesufullyUpdated" class="success">
-    <p class="success-p">Profil mis à jour</p>
+    <p class="success-p">Profile updated!</p>
   </div>
 </template>
 

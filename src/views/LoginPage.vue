@@ -1,6 +1,6 @@
 <template>
-  <p class="go-to-signup">Vous n'avez pas de compte ?
-    <router-link to="/guest/signup">Céer votre compte</router-link>
+  <p class="go-to-signup">Don't have an account?
+    <router-link to="/guest/signup">Sign Up</router-link>
   </p>
   <!---Logo Grupomania-->
   <svg data-v-1084b650=""
@@ -58,12 +58,12 @@
   </svg>
 <!--Login section-->
   <section class="guest_block_container">
-    <h1 class="guest_block_container_heading">Se connecter</h1>
+    <h1 class="guest_block_container_heading">Log In</h1>
     <hr class="line-break">
-    <p class="notAuthorized" v-if="errorCode && errorCode === 401">Identifiants incorrects<br>Vous n'avez pas de compte ?
-        <router-link to="/guest/signup">Inscrivez vous</router-link>
+    <p class="notAuthorized" v-if="errorCode && errorCode === 401">Incorrect email or password<br>Don't have an account?
+        <router-link to="/guest/signup">Sign up</router-link>
     </p>
-    <p v-if="errorCode && errorCode === 429">Trop des tentatives veillez réessayer plus tard</p>
+    <p v-if="errorCode && errorCode === 429">Opps! Too many entries. Try again later</p>
     <form @submit.prevent="login"
       name="form"
       id="form"
@@ -83,10 +83,10 @@
         </div>
         <small v-if="v$.form.email.$error"
           class="error-msg"
-          id="email-error">L'adresse email n'est pas valide. Ex:juan@example.com</small>
+          id="email-error">Invalid email address. Ex:juan@example.com</small>
       </div>
       <div class="form_group">
-        <label for="current-password">Mot de passe</label>
+        <label for="current-password">Password</label>
         <div class="form_group_input-div">
           <input :type="showPassword ? 'text' : 'password'"
             v-model="form.password"
@@ -154,11 +154,11 @@
         </div>
         <small v-if="v$.form.password.$error"
           class="error-msg"
-          id="password-error">Minimum 8 caractères,
-          au moins une majuscule et au moins un numéro
+          id="password-error">At least 8 characters, 
+          one uppercase letter and one number
         </small>
       </div>
-      <button class="log-sign btn">se connecter</button>
+      <button class="log-sign btn">Log In</button>
     </form>
   </section>
 </template>

@@ -1,7 +1,7 @@
 <template>
-  <h1 class="account_info_heading password-heading">Modifier vos mot de passe</h1>
+  <h1 class="account_info_heading password-heading">Change password</h1>
   <div class="changepassword-div">
-    <label for="new-password">Nouveau Mot de passe</label>
+    <label for="new-password">New password</label>
     <div class="form_group_input-div">
       <input :type="showPassword ? 'text' : 'password'"
         v-model="form.password"
@@ -68,15 +68,14 @@
     </div>
     <small v-if="v$.form.password.$error"
       class="error-msg"
-      id="password">Minimum 8 caractères,
-      au moins une majuscule et au moins un numéro
+      id="password">At least 8 characters, one uppercase letter and one number
     </small>
   </div>
   <div class="btn-div">
     <button @click="updatePassword()" class="btn account_info_button">Sauvegarder</button>
   </div>
   <div aria-live="polite" v-if="succesufullyUpdated" class="success">
-    <p class="success-p">Mot de pass mis à jour</p>
+    <p class="success-p">password succesfully updated!</p>
   </div>
 </template>
 
