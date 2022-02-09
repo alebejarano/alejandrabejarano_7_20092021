@@ -38,7 +38,7 @@
     </QuillEditor>
     <div class="btn-div createpost-btn-div">
       <button type="submit"
-        class="btn createpost-btn">Modifier</button>
+        class="btn createpost-btn">Update</button>
     </div>
   </form>
 </template>

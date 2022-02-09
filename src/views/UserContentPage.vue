@@ -1,10 +1,10 @@
 <template>
   <main-layout>
-    <h1 class="account_info_heading content_heading">Mes contenus</h1>
+    <h1 class="account_info_heading content_heading">My content</h1>
     <div aria-live="polite"
       v-if="successfullyDeleted"
       class="success-deleted post-deleted">
-      <p class="delete-p">Post supprimé</p>
+      <p class="delete-p">Deleted Post</p>
     </div>
     <post-card v-for="post in posts" :key="post.id" :post="post" @deleted="postDeleted"/>
   </main-layout>

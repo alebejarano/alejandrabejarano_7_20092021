@@ -82,11 +82,11 @@
         <button role="menuitem"
           class="modifier-post"
           v-if="canEdit"
-          @click="modifyPostButton">Modifier le post</button>
+          @click="modifyPostButton">Edit Post</button>
         <button role="menuitem"
           @click="deletePost"
           v-if="canDelete"
-          class="delete-post">Supprimer le post</button>
+          class="delete-post">Delete Post</button>
       </div>
       <!--my posts are return as strings, so we tell to interpret it as html-->
       <div v-html="post.content"
@@ -115,7 +115,7 @@
             d="M11,24V14H5v12h6v-2.4l0,0c1.5,1.6,4.1,2.4,6.2,2.4h6.5c1.1,0,2.1-0.8,2.3-2l1.5-8.6c0.3-1.5-0.9-2.4-2.3-2.4
           H20V6.4C20,5.1,18.7,4,17.4,4h0C16.1,4,15,5.1,15,6.4v0c0,1.6-0.5,3.1-1.4,4.4L11,13.8" />
         </svg>
-        <span class="like-text">J'aime</span>
+        <span class="like-text">Like</span>
       </button>
       <!--Comments button-->
       <button class="comments-btn"
@@ -130,7 +130,7 @@
           <path class="a"
             d="M21,0A21,21,0,0,0,3.21,32.12l-3,7.09a2,2,0,0,0,2.62,2.62l7.09-3A21,21,0,1,0,21,0Z" />
         </svg>
-        <span class="comments-btn_text">Ajouter un commentaire</span>
+        <span class="comments-btn_text">Add a comment</span>
       </button>
     </div>
     <div class="wrapper"
@@ -184,7 +184,7 @@
                 c0-18.255,14.852-33.106,33.106-33.106c18.249,0,33.094,14.852,33.094,33.106C72.434,57.59,57.588,72.438,39.34,72.438z" />
             </g>
           </svg>
-          <span class="visually-hidden">Supprimer Commentaire</span>
+          <span class="visually-hidden">Delete Comment</span>
         </button>
       </div>
     </div>

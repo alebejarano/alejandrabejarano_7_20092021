@@ -18,10 +18,10 @@
             class="menu_link">Home
           </router-link>
           <router-link to="/usercontent"
-            class="menu_link">Mes contenus
+            class="menu_link">My Content
           </router-link>
           <router-link to="/account"
-            class="menu_link">Mon Compte
+            class="menu_link">Account
           </router-link>
         </nav>
         <!---Navigation Menu for small devices-->
@@ -31,10 +31,10 @@
             class="responsive-menu_link">Home
           </router-link>
           <router-link to="/usercontent"
-            class="responsive-menu_link">Mes contenus
+            class="responsive-menu_link">My content
           </router-link>
           <router-link to="/account"
-            class="responsive-menu_link">Mon Compte
+            class="responsive-menu_link">Account
           </router-link>
         </nav>
       </div>
@@ -54,7 +54,7 @@
             role="img">
           <ul class="footer_list">
             <li class="footer_list_item">
-              <a href="#">Conditions générales d'utilisation</a>
+              <a href="#">General Terms and Conditions of Use</a>
             </li>
             <li class="footer_list_item">
               <a href="#">Contact</a>

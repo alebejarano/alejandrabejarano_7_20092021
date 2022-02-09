@@ -13,28 +13,28 @@
             @change="uploadImage($event)"
             id="profile-file"
             class="inputfile">
-          <label for="profile-file">Modifiez votre photo de profil</label>
+          <label for="profile-file">Edit profile picture</label>
           <button type="button"
             @click="deletePicture()"
-            class="delete-pic">Supprimer votre photo</button>
+            class="delete-pic">Delete picture</button>
         </div>
       </div>
       <div class="account-btn-div">
         <button @click="updatePicture()"
           type="submit"
-          class="btn account_info_button">Sauvegarder</button>
+          class="btn account_info_button">Save</button>
       </div>
     </div>
   </form>
     <div aria-live="polite"
       v-if="succesufullyUpdated"
       class="success">
-      <p class="success-p">Profil mis à jour</p>
+      <p class="success-p">Updated profile!</p>
     </div>
     <div aria-live="polite"
       v-if="succesufullyDeletedPic"
       class="success-deleted">
-      <p class="delete-p">Photo supprimé</p>
+      <p class="delete-p">your picture has been deleted</p>
     </div>
 </template>
 
