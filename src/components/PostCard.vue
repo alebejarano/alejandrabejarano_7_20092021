@@ -95,7 +95,7 @@
     </div>
     <div class="post-btn">
       <!--Like post button-->
-      <button class="like-btn"
+      <button class="like-btn card-btn"
         @click="likePost"
         :class="{ 'hasliked': hasLiked }">
         <span class="like-number">{{ nbLikes }}</span>
@@ -118,7 +118,7 @@
         <span class="like-text">Like</span>
       </button>
       <!--Comments button-->
-      <button class="comments-btn"
+      <button class="comments-btn card-btn"
         @click="showCommentForm = !showCommentForm">
         <svg aria-hidden="true"
           focusable="false"
@@ -140,7 +140,7 @@
           v-model="newComment"
           type="text"
           name="comments"
-          placeholder="Ajouter votre commentaire..."
+          placeholder="Add a comment..."
           autocomplete="off" />
       </div>
     </div>
@@ -361,7 +361,7 @@ export default {
   box-shadow: 1px 2px 10px 2px gray;
 }
 .card {
-  box-shadow: 0px 1px 12px 1px grey;
+  box-shadow: $card-shadow;
   width: 60%;
   margin: 3rem auto;
   @media (max-width: $large-breakpoint) {
@@ -369,8 +369,8 @@ export default {
   }
   &_post {
     padding: 0.5rem;
-    border: 1px solid grey;
     position: relative;
+    background-color: white;
     &_profile {
       display: flex;
       grid-gap: 1rem;
@@ -424,14 +424,9 @@ export default {
   object-fit: contain;
 }
 .like-btn {
-  width: 100%;
-  background: $secondary-color;
-  border: none;
-  //border: 1px solid $text-color;
-  cursor: pointer;
-  padding: 0.3rem 0.3rem 0.5rem;
+  @include card-btns;
   &:hover {
-    background: transparent;
+    background: $card-btns-midlight;
   }
   .like-number {
     margin-right: 0.5rem;
@@ -460,14 +455,9 @@ export default {
   display: flex;
 }
 .comments-btn {
-  width: 100%;
-  background: $secondary-color;
-  border: none;
-  //border: 1px solid $text-color;
-  cursor: pointer;
-  padding: 0.3rem 0.3rem 0.5rem;
+  @include card-btns;
   &:hover {
-    background: transparent;
+    background: $card-btns-midlight;
   }
   svg {
     fill: $terciary-color;

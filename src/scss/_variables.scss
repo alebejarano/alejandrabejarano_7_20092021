@@ -1,6 +1,7 @@
+$main-background: hsl(0, 0%, 99%);
 $logo-color: #FE2D02;
 $primary-color: #A21C01;
-$secondary-color: #EFF8FE;
+$secondary-color: #F0F8FF;
 $terciary-color: #BDD5EA;
 $text-color: #3E516F;
 $second-text-color: #333D48;
@@ -11,6 +12,13 @@ $valid: #0BC10B;
 $focus-indicator: #0000FF;
 $focus-indicator-offset: -5px;
 $primary-btn-shadow: 2px 1px 5px 1px scale-color($text-color, $saturation: 30%);
+$shadow-color: 0deg 0% 80%;
+$card-shadow: 0.4px 0.5px 1px hsl(0deg 0% 80% / 0),
+1.3px 1.5px 3px hsl(0deg 0% 80% / 0.06),
+2.2px 2.5px 5px hsl(0deg 0% 80% / 0.11),
+3.6px 4.2px 8.3px hsl(0deg 0% 80% / 0.17),
+6.2px 7.1px 14.1px hsl(0deg 0% 80% / 0.22);
+$card-btns-midlight: hsl(0, 0%, 96%);
 $hover-classic-link: underline;
 $xxs-breakpoint: 300px;
 $xsmall-breakpoint: 415px;
@@ -28,3 +36,7 @@ $font-weights: (
     "bold": 500,
     "bolder": 600,
 );
+
+
+//$secondary-color: #EFF8FE;
+//$terciary-color: #BDD5EA;
