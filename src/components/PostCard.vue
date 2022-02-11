@@ -479,8 +479,8 @@ export default {
     margin-left: 0.5rem;
   }
 }
+//for the comments section in post card
 .wrapper {
-  padding: 0.5rem 0.7rem 0.5rem 0.5rem;
   background-color: $secondary-color;
   input {
     width: 100%;
@@ -492,6 +492,9 @@ export default {
     padding: 0.5rem;
     margin-top: 0;
   }
+}
+.comment-wrapper {
+  padding: 0.7rem;;
 }
 .show-content {
   position: relative;
