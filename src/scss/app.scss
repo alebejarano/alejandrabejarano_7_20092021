@@ -14,13 +14,11 @@ body {
 //focus indicator
 a:focus-visible {
   outline: 2px solid $focus-indicator;
-  outline-offset: $focus-indicator-offset;
   height: fit-content;
   padding: 0.2rem
 }
 button:focus-visible {
   outline: 2px solid $focus-indicator;
-  outline-offset: $focus-indicator-offset;
 }
 //for the form
 .form {
