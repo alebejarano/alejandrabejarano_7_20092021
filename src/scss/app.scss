@@ -11,14 +11,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: $text-color;
 }
+//focus indicator
 a:focus-visible {
   outline: 2px solid $focus-indicator;
+  outline-offset: $focus-indicator-offset;
   height: fit-content;
   padding: 0.2rem
 }
 button:focus-visible {
   outline: 2px solid $focus-indicator;
+  outline-offset: $focus-indicator-offset;
 }
+//for the form
 .form {
   padding-top: 2rem;
   &_group {
@@ -38,7 +42,7 @@ button:focus-visible {
   font-size: map-get($font-sizes, heading2);
   text-align: center;
 }
-//form update info successufully chnaged
+//form update info successufully changed
 .success {
   @include profile-modified($valid);
   background-color: lighten($valid, 55%);

@@ -72,7 +72,7 @@
     </small>
   </div>
   <div class="btn-div">
-    <button @click="updatePassword()" class="btn account_info_button">Sauvegarder</button>
+    <button @click="updatePassword()" class="btn account_info_button">Save</button>
   </div>
   <div aria-live="polite" v-if="succesufullyUpdated" class="success">
     <p class="success-p">password succesfully updated!</p>
