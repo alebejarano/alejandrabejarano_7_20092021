@@ -217,7 +217,7 @@ export default {
     },
     profilePicUrl() {
       if (this.post.user.profilePic) {
-        return `/file/${this.post.user.profilePic}`
+        return `https://grupomania.alejandrabejarano.dev/file/${this.post.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }
@@ -306,7 +306,7 @@ export default {
     },
     profilePicComment(comment) {
       if (comment.user.profilePic) {
-        return `/file/${comment.user.profilePic}`
+        return `https://grupomania.alejandrabejarano.dev/file/${comment.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }

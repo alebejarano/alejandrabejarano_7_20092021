@@ -59,7 +59,7 @@ export default {
       if (this.previewImage) {
         return this.previewImage
       } else if (this.user.profilePic) {
-        return `/file/${this.user.profilePic}`
+        return `https://grupomania.alejandrabejarano.dev/file/${this.user.profilePic}`
       } else {
         return '/user-placeholder.svg'
       }
