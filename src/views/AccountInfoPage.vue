@@ -42,7 +42,7 @@
       </small>
     </div>
     <div class="account-btn-div">
-      <button @click="updateInfo()" class="btn account_info_button">Sauvegarder</button>
+      <button @click="updateInfo()" class="btn account_info_button">Save</button>
     </div>
   </form>
   <div aria-live="polite" v-if="succesufullyUpdated" class="success">

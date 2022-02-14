@@ -80,10 +80,17 @@
 
 //for the succes update in AccountPage
 @mixin profile-modified($color) {
-  margin: auto;
-  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   border: 1px solid $color;
+  border-radius: 10px;
   padding: 0.5rem;
+  margin-inline-start: 1rem;
+  margin-inline-end: 1rem;
+  position: absolute;
+  left: 10px;
+  z-index: 10;
 }
 @mixin success-msg {
   margin: 0;

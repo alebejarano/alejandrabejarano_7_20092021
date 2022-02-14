@@ -52,11 +52,11 @@ button:focus-visible {
    @include success-msg;
   }
 }
-//successfully deleted
-.success-deleted {
+//error
+.error-toast {
   @include profile-modified($error);
   background-color: lighten($error, 65%);
-  .delete-p {
+  .error-p {
     @include success-msg;
   }
 }
@@ -92,7 +92,7 @@ input.valid {
 .btn {
   @include btn;
   &:hover, &:focus {
-    box-shadow: $primary-btn-shadow;
+    background: linear-gradient(90deg, #aec5eb, #b4c6f0, #bbc6f5, #c3c6f9, #ccc5fc, #d6c5fe, #e0c4ff, #ebc3ff);
   }
 }
 .btn-div {
