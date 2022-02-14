@@ -74,7 +74,7 @@
             v-model="form.name"
             @blur="v$.form.name.$touch"
             :class="{error: v$.form.name.$error, valid: !v$.form.name.$invalid}"
-            placeholder="Ecrivez vos prenom et nom"
+            placeholder="Write your first name and last name"
             id="fullName"
             name="fullName"
             aria-describedby="fullName-error"
