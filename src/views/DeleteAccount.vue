@@ -14,7 +14,7 @@ export default {
   computed: {
     ...mapGetters(['getUser']),
     user () {
-      return this.$getUser
+      return this.getUser
     }
   },
   methods: {
