@@ -34,7 +34,7 @@
     }
     .icon-svg {
       display: block;
-      margin: auto;
+      margin: 2rem auto;
       @media (max-width: $medium-breakpoint) {
         width: 70%;
       }

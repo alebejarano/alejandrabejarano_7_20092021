@@ -6,8 +6,8 @@
       <div class="header-block">
         <router-link to="/"
           title="Go to Homepage ">
-          <img alt="Grupomania Home"
-            src="../assets/Asset-1.svg"
+          <img alt="Coffee Office Home"
+            src="../assets/coffee-logo.svg"
             class="icon-header"
             role="img">
         </router-link>
