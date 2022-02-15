@@ -48,7 +48,7 @@
       <div class="footer">
         <!--logo and footer menu-->
         <div class="footer_menu-links">
-          <img src="../assets/icon-1.svg"
+          <img src="../assets/donut-logo.svg"
             alt="Grupomanaia"
             class="footer_logo"
             role="img">
