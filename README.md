@@ -1,4 +1,4 @@
-# Front-end Project 7 Le Réseau Social pour Grupomania
+# Front-end for Enterprise Social Network Coffee Office
 
 ## Project setup
 ```

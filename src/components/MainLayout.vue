@@ -49,7 +49,7 @@
         <!--logo and footer menu-->
         <div class="footer_menu-links">
           <img src="../assets/donut-logo.svg"
-            alt="Grupomanaia"
+            alt=""
             class="footer_logo"
             role="img">
           <ul class="footer_list">
