@@ -373,12 +373,10 @@ export default {
   }
   .inputfile + label {
     font-size: 1em;
-    letter-spacing: 0.6px;
-    font-weight: map-get($font-weights, bold);
+    @include options-btn;
+    //font-weight: map-get($font-weights, bold);
     color: $second-text-color;
     display: inline-block;
-    cursor: pointer;
-    padding: 0.3rem;
   }
   .inputfile:focus + label,
   .inputfile + label:hover {
@@ -389,14 +387,14 @@ export default {
     outline: -webkit-focus-ring-color auto 5px;
   }
   .delete-pic {
-    @include reset-btn;
+    @include options-btn;
+    background: transparent;
     margin-left: 1rem;
     margin-top: 1rem;
     color: #9d1b01;
-    font-weight: map-get($font-weights, bold);
+    //font-weight: map-get($font-weights, bold);
     &:hover {
       background: rgba(248, 156, 137, 0.2);
-      padding: 0.3rem;
     }
     &:focus {
       outline: solid 2px blue;
