@@ -354,11 +354,15 @@ export default {
   flex-direction: column;
   width: 200px;
   position: absolute;
-  right: 40px;
+  right: 57px;
+  top: 38px;
   background: $secondary-color;
-  top: 46px;
   border: 1px solid $medium-light-background;
-  box-shadow: 1px 2px 10px 2px gray;
+  box-shadow:
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.032),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.048),
+  100px 100px 80px rgba(0, 0, 0, 0.08)
+;
 }
 .card {
   box-shadow: $card-shadow;
@@ -491,8 +495,8 @@ export default {
 }
 .delete-comment-btn {
   position: absolute;
-  top: 17px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   @include reset-btn;
 }
 .display-comments-profile {
