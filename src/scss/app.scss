@@ -20,7 +20,7 @@ a:focus-visible {
   height: fit-content;
   padding: 0.2rem
 }
-button:focus-visible {
+button:not(.like-btn, .comments-btn):focus-visible {
   outline: 2px solid $focus-indicator;
   outline-offset: $focus-indicator-offset;
 }

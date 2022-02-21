@@ -23,7 +23,10 @@
       <div class="account-btn-div">
         <button @click="updatePicture()"
           type="submit"
-          class="btn account_info_button">Save</button>
+          class="btn account_info_button">
+          <spinning-loader v-if="showLoader"></spinning-loader>
+          <span v-if="notLoading">Save</span>
+          </button>
       </div>
     </div>
   </form>
@@ -119,16 +122,19 @@
 import axios from 'axios'
 import { mapMutations, mapGetters } from 'vuex'
 import ToastSuccess from '../components/ToastSuccess.vue'
+import SpinningLoader from '../components/SpinningLoader.vue'
 export default {
   data() {
     return {
       succesufullyUpdated: false,
       succesufullyDeletedPic: false,
       file: '',
-      previewImage: null
+      previewImage: null,
+      showLoader: false,
+      notLoading: true
     }
   },
-  components: { ToastSuccess },
+  components: { ToastSuccess, SpinningLoader },
   computed: {
     ...mapGetters(['getUser']),
     user() {
@@ -164,6 +170,8 @@ export default {
         //append the file variable that we have our data stored in
         //Add the form data we need to submit
         formData.append('file', this.file)
+        this.showLoader = true
+        this.notLoading = false
         //Make the request
         axios
           //first parameter is the URL,
@@ -181,6 +189,9 @@ export default {
           })
           .catch((error) => {
             console.log(error)
+          }).then(() => {
+            this.showLoader = false
+            this.notLoading = true
           })
       } else {
         console.log('No picture selected')

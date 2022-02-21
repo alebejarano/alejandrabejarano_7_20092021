@@ -95,7 +95,7 @@
     </div>
     <div class="post-btn">
       <!--Like post button-->
-      <button class="like-btn card-btn"
+      <button class="like-btn"
         @click="likePost"
         :class="{ 'hasliked': hasLiked }">
         <span class="like-number">{{ nbLikes }}</span>
@@ -118,7 +118,7 @@
         <span class="like-text">Like</span>
       </button>
       <!--Comments button-->
-      <button class="comments-btn card-btn"
+      <button class="comments-btn"
         @click="showCommentForm = !showCommentForm">
         <svg aria-hidden="true"
           focusable="false"
@@ -432,6 +432,9 @@ export default {
   &:hover {
     background: $card-btns-midlight;
   }
+  /*:focus-visible {
+    outline-offset: -5px;
+  }*/
   .like-number {
     margin-right: 0.5rem;
   }

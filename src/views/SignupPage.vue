@@ -124,7 +124,10 @@
           one uppercase letter and one number
         </small>
       </div>
-      <button class="log-sign btn">Create Account</button>
+      <button class="log-sign btn">
+        <spinning-loader v-if="showLoader"></spinning-loader>
+        <span v-if="notLoading">Create Account</span>
+      </button>
     </form>
   </section>
 </template>
@@ -134,6 +137,8 @@ import axios from 'axios'
 import { mapMutations } from 'vuex'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, helpers } from '@vuelidate/validators'
+import SpinningLoader from '../components/SpinningLoader.vue'
+
 
 //regex: min 8 character, min 1 uppercase letter and 1 number
 const alpha = helpers.regex(
@@ -141,6 +146,7 @@ const alpha = helpers.regex(
 )
 
 export default {
+  components: { SpinningLoader },
   setup() {
     return { v$: useVuelidate() }
   },
@@ -152,7 +158,9 @@ export default {
         email: '',
         password: ''
       },
-      isRegistered: false
+      isRegistered: false,
+      showLoader: false,
+      notLoading: true
     }
   },
   validations() {
@@ -172,6 +180,8 @@ export default {
     ...mapMutations(['setToken', 'setUser']),
     signup() {
       if (!this.v$.form.$invalid) {
+        this.showLoader = true
+        this.notLoading = false
         //first param is the url and second param is the data
         axios
           .post('/users', {
@@ -194,6 +204,9 @@ export default {
           .catch(error => {
             console.log(error)
             this.isRegistered = true
+          }).then(() => {
+            this.showLoader = false
+            this.notLoading = true
           })
       } else {
         console.log('Form is invalid')
