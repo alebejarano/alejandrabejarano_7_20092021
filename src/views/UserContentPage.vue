@@ -1,11 +1,6 @@
 <template>
   <main-layout>
     <h1 class="account_info_heading content_heading">My content</h1>
-    <!---<div aria-live="polite"
-      v-if="successfullyDeleted"
-      class="success-deleted post-deleted">
-      <p class="delete-p">Deleted Post</p>
-    </div>-->
     <transition name="fade">
       <toast-success v-if="successfullyDeleted"
         type="success">
