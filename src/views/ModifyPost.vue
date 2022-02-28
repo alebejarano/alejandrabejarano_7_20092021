@@ -2,11 +2,6 @@
   <main-layout>
     <h1 class="create-post_heading">Edit Post</h1>
     <post-form :post="post" v-if="post" />
-    <div aria-live="polite"
-      v-if="succesufullyUpdated"
-      class="success post-created">
-      <p class="success-p">Your post has been updated</p>
-    </div>
   </main-layout>
 </template>
 
@@ -20,7 +15,6 @@ export default {
   data() {
     return {
       post: null,
-      succesufullyUpdated: false,
       files: [],
     }
   },

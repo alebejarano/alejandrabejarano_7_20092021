@@ -41,11 +41,6 @@
           class="btn createpost-btn">Post</button>
       </div>
     </form>
-    <div aria-live="polite"
-      v-if="succesufullyUpdated"
-      class="success post-created">
-      <p class="success-p">Your post has been created</p>
-    </div>
   </article>
 </template>
 
@@ -83,7 +78,6 @@ export default {
   data() {
     return {
       files: [],
-      succesufullyUpdated: false
     }
   },
   components: { QuillEditor },
@@ -95,8 +89,6 @@ export default {
           files: this.files
         })
         .then(() => {
-          this.succesufullyUpdated = true
-          setTimeout(() => (this.succesufullyUpdated = false), 2000)
           //redirect to my post page
           this.$router.push('/usercontent')
         })

@@ -71,6 +71,7 @@
   </toast-success>
   </transition>
  <!---if the pic is successfully deleted-->
+ <transition name="fade">
   <toast-success v-if="succesufullyDeletedPic" type="success">
     <template #icon>
       <svg version="1.1"
@@ -116,6 +117,7 @@
       You have deleted your picture
     </template>
   </toast-success>
+ </transition>
 </template>
 
 <script>
@@ -217,140 +219,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
-.fade-enter-active, .fade-leave-active {
-  transition: all 0.8s ease-in-out;
-}
-.fade-enter-from {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-.fade-enter-to, .fade-leave-from  {
-  transform: translateX(0);
-  opacity: 1;
-}
-.fade-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-.surprise-icon {
-  .st0 {
-    fill: #fdca47;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-miterlimit: 10;
-  }
-  .st1 {
-    fill: #20201e;
-  }
-  .st2 {
-    fill: #d05f58;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-  .st3 {
-    fill: #ffffff;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-  .st4 {
-    fill: none;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-  }
-  .st5 {
-    fill: #ffffff;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-  }
-  .st6 {
-    fill: #d05f58;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-  }
-  .st7 {
-    fill: none;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-}
-.smile-icon {
-  .st0 {
-    fill: #fdca47;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-miterlimit: 10;
-  }
-
-  .st1 {
-    fill: #20201e;
-  }
-
-  .st2 {
-    fill: #d05f58;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-
-  .st3 {
-    fill: #ffffff;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-
-  .st4 {
-    fill: none;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-  }
-
-  .st5 {
-    fill: #ffffff;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-  }
-
-  .st6 {
-    fill: #d05f58;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-  }
-
-  .st7 {
-    fill: none;
-    stroke: #231f20;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-}
 .profile-pic {
   text-align: center;
   &_container {
