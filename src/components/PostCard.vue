@@ -198,7 +198,7 @@ import { mixin as VueClickAway } from 'vue3-click-away'
 export default {
   data() {
     return {
-      altText: 'photo de profil',
+      altText: '',
       isOpen: false,
       isExpanded: false,
       likes: this.post.likes,
@@ -391,7 +391,6 @@ export default {
       }
     }
     .modifier-post {
-      //transform: translateY(-45px);
       right: 40px;
       padding: 0.5rem;
       color: $text-color;
@@ -404,7 +403,6 @@ export default {
       }
     }
     .delete-post {
-      //transform: translateY(-45px);
       right: 15px;
       margin: 0;
       padding: 0.5rem;
@@ -432,9 +430,6 @@ export default {
   &:hover {
     background: $card-btns-midlight;
   }
-  /*:focus-visible {
-    outline-offset: -5px;
-  }*/
   .like-number {
     margin-right: 0.5rem;
   }

@@ -7,7 +7,7 @@
       :modules="modules"
       ref="quill"
       theme="snow"
-      placeholder="De quoi voulez vous parler ?">
+      placeholder="Share your thoughts...">
       <template #toolbar>
         <div id="my-toolbar">
           <button class="ql-bold"
