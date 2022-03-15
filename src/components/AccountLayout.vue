@@ -8,7 +8,7 @@
           <li class="account_menu_list_item">
             <router-link to="/account"
               class="account_menu_list_item_link"
-              title="Informations personelles">
+              title="personal account">
               <svg aria-hidden="true"
                 focusable="false"
                 width="24"
@@ -27,7 +27,7 @@
           <li class="account_menu_list_item">
             <router-link :to="{name: 'profilepicture'}"
               class="account_menu_list_item_link"
-              title="Informations personelles">
+              title="modify your profile picture">
               <svg aria-hidden="true"
                 focusable="false"
                 width="24px"
@@ -45,7 +45,7 @@
           <li class="account_menu_list_item">
             <router-link :to="{ name: 'changepassword'}"
               class="account_menu_list_item_link"
-              title="Modifier mot de passe">
+              title="Modify password">
               <svg aria-hidden="true"
                 focusable="false"
                 width="24px"
@@ -70,7 +70,7 @@
           <li class="account_menu_list_item">
             <router-link :to="{ name: 'createpost' }"
               class="account_menu_list_item_link"
-              title="Vos contenus">
+              title="create your post">
               <svg aria-hidden="true"
                 focusable="false"
                 width="24"
@@ -92,7 +92,7 @@
           <li class="account_menu_list_item">
             <a @click="logout"
               class="account_menu_list_item_link logout"
-              title="se déconnecter">
+              title="log out">
               <svg aria-hidden="true"
                 focusable="false"
                 width="24"
@@ -119,7 +119,7 @@
           <li class="account_menu_list_item">
             <router-link :to="{ name: 'deleteaccount' }"
               class="account_menu_list_item_link logout"
-              title="supprimer votre compte">
+              title="delete your account">
               <svg aria-hidden="true"
                 focusable="false"
                 width="24"

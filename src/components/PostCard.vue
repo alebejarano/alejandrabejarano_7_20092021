@@ -79,12 +79,10 @@
         id="post-options"
         role="menu"
         v-click-away="hideDropdown">
-        <button role="menuitem"
-          class="modifier-post"
+        <button class="modifier-post"
           v-if="canEdit"
           @click="modifyPostButton">Edit Post</button>
-        <button role="menuitem"
-          @click="deletePost"
+        <button @click="deletePost"
           v-if="canDelete"
           class="delete-post">Delete Post</button>
       </div>
@@ -293,13 +291,11 @@ export default {
         })
     },
     deleteComment(commentId) {
-      axios
-        .delete(`/posts/comments/${commentId}`)
-        .then(() => {
-          this.comments = this.comments.filter((comment) => {
-            return comment.id !== commentId
-          })
+      axios.delete(`/posts/comments/${commentId}`).then(() => {
+        this.comments = this.comments.filter((comment) => {
+          return comment.id !== commentId
         })
+      })
     },
     canDeleteComment(comment) {
       return this.user.id === comment.userId || this.user.isAdmin
@@ -358,11 +354,9 @@ export default {
   top: 38px;
   background: $secondary-color;
   border: 1px solid $medium-light-background;
-  box-shadow:
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.032),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.048),
-  100px 100px 80px rgba(0, 0, 0, 0.08)
-;
+  box-shadow: 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.032),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.048),
+    100px 100px 80px rgba(0, 0, 0, 0.08);
 }
 .card {
   box-shadow: $card-shadow;
@@ -486,7 +480,7 @@ export default {
   }
 }
 .comment-wrapper {
-  padding: 0.7rem;;
+  padding: 0.7rem;
 }
 .show-content {
   position: relative;
