@@ -1,13 +1,18 @@
 <template>
-<main-layout>
-  <h1 class="content_heading">Home</h1>
-  <div aria-live="polite"
-      v-if="successfullyDeleted"
-      class="success-deleted post-deleted">
-      <p class="delete-p">your post has been succesfully deleted</p>
-    </div>
-  <post-card v-for="post in posts" :key="post.id" :post="post" @deleted="postDeleted" />
-</main-layout>  
+  <main-layout>
+    <section>
+      <h1 class="content_heading">Home</h1>
+      <div aria-live="polite"
+        v-if="successfullyDeleted"
+        class="success-deleted post-deleted">
+        <p class="delete-p">your post has been succesfully deleted</p>
+      </div>
+      <post-card v-for="post in posts"
+        :key="post.id"
+        :post="post"
+        @deleted="postDeleted" />
+    </section>
+  </main-layout>
 </template>
 
 <script>
@@ -21,24 +26,25 @@ export default {
       successfullyDeleted: false
     }
   },
-  components: {MainLayout, PostCard},
+  components: { MainLayout, PostCard },
   created() {
     this.getAllPosts()
   },
   methods: {
     getAllPosts() {
-    axios
-      .get('/posts')
-      .then(response => {
-        this.posts = response.data
-      }).catch(error => {
-        console.log(error)
-      })
+      axios
+        .get('/posts')
+        .then((response) => {
+          this.posts = response.data
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     postDeleted() {
       this.successfullyDeleted = true
       setTimeout(() => (this.successfullyDeleted = false), 2000)
-      this.getAllPosts();
+      this.getAllPosts()
     }
   }
 }
@@ -49,6 +55,6 @@ export default {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  z-index: 10
+  z-index: 10;
 }
 </style>

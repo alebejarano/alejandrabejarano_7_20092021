@@ -40,7 +40,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1" ref="skipLink">
       <slot></slot>
     </main>
 
@@ -131,6 +131,7 @@ export default {
       showMenu: false,
     }
   },
+  
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu
