@@ -1,24 +1,5 @@
-# Front-end for Enterprise Social Network Coffee Office
+# Social Network Coffee Office
 
-## Project setup
-```
-npm install
-```
+## Go ahead and cheit out at https://coffeeoffice.netlify.app
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Built with Vue.js and Sass
