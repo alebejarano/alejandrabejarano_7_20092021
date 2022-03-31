@@ -27,6 +27,7 @@ main {
   transform: translateY(-100%);
   outline: 2px solid #fff;
   outline-offset: -7px;
+  display: none;
 }
 .skip-link:focus {
   transform: translateY(20%);
