@@ -2,6 +2,6 @@
 
 ## Social network for remote companies
 
-## Go ahead and cheit out at https://coffeeoffice.netlify.app
+Go ahead and check it out at https://coffeeoffice.netlify.app
 
-### Built with Vue.js and Sass
+Built with Vue.js and Sass
