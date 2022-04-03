@@ -90,8 +90,8 @@
             </router-link>
           </li>
           <li class="account_menu_list_item">
-            <a @click="logout"
-              class="account_menu_list_item_link logout"
+            <button @click="logout"
+              class="account_menu_list_item_link logout-btn"
               title="log out">
               <svg aria-hidden="true"
                 focusable="false"
@@ -114,7 +114,7 @@
                 </line>
               </svg>
               <span class="link-text">Log out</span>
-            </a>
+            </button>
           </li>
           <li class="account_menu_list_item">
             <router-link :to="{ name: 'deleteaccount' }"
@@ -228,7 +228,7 @@ export default {
   color: $second-text-color;
   font-weight: map-get($font-weights, bold);
 }
-.logout {
-  cursor: pointer;
+.logout-btn {
+  @include reset-btn;
 }
 </style>
