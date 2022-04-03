@@ -188,7 +188,10 @@ header {
       display: flex;
       align-self: center;
       font-weight: map-get($font-weights, bold);
-      margin-right: 1rem;
+      margin-right: 1.5rem;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      color: $primary-color;
       &:active {
         outline: 2px solid violet;
       }
