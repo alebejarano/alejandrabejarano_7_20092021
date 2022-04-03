@@ -206,7 +206,7 @@ header {
     background-color: $secondary-color;
     z-index: 20;
     height: 100vh;
-    padding: 2rem;
+    width: 100vw;
     &_link {
       @include menu-link(-1px);
       margin: 1rem;
@@ -219,14 +219,17 @@ header {
     }
     @media (max-width: $small-breakpoint) {
       display: flex;
+      align-items: center;
+      overflow: scroll;
     }
     .close-btn {
       @include reset-btn;
         margin-bottom: 1rem;
         width: 1em;
-        float: right;
-        margin-left: 116px;
         font-size: map-get($font-sizes, medium);
+        align-self: flex-end;
+        margin-top: 1rem;
+        margin-right: 1.5rem;
        &:focus-visible {
          outline: 2px solid blue;
        }
