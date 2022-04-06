@@ -31,7 +31,7 @@
         </div>
         <small v-if="v$.form.email.$error"
           class="error-msg"
-          id="email-error">Invalid email address. Ex:juan@example.com</small>
+          id="email-error">Invalid email address. Valid email address exemple: juan@example.com</small>
       </div>
       <div class="form_group">
         <label for="current-password">Password</label>

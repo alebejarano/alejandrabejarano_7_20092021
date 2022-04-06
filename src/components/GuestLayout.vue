@@ -1,10 +1,10 @@
 <template>
   <!--for the login and signup pages-->
-  <div class="guest">
+  <main class="guest">
     <div class="guest_block">
       <router-view />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

@@ -424,6 +424,9 @@ export default {
   &:hover {
     background: $card-btns-midlight;
   }
+  &:focus-visible {
+    background: $card-btns-midlight;
+  }
   .like-number {
     margin-right: 0.5rem;
   }
@@ -453,6 +456,9 @@ export default {
 .comments-btn {
   @include card-btns;
   &:hover {
+    background: $card-btns-midlight;
+  }
+  &:focus-visible {
     background: $card-btns-midlight;
   }
   svg {
