@@ -1,5 +1,5 @@
 <template>
-  <a href="#main" ref="skipLink" class="skip-link">Skip to main content</a>
+  <!--<a href="#main" ref="skipLink" class="skip-link">Skip to main content</a>-->
   <router-view />
 </template>
 
@@ -7,11 +7,11 @@
 
 export default {
   name: 'App',
-  watch: {
+  /*watch: {
     $route() {
       this.$refs.skipLink.focus()
     }
-  },
+  },*/
 }
 </script>
 

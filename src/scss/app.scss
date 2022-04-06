@@ -37,7 +37,8 @@ main {
 a:not(.skip-link):focus-visible {
   outline: 2px solid $focus-indicator;
   height: fit-content;
-  padding: 0.2rem
+  padding: 0.2rem;
+  display: inline-block;
 }
 button:not(.like-btn, .comments-btn):focus-visible {
   outline: 2px solid $focus-indicator;
